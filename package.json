@@ -1,0 +1,30 @@
+{
+  "name": "react-native-nuno-ui",
+  "version": "1.0.0",
+  "description": "common ui component for nuno",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nunonam/react-native-nuno-ui.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "ui",
+    "component"
+  ],
+  "author": "hyungchul nam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nunonam/react-native-nuno-ui/issues"
+  },
+  "homepage": "https://github.com/nunonam/react-native-nuno-ui#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-native": "^0.62.2",
+    "react-native-iphone-x-helper": "^1.2.1"
+  }
+}
