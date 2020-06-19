@@ -1,11 +1,11 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {Dimensions} from 'react-native';
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
 
 export const bottomTabHeight = 50;
 
-export const ShadowStyle = StyleSheet.create({
+export const ShadowStyle = {
   shadowColor: 'black',
   shadowOffset: {
     width: 2,
@@ -14,9 +14,9 @@ export const ShadowStyle = StyleSheet.create({
   shadowOpacity: 0.36,
   shadowRadius: 6,
   elevation: 11,
-});
+};
 
-export const ShadowStyleUp = StyleSheet.create({
+export const ShadowStyleUp = {
   shadowColor: 'black',
   shadowOffset: {
     width: 0,
@@ -25,7 +25,7 @@ export const ShadowStyleUp = StyleSheet.create({
   shadowOpacity: 0.2,
   shadowRadius: 4,
   elevation: 3,
-});
+};
 
 export const textStyle = ({size, weight, color}) => {
   let fontFamily;
@@ -41,11 +41,11 @@ export const textStyle = ({size, weight, color}) => {
       break;
   }
 
-  return StyleSheet.create({
-    fontFamily: fontFamily,
+  return {
+    // fontFamily: fontFamily,
     fontSize: size,
     color: color || 'black',
     letterSpacing: -0.2,
     lineHeight: size + 10,
-  });
+  };
 };

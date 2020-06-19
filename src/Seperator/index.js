@@ -1,15 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import {
-  getBottomSpace,
-  getStatusBarHeight,
-} from 'react-native-iphone-x-helper';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
 
-export const Seperator = ({h, w, mt, mb, bottom, c}) => {
+const Seperator = ({h, w, mt, mb, bottom, c}) => {
   let height;
   if (bottom) {
     height = getBottomSpace();
-  } {
+  } else {
     height = h;
   }
   return (
@@ -24,3 +21,5 @@ export const Seperator = ({h, w, mt, mb, bottom, c}) => {
     />
   );
 };
+
+export default Seperator;
