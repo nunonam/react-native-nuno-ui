@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import Loader from '../Loader';
-import {textStyle} from '../style';
 import HView from '../HView';
+import Text from '../Text';
 
-const Button = ({text, size, color, stretch, disable, loading, onPress}) => {
+export default function Button({text, size, color, stretch, disable, loading, onPress}) {
   let fontSize, fontWeight, paddingVertical, paddingHorizontal;
   switch (size) {
     case 'small':
@@ -43,13 +43,11 @@ const Button = ({text, size, color, stretch, disable, loading, onPress}) => {
         activeOpacity={disable || loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
         <Text
-          style={textStyle({
-            size: fontSize,
-            weight: fontWeight,
-            color: color || loading ? 'white' : 'black',
-          })}>
-          {text}
-        </Text>
+          fontSize={fontSize}
+          fontWeight={fontWeight}
+          color={color || loading ? 'white' : 'black'}
+          text={text}
+        />
         <View
           style={{
             position: 'absolute',
@@ -66,5 +64,3 @@ const Button = ({text, size, color, stretch, disable, loading, onPress}) => {
     </HView>
   );
 };
-
-export default Button;

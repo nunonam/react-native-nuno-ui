@@ -27,25 +27,3 @@ export const ShadowStyleUp = {
   elevation: 3,
 };
 
-export const textStyle = ({size, weight, color}) => {
-  let fontFamily;
-  switch (weight) {
-    case 'bold':
-      fontFamily = 'NotoSansCJKkr-Bold';
-      break;
-    case 'medium':
-      fontFamily = 'NotoSansCJKkr-Medium';
-      break;
-    default:
-      fontFamily = 'NotoSansCJKkr-Regular';
-      break;
-  }
-
-  return {
-    // fontFamily: fontFamily,
-    fontSize: size,
-    color: color || 'black',
-    letterSpacing: -0.2,
-    lineHeight: size + 10,
-  };
-};
