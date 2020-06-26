@@ -5,7 +5,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import DeviceInfo from 'react-native-device-info';
 import { screenWidth } from '../style';
 
-export default function Map({latitude, longitude}) {
+export default function Map({latitude, longitude, showsMyLocationButton, showsScale}) {
   const onRegionChange = region => {
     console.log('onRegionChange', region);
     // setCoordinate(region);
@@ -27,6 +27,8 @@ export default function Map({latitude, longitude}) {
           longitudeDelta: 0.005457624793052673,
         }}
         onRegionChangeComplete={e => onRegionChange(e)}
+        showsMyLocationButton={showsMyLocationButton}
+        showsScale={showsScale}
       />
       <View
         style={{

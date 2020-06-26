@@ -12,7 +12,7 @@ import Text from '../Text';
 import {screenHeight} from '../style';
 import {Picker} from '@react-native-community/picker';
 
-export default ({items, title, value, onValueChange, disabled, placeholder}) => {
+export default ({items, title, value, onValueChange, disabled, placeholder, pickerClose}) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
   const selected = items.filter(
@@ -76,7 +76,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder}) => 
                 style={{flex: 1}}
                 onPress={() => setShowPicker(!showPicker)}
               />
-              <View
+              {pickerClose && <View
                 style={{
                   height: 50,
                   backgroundColor: 'lightgray',
@@ -91,32 +91,33 @@ export default ({items, title, value, onValueChange, disabled, placeholder}) => 
                   style={{paddingHorizontal: 20, paddingVertical: 10}}>
                   <AntDesign name={'down'} size={20} color={'gray'} />
                 </TouchableOpacity>
+              </View>}
+              <View style={{backgroundColor: 'lightgray'}}>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                  }}>
+                  <Picker
+                    selectedValue={value}
+                    onValueChange={onValueChange}
+                    enabled={
+                      disabled
+                        ? false
+                        : true
+                    }>
+                    {items.map((item, index) => {
+                      return (
+                        <Picker.Item
+                          label={item.name}
+                          value={item.code}
+                          key={index}
+                        />
+                      );
+                    })}
+                  </Picker>
+                </View>
+                <Seperator bottom />
               </View>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  backgroundColor: 'white',
-                }}>
-                <Picker
-                  selectedValue={value}
-                  onValueChange={onValueChange}
-                  enabled={
-                    disabled
-                      ? false
-                      : true
-                  }>
-                  {items.map((item, index) => {
-                    return (
-                      <Picker.Item
-                        label={item.name}
-                        value={item.code}
-                        key={index}
-                      />
-                    );
-                  })}
-                </Picker>
-              </View>
-              <Seperator bottom />
             </View>
           </Modal>
         </View>

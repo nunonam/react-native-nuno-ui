@@ -22,8 +22,8 @@ export default function Button({text, size, color, stretch, disable, loading, on
     default:
       fontSize = 18;
       fontWeight = 'bold';
-      paddingVertical = 10;
-      paddingHorizontal = 10;
+      paddingVertical = 15;
+      paddingHorizontal = 15;
       break;
   }
   return (

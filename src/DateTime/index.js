@@ -5,7 +5,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 
-export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onValueChange}) {
+export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onValueChange, pickerClose}) {
   const [showPicker, setShowPicker] = React.useState(false);
 
   if (!locale) {
@@ -74,7 +74,7 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
               flex: 1,
             }}>
             <TouchableOpacity style={{flex: 1}} onPress={() => setShowPicker(!showPicker)} />
-            <View
+            {pickerClose && <View
               style={{
                 height: 50,
                 backgroundColor: 'lightgray',
@@ -89,25 +89,26 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
                 style={{paddingHorizontal: 20, paddingVertical: 10}}>
                 <AntDesign name={'down'} size={20} color={'gray'} />
               </TouchableOpacity>
+            </View>}
+            <View style={{backgroundColor: 'lightgray'}}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                }}>
+                <RNDateTimePicker
+                  mode={mode || 'date'}
+                  locale={locale}
+                  format="lll"
+                  display="default"
+                  minuteInterval={minuteInterval}
+                  onChange={(e, date) => {
+                    onValueChange(date);
+                  }}
+                  value={value}
+                />
+              </View>
+              <Seperator bottom />
             </View>
-            <View
-              style={{
-                justifyContent: 'center',
-                backgroundColor: 'white',
-              }}>
-              <RNDateTimePicker
-                mode={mode || 'date'}
-                locale={locale}
-                format="lll"
-                display="default"
-                minuteInterval={minuteInterval}
-                onChange={(e, date) => {
-                  onValueChange(date);
-                }}
-                value={value}
-              />
-            </View>
-            <Seperator bottom />
           </View>
         </Modal>
       ) : (
@@ -119,7 +120,9 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
             display="spinner"
             onChange={(e, date) => {
               setShowPicker(false);
-              onValueChange(date);
+              if (e.type === 'set') {
+                onValueChange(date);
+              }
             }}
             value={value}
           />

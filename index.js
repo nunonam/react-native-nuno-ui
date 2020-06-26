@@ -11,6 +11,12 @@ import Image from './src/Image';
 import Header from './src/Header';
 import Badge from './src/Badge';
 import HView from './src/HView';
+import Modal from './src/Modal';
+import ImageCarousel from './src/ImageCarousel';
+import ImageViewer from './src/ImageViewer';
+import Alert from './src/Alert';
+import Container from './src/Container';
+import Chat from './src/Chat';
 
 export {
   Button,
@@ -26,4 +32,10 @@ export {
   Header,
   Badge,
   HView,
+  Modal,
+  ImageCarousel,
+  ImageViewer,
+  Alert,
+  Container,
+  Chat,
 };

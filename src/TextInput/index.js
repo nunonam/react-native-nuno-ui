@@ -141,7 +141,7 @@ export default (props) => {
         )}
       </HView>
 
-      {Platform.OS === 'ios' && (
+      {Platform.OS === 'ios' && props.keyboardClose && (
         <InputAccessoryView nativeID={inputAccessoryViewID}>
           <View
             style={{

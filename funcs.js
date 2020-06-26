@@ -7,7 +7,24 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import chalk from 'chalk';
 
+export function log(data) {
+  console.log(data);
+}
+export function error(data) {
+  console.error(data)
+}
+export function logApi(func, data) {
+  console.groupCollapsed(`[API] ${func}`);
+  console.info(data);
+  console.groupEnd();
+}
+export function errorApi(endpoint, data) {
+  console.groupCollapsed(`[API ERROR] ${endpoint}`);
+  console.error(data);
+  console.groupEnd();
+}
 export function share(message, title, callback) {
   Share.share({
     message: message,
