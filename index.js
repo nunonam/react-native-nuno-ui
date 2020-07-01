@@ -17,24 +17,35 @@ import ImageViewer from './src/ImageViewer';
 import Alert from './src/Alert';
 import Container from './src/Container';
 import Chat from './src/Chat';
+import { log } from './funcs';
 
-class Config {
-  constructor(props) {
-    console.log('Config Constructor', props);
-    this._config = props;
-  };
-  set config(data) {
-    this._config = {
-      ...this._config,
-      ...data
+class Nuno {
+  // constructor(props) {
+  //   log('Nuno Constructor', props);
+  //   this._config = {
+  //     theme: props.theme,
+  //   };
+  // };
+  static init(props) {
+    log('Nuno Init', props);
+    Nuno.config = {
+      themeColor: props.themeColor,
+      headerTitleWeight: props.headerTitleWeight,
+      ...props,
     }
   }
-  get config() {
-    return this._config;
-  }
+  // set config(data) {
+  //   this._config = {
+  //     ...this._config,
+  //     ...data
+  //   }
+  // }
+  // get config() {
+  //   return this._config;
+  // }
 }
 export {
-  Config,
+  Nuno,
   Button,
   Loader,
   Seperator,

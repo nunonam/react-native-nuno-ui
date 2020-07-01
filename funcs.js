@@ -9,11 +9,11 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import chalk from 'chalk';
 
-export function log(data) {
-  console.log(data);
+export function log(func, data) {
+  console.log(func, data);
 }
-export function error(data) {
-  console.error(data)
+export function error(func, data) {
+  console.error(func, data)
 }
 export function logApi(func, data) {
   console.groupCollapsed(`[API] ${func}`);

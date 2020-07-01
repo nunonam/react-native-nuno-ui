@@ -4,11 +4,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
+import { Nuno } from '../..';
 
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, containerStyle}) {
   let headerLeft;
   let headerRight;
-  let headerCenter = <Text fontSize={18} fontWeight={'bold'} color={'dimgray'} text={title}/>;
+  let headerCenter = <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={'dimgray'} text={title}/>;
 
   switch (left) {
     case 'close':
