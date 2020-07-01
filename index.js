@@ -18,10 +18,20 @@ import Alert from './src/Alert';
 import Container from './src/Container';
 import Chat from './src/Chat';
 
-class Config() {
+class Config {
   constructor(props) {
-    console.log('Config', props);
+    console.log('Config Constructor', props);
+    this.config = props;
   };
+  set config(data) {
+    this.config = {
+      ...this.config,
+      ...data
+    }
+  }
+  get config() {
+    return this.config;
+  }
 }
 export {
   Config,
