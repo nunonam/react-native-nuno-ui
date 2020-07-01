@@ -18,7 +18,13 @@ import Alert from './src/Alert';
 import Container from './src/Container';
 import Chat from './src/Chat';
 
+class Config() {
+  constructor(props) {
+    console.log('Config', props);
+  };
+}
 export {
+  Config,
   Button,
   Loader,
   Seperator,
