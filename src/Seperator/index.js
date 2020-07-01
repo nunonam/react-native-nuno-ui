@@ -10,12 +10,17 @@ const Seperator = ({
   bottom,
   color,
   line,
+  vline
 }) => {
   if (bottom) {
     height = getBottomSpace();
   }
   if (line) {
     height = 1;
+    color = color || 'lightgray';
+  }
+  if (vline) {
+    width = 1;
     color = color || 'lightgray';
   }
 

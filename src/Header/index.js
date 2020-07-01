@@ -17,7 +17,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={24} color={'black'} />
+          <AntDesign name={'close'} size={16} color={'black'} />
         </TouchableOpacity>
       );
       break;
@@ -26,7 +26,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'left'} size={24} color={'black'} />
+          <AntDesign name={'left'} size={16} color={'black'} />
         </TouchableOpacity>
       );
       break;
