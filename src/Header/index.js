@@ -9,7 +9,7 @@ import { Nuno } from '../..';
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, containerStyle}) {
   let headerLeft;
   let headerRight;
-  let headerCenter = <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={'dimgray'} text={title}/>;
+  let headerCenter = <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>;
 
   switch (left) {
     case 'close':
