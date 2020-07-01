@@ -21,16 +21,16 @@ import Chat from './src/Chat';
 class Config {
   constructor(props) {
     console.log('Config Constructor', props);
-    this.config = props;
+    this._config = props;
   };
   set config(data) {
-    this.config = {
-      ...this.config,
+    this._config = {
+      ...this._config,
       ...data
     }
   }
   get config() {
-    return this.config;
+    return this._config;
   }
 }
 export {
