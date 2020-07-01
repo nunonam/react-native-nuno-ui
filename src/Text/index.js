@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
+import { Nuno } from '../..';
 
 export default ({text, fontSize, fontWeight, color}) => {
   return (
@@ -7,7 +8,7 @@ export default ({text, fontSize, fontWeight, color}) => {
       style={{
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: color,
+        color: color || Nuno.config.textColor,
       }}>
       {text}
     </Text>

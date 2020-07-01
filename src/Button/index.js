@@ -3,6 +3,7 @@ import {View, TouchableOpacity} from 'react-native';
 import Loader from '../Loader';
 import HView from '../HView';
 import Text from '../Text';
+import { Nuno } from '../..';
 
 export default function Button({text, size, color, stretch, disable, loading, onPress}) {
   let fontSize, fontWeight, paddingVertical, paddingHorizontal;
@@ -35,10 +36,10 @@ export default function Button({text, size, color, stretch, disable, loading, on
           alignItems: 'center',
           paddingHorizontal: paddingHorizontal,
           paddingVertical: paddingVertical,
-          backgroundColor: color || 'white',
+          backgroundColor: color || Nuno.config.themeColor,
           borderRadius: 4,
           borderWidth: 1,
-          borderColor: color || 'darkgray',
+          borderColor: color === 'white' ? 'darkgray' : Nuno.config.themeColor,
         }}
         activeOpacity={disable || loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
