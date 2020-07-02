@@ -18,7 +18,6 @@ import ImageViewer from './src/ImageViewer';
 import Alert from './src/Alert';
 import Container from './src/Container';
 import Chat from './src/Chat';
-import ActionSheet from './src/ActionSheet';
 import { log } from './funcs';
 
 class Nuno {
@@ -54,5 +53,4 @@ export {
   Alert,
   Container,
   Chat,
-  ActionSheet,
 };
