@@ -49,7 +49,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
   }
   switch (right) {
     case 'close':
-      headerLeft = (
+      headerRight = (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
