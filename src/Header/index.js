@@ -48,6 +48,15 @@ export default function Header({navigation, left, leftComponent, title, right, r
       break;
   }
   switch (right) {
+    case 'close':
+      headerLeft = (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{paddingHorizontal: 20, paddingVertical: 5}}>
+          <AntDesign name={'close'} size={20} color={'black'} />
+        </TouchableOpacity>
+      );
+      break;
     case 'search':
       headerRight = (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
