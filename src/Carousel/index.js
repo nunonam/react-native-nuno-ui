@@ -7,18 +7,7 @@ import FastImage from 'react-native-fast-image';
 export default ({data, onPress, width, height, loop, paginationContainerStyle}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const renderItem = ({item}) => {
-    return (
-      <TouchableOpacity onPress={onPress} activeOpacity={onPress ? 0.5 : 1}>
-        <FastImage
-          source={{uri: item}}
-          style={{
-            width: width || screenWidth,
-            height: height || Math.floor(screenWidth / 2),
-          }}
-          resizeMode={'cover'}
-        />
-      </TouchableOpacity>
-    );
+    return item;
   };
   return (
     <View>

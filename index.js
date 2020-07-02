@@ -12,6 +12,7 @@ import Header from './src/Header';
 import Badge from './src/Badge';
 import HView from './src/HView';
 import Modal from './src/Modal';
+import Carousel from './src/Carousel';
 import ImageCarousel from './src/ImageCarousel';
 import ImageViewer from './src/ImageViewer';
 import Alert from './src/Alert';
@@ -46,6 +47,7 @@ export {
   Badge,
   HView,
   Modal,
+  Carousel,
   ImageCarousel,
   ImageViewer,
   Alert,
