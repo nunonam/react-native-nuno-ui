@@ -6,10 +6,10 @@ import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
 
-export default function Header({navigation, left, leftComponent, title, right, rightComponent, containerStyle}) {
+export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle}) {
   let headerLeft;
   let headerRight;
-  let headerCenter = <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>;
+  let headerCenter = centerComponent || <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>;
 
   switch (left) {
     case 'close':
@@ -17,7 +17,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={16} color={'black'} />
+          <AntDesign name={'close'} size={20} color={'black'} />
         </TouchableOpacity>
       );
       break;
@@ -26,7 +26,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'left'} size={16} color={'black'} />
+          <AntDesign name={'left'} size={20} color={'black'} />
         </TouchableOpacity>
       );
       break;
@@ -35,7 +35,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.toggleDrawer()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name="menuunfold" size={18} color={'black'} />
+          <AntDesign name="menuunfold" size={20} color={'black'} />
         </TouchableOpacity>
       );
       break;
