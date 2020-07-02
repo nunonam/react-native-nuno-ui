@@ -4,7 +4,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { screenWidth } from '../style';
 import FastImage from 'react-native-fast-image';
 
-export default ({data, onPress, width, height, loop, paginationContainerStyle}) => {
+export default ({data, onPress, width, height, loop, dotColor, paginationContainerStyle}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const renderItem = ({item}) => {
     return item;
@@ -23,7 +23,7 @@ export default ({data, onPress, width, height, loop, paginationContainerStyle}) 
       <Pagination
         dotsLength={data.length}
         activeDotIndex={activeIndex}
-        dotColor={'white'}
+        dotColor={dotColor || 'white'}
         inactiveDotColor={'lightgray'}
         inactiveDotScale={1}
         inactiveDotOpacity={1}
