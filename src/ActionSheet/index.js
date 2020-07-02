@@ -1,7 +1,7 @@
 import React from 'react';
 import ActionSheet from 'react-native-actions-sheet';
 
-export default function ActionSheet({ref, children}) {
+export default ({ref, children}) => {
   return (
     <ActionSheet
       ref={ref}
