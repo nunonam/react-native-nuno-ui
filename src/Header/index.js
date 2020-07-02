@@ -9,7 +9,11 @@ import { Nuno } from '../..';
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle}) {
   let headerLeft;
   let headerRight;
-  let headerCenter = centerComponent || <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>;
+  let headerCenter = centerComponent || (
+    <View style={{alignItems: 'center'}}>
+      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>
+    </View>
+    );
 
   switch (left) {
     case 'close':
@@ -100,7 +104,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
       <View style={{alignItems: 'flex-start'}}>{headerLeft}</View>
 
       {/* Title */}
-      <View style={{alignItems: 'center'}}>{headerCenter}</View>
+      {headerCenter}
 
       {/* Right */}
       <View style={{alignItems: 'flex-end'}}>{headerRight}</View>
