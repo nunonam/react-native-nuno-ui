@@ -36,19 +36,19 @@ export default function Button({text, size, color, stretch, disable, loading, on
           alignItems: 'center',
           paddingHorizontal: paddingHorizontal,
           paddingVertical: paddingVertical,
-          backgroundColor: color || Nuno.config.themeColor,
+          backgroundColor: color,
           borderRadius: 4,
           borderWidth: 1,
-          borderColor: color === 'white' ? 'darkgray' : Nuno.config.themeColor,
+          borderColor: color === 'white' ? 'darkgray' : color,
         }}
         activeOpacity={disable || loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
-        <Text
+        {!loading && <Text
           fontSize={fontSize}
           fontWeight={fontWeight}
-          color={color || loading ? 'white' : 'black'}
+          color={color === 'white' ? 'darkgray' : 'white'}
           text={text}
-        />
+        />}
         <View
           style={{
             position: 'absolute',
@@ -59,7 +59,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          {loading && <Loader color={color ? 'white' : 'black'} />}
+          {loading && <Loader color={color === 'white' ? 'black' : 'white'} />}
         </View>
       </TouchableOpacity>
     </HView>
