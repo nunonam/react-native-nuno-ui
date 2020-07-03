@@ -9,7 +9,7 @@ export default ({isVisible, animationIn, animationOut, onBackdropPress, fullScre
       animationOut={animationOut}
       onBackdropPress={onBackdropPress}
       backdropOpacity={0.5}
-      style={{margin: fullScreen ? 0 : 26}}
+      style={{margin: fullScreen ? 0 : 45}}
       >
       {children}
     </Modal>

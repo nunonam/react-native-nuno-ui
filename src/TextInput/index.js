@@ -21,7 +21,7 @@ export default (props) => {
     <View>
       {props.title && (
         <View>
-          <Text fontSize={14} fontWeight={'bold'} text={props.title} />
+          <Text fontSize={16} fontWeight={'500'} text={props.title} color={'dimgray'} />
           <Seperator height={10} />
         </View>
       )}
