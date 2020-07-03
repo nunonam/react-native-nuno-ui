@@ -5,7 +5,7 @@ import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
 
-export default function Button({text, size, color, stretch, disable, loading, onPress}) {
+export default function Button({text, size, color, stretch, disable, loading, onPress, textColor, borderColor, borderRadius}) {
   let fontSize, fontWeight, paddingVertical, paddingHorizontal;
   switch (size) {
     case 'small':
@@ -37,16 +37,16 @@ export default function Button({text, size, color, stretch, disable, loading, on
           paddingHorizontal: paddingHorizontal,
           paddingVertical: paddingVertical,
           backgroundColor: color,
-          borderRadius: 4,
+          borderRadius: borderRadius || 4,
           borderWidth: 1,
-          borderColor: color === 'white' ? 'darkgray' : color,
+          borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
         }}
         activeOpacity={disable || loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
         {!loading && <Text
           fontSize={fontSize}
           fontWeight={fontWeight}
-          color={color === 'white' ? 'darkgray' : 'white'}
+          color={textColor ? textColor : (color === 'white' ? 'darkgray' : 'white')}
           text={text}
         />}
         <View
