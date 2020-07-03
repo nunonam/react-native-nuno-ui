@@ -5,7 +5,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 
-export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onValueChange, pickerClose}) {
+export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onValueChange, pickerClose, borderWidth}) {
   const [showPicker, setShowPicker] = React.useState(false);
 
   if (!locale) {
@@ -45,7 +45,7 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
           justifyContent: 'space-between',
           alignItems: 'center',
           backgroundColor: 'white',
-          borderWidth: 1,
+          borderWidth: borderWidth !== undefined ? borderWidth : 1,
           borderColor: 'lightgray',
           borderRadius: 5,
           paddingHorizontal: 10,

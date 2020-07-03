@@ -12,7 +12,7 @@ import Text from '../Text';
 import {screenHeight} from '../style';
 import {Picker} from '@react-native-community/picker';
 
-export default ({items, title, value, onValueChange, disabled, placeholder, pickerClose}) => {
+export default ({items, title, value, onValueChange, disabled, placeholder, pickerClose, borderWidth}) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
   const selected = items.filter(
@@ -42,7 +42,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
-              borderWidth: 1,
+              borderWidth: borderWidth !== undefined ? borderWidth : 1,
               borderColor: 'lightgray',
               borderRadius: 4,
               backgroundColor: 'white',
@@ -124,7 +124,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
       ) : (
         <View
           style={{
-            borderWidth: 1,
+            borderWidth: borderWidth !== undefined ? borderWidth : 1,
             borderColor: 'lightgray',
             borderRadius: 5,
             height: 44,
