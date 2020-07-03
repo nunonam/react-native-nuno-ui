@@ -111,8 +111,8 @@ export default (props) => {
           <View style={{position: 'absolute', right: 0, top: -30}}>
             <Text
               fontSize={14}
-              fontWeight={'medium'}
-              color={'lightgray'}
+              fontWeight={'500'}
+              color={'gray'}
               text={
                 props.value.length
                   ? props.value.length + ' / ' + props.maxLength
