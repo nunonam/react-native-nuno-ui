@@ -22,7 +22,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
     <View>
       {title && (
         <>
-          <Text fontSize={16} fontWeight={'500'} text={props.title} color={'dimgray'} />
+          <Text fontSize={16} fontWeight={'500'} text={title} color={'dimgray'} />
           <Seperator height={10} />
         </>
       )}
