@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-export default function Image({height, width, borderRadius, uri, onPress, resizeMode}) {
+export default function Image({local, height, width, borderRadius, uri, onPress, resizeMode}) {
   if (!resizeMode) {
     resizeMode = 'cover';
   }
@@ -16,7 +16,7 @@ export default function Image({height, width, borderRadius, uri, onPress, resize
           width: width,
           borderRadius: borderRadius
         }}
-        source={{uri: uri}}
+        source={local ? uri : {uri: uri}}
         resizeMode={resizeMode}
       />
     </TouchableOpacity>
