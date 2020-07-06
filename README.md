@@ -43,5 +43,18 @@ List of all available fonts to copy & paste in info.plist
 </array>
 ```
 
+### For react-native-geolocation-service
+
+#### ios
+Update info.plist
+
+NSLocationWhenInUseUsageDescription
+
+#### android
+```
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
 ## Example ##
 Preparing

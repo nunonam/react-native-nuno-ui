@@ -28,6 +28,12 @@ class Nuno {
       themeColor: props.themeColor,
       textColor: props.textColor,
       headerTitleWeight: props.headerTitleWeight,
+      dynamicLink: props.dynamicLink,
+      FIREBASE_WEB_API: props.FIREBASE_WEB_API,
+      IOS_STORE_ID: props.IOS_STORE_ID,
+      PACKAGE_NAME: props.PACKAGE_NAME,
+      BUNDLE_ID: props.BUNDLE_ID,
+      GEOCODE_API: props.GEOCODE_API,
       ...props,
     }
   }
