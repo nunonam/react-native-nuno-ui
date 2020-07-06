@@ -30,7 +30,7 @@ export function errorApi(endpoint, data) {
   console.error(data);
   console.groupEnd();
 }
-export function getCurrentLocation() {
+export async function getCurrentLocation() {
   let granted;
   if (Platform.OS === 'android') {
     granted = await PermissionsAndroid.request(

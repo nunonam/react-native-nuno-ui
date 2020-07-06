@@ -5,7 +5,7 @@ A library to help nuno project more easier
 `yarn add react-native-nuno-ui`
 
 ## Dependency ##
-`yarn add @react-native-community/datetimepicker @react-native-community/picker react-native-device-info react-native-fast-image react-native-image-crop-picker react-native-maps react-native-vector-icons`
+`yarn add @react-native-community/datetimepicker @react-native-community/picker react-native-device-info react-native-fast-image react-native-image-crop-picker react-native-maps react-native-vector-icons @react-native-community/async-storage react-native-geolocation-service`
 
 ## iOS pod file ##
 cd ios && pod install
