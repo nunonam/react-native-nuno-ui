@@ -6,9 +6,10 @@ import FastImage from 'react-native-fast-image';
 
 export default ({data, onPress, width, height, loop, paginationContainerStyle}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const [imageViewer, setImageViewer] = React.useState(false);
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={onPress} activeOpacity={onPress ? 0.5 : 1}>
+      <TouchableOpacity onPress={onPress || () => setImageViewer(true)} activeOpacity={onPress ? 0.5 : 1}>
         <FastImage
           source={{uri: item}}
           style={{
@@ -40,6 +41,16 @@ export default ({data, onPress, width, height, loop, paginationContainerStyle}) 
         inactiveDotOpacity={1}
         containerStyle={{position: 'absolute', bottom: -20, left: 0, right: 0, ...paginationContainerStyle}}
       />
+      <Modal
+        isVisible={imageViewer}
+        fullScreen={true}
+        onBackdropPress={() => setImageViewer(false)}>
+        <ImageViewer
+          data={data}
+          enableSwipeDown={true}
+          onSwipeDown={() => setImageViewer(false)}
+        />
+      </Modal>
     </View>
   );
 }
