@@ -1,6 +1,6 @@
 {
   "name": "react-native-nuno-ui",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "common ui component for nuno",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "react-native-vector-icons": "^6.6.0"
   },
   "dependencies": {
+    "moment": "^2.27.0",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-keyboard-spacer": "^0.4.1",
