@@ -3,13 +3,15 @@ import {TouchableOpacity, View} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { screenWidth } from '../style';
 import FastImage from 'react-native-fast-image';
+import ImageViewer from '../ImageViewer';
+import Modal from '../Modal';
 
-export default ({data, onPress, width, height, loop, paginationContainerStyle}) => {
+export default ({data, onPress, width, height, loop, dotColor, paginationContainerStyle}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [imageViewer, setImageViewer] = React.useState(false);
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={onPress || () => setImageViewer(true)} activeOpacity={onPress ? 0.5 : 1}>
+      <TouchableOpacity onPress={onPress ? () => onPress() : () => setImageViewer(true)} activeOpacity={onPress ? 0.5 : 1}>
         <FastImage
           source={{uri: item}}
           style={{
@@ -35,7 +37,7 @@ export default ({data, onPress, width, height, loop, paginationContainerStyle}) 
       <Pagination
         dotsLength={data.length}
         activeDotIndex={activeIndex}
-        dotColor={'white'}
+        dotColor={dotColor || 'white'}
         inactiveDotColor={'lightgray'}
         inactiveDotScale={1}
         inactiveDotOpacity={1}
