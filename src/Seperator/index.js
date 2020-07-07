@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
+import {View, Platform} from 'react-native';
+import {getStatusBarHeight, getBottomSpace} from 'react-native-iphone-x-helper';
 
 const Seperator = ({
   height,
@@ -8,12 +8,16 @@ const Seperator = ({
   marginTop,
   marginBottom,
   bottom,
+  top,
   color,
   line,
   vline
 }) => {
   if (bottom) {
     height = getBottomSpace();
+  }
+  if (top) {
+    height = Platform.OS === 'ios' ? getStatusBarHeight() : 0;
   }
   if (line) {
     height = 1;
