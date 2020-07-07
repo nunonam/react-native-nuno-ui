@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from '../Image';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import Seperator from '../Seperator';
 import Text from '../Text';
 
-export default ({size, uri, name, onPress}) => {
+export default ({size, uri, name, desc, onPress}) => {
   return (
     <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={onPress}>
       <Image
@@ -16,7 +16,10 @@ export default ({size, uri, name, onPress}) => {
         onPress={onPress}
       />
       <Seperator width={10} />
-      {name !== undefined && <Text text={name} fontSize={12} />}
+      <View>
+        {name !== undefined && <Text text={name} fontSize={12} />}
+        {desc !== undefined && <Text text={desc} fontSize={12} color={'gray'} />}
+      </View>
     </TouchableOpacity>
   )
 };
