@@ -1,4 +1,5 @@
 import Button from './src/Button';
+import ButtonGroup from './src/ButtonGroup';
 import Loader from './src/Loader';
 import Seperator from './src/Seperator';
 import Checkbox from './src/Checkbox';
@@ -41,6 +42,7 @@ class Nuno {
 export {
   Nuno,
   Button,
+  ButtonGroup,
   Loader,
   Seperator,
   Checkbox,
