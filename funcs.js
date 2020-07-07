@@ -30,6 +30,17 @@ export function errorApi(endpoint, data) {
   console.error(data);
   console.groupEnd();
 }
+dxport async function getAge(s) {
+  // ISODateString => Date
+  const b = s.split(/\D+/);
+  const birthday = new Date(
+    Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]),
+  );
+
+  const ageDifMs = Date.now() - birthday.getTime();
+  const ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
 export async function getCurrentLocation() {
   let granted;
   if (Platform.OS === 'android') {
