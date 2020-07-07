@@ -30,7 +30,7 @@ export function errorApi(endpoint, data) {
   console.error(data);
   console.groupEnd();
 }
-dxport async function getAge(s) {
+export function getAge(s) {
   // ISODateString => Date
   const b = s.split(/\D+/);
   const birthday = new Date(
