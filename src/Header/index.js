@@ -5,8 +5,9 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
+import { ShadowStyle } from 'react-native-nuno-ui/src/style';
 
-export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle}) {
+export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle, transparent}) {
   let headerLeft;
   let headerRight;
   let headerCenter = centerComponent || (
@@ -21,7 +22,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={20} color={'black'} />
+          <AntDesign name={'close'} size={20} color={transparent ? 'white' : 'black'} />
         </TouchableOpacity>
       );
       break;
@@ -29,8 +30,8 @@ export default function Header({navigation, left, leftComponent, title, right, r
       headerLeft = (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          style={{paddingHorizontal: 20, paddingVertical: 5}}>
-          <AntDesign name={'left'} size={20} color={'black'} />
+          style={{paddingHorizontal: 20, paddingVertical: 5, ...ShadowStyle}}>
+          <AntDesign name={'left'} size={20} color={transparent ? 'white' : 'black'} />
         </TouchableOpacity>
       );
       break;
@@ -95,9 +96,14 @@ export default function Header({navigation, left, leftComponent, title, right, r
         height: 52,
         justifyContent: 'space-between',
         marginTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
-        borderBottomWidth: 1,
+        borderBottomWidth: transparent ? 0 : 1,
         borderBottomColor: 'lightgray',
         paddingTop: 5,
+        position: transparent ? 'absolute' : undefined,
+        top: transparent ? 0 : undefined,
+        left: transparent ? 0 : undefined,
+        right: transparent ? 0 : undefined,
+        zIndex: transparent ? 1 : undefined,
         ...containerStyle,
       }}>
       {/* Left */}
