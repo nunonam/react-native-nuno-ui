@@ -1,9 +1,12 @@
 import React from 'react';
 import Image from '../Image';
+import { TouchableOpacity } from 'react-native';
+import Seperator from '../Seperator';
+import Text from '../Text';
 
 export default ({size, uri, name, onPress}) => {
   return (
-    <TouchableOpacity style={{flexDirection: 'row', justifyContent: 'center'}} onPress={onPress}>
+    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={onPress}>
       <Image
         height={size}
         width={size}
@@ -13,7 +16,7 @@ export default ({size, uri, name, onPress}) => {
         onPress={onPress}
       />
       <Seperator width={10} />
-      {name && <Text text={name} fontSize={12} />}
-    </HView>
+      {name !== undefined && <Text text={name} fontSize={12} />}
+    </TouchableOpacity>
   )
 };
