@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Text from '../Text';
 
 export default function Checkbox({
@@ -13,42 +13,59 @@ export default function Checkbox({
   label,
   labelColor,
   disabled,
+  customChecked,
+  customUnChecked,
 }) {
-  let iconName, labelSize;
-  switch (type) {
-    case 'square':
-      iconName = checked ? 'checksquare' : 'checksquareo';
-      break;
-    default:
-      iconName = checked ? 'checkcircle' : 'checkcircleo';
-      break;
-  }
+  let iconChecked, iconUnchecked, labelSize;
   switch (size) {
     case 'small':
-      labelSize = 14;
+      labelSize = 12;
+      iconSize = 18;
       break;
     case 'large':
       labelSize = 18;
+      iconSize = 28;
       break;
     default:
-      labelSize = 16;
+      labelSize = 14;
+      iconSize = 22;
       break;
+  }
+  if (multiple) {
+    iconChecked = customChecked || <MaterialIcons
+      name={'check-box'}
+      color={disabled ? 'gray' : color || 'dimgray'}
+      size={iconSize}
+    />;
+    iconUnchecked = customUnChecked || <MaterialIcons
+      name={'check-box-outline-blank'}
+      color={disabled ? 'gray' : color || 'dimgray'}
+      size={iconSize}
+    />;
+  } else {
+    iconChecked = customChecked || <MaterialIcons
+      name={'radio-button-checked'}
+      color={disabled ? 'gray' : color || 'dimgray'}
+      size={iconSize}
+    />;
+    iconUnchecked = customUnChecked || <MaterialIcons
+      name={'radio-button-unchecked'}
+      color={disabled ? 'gray' : color || 'dimgray'}
+      size={iconSize}
+    />;
   }
 
   return (
     <TouchableOpacity
       onPress={onPress}
       style={{flexDirection: 'row', alignItems: 'center'}}>
-      <AntDesign
-        name={iconName}
-        color={disabled ? 'darkgray' : color || 'black'}
-        size={22}
-      />
+      {checked ? iconChecked : iconUnchecked}
       {label && (
         <View style={{marginLeft: 6}}>
           <Text
             fontSize={labelSize}
-            color={disabled ? 'darkgray' : labelColor || 'black'}
+            fontWeight={checked ? 'bold' : '300'}
+            color={(disabled || !checked) ? 'gray' : labelColor || 'dimgray'}
             text={label}
           />
         </View>
