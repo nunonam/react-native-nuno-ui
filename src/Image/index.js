@@ -6,10 +6,24 @@ export default function Image({local, height, width, borderRadius, borderColor, 
   if (!resizeMode) {
     resizeMode = 'cover';
   }
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={onPress ? 0.5 : 1}>
+  if (onPress) {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <FastImage
+          style={{
+            height: height,
+            width: width,
+            borderRadius: borderRadius,
+            borderWidth: borderWidth,
+            borderColor: borderColor,
+          }}
+          source={local ? uri : {uri: uri}}
+          resizeMode={resizeMode}
+        />
+      </TouchableOpacity>
+    );
+  } else {
+    return (
       <FastImage
         style={{
           height: height,
@@ -21,6 +35,6 @@ export default function Image({local, height, width, borderRadius, borderColor, 
         source={local ? uri : {uri: uri}}
         resizeMode={resizeMode}
       />
-    </TouchableOpacity>
-  );
+    );
+  }
 }

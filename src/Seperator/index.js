@@ -25,6 +25,7 @@ const Seperator = ({
   }
   if (vline) {
     width = 1;
+    height = height;
     color = color || 'lightgray';
   }
 
