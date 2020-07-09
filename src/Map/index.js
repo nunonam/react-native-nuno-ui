@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import DeviceInfo from 'react-native-device-info';
 import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
+import { Nuno } from '../..';
 
 export default function Map({latitude, longitude, showsMyLocationButton, showsScale, customCenter, showZoom, showCompass}) {
   let mapRef = React.useRef();
@@ -43,7 +44,7 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <MapView
-        // provider={'google'}
+        provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
         initialRegion={{
