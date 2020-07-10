@@ -37,7 +37,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
           paddingHorizontal: paddingHorizontal,
           paddingVertical: paddingVertical,
           backgroundColor: color,
-          borderRadius: borderRadius || 4,
+          borderRadius: borderRadius !== undefined ? borderRadius : 4,
           borderWidth: 1,
           borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
         }}
