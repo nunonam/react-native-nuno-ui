@@ -12,7 +12,7 @@ import Text from '../Text';
 import {screenHeight} from '../style';
 import {Picker} from '@react-native-community/picker';
 
-export default ({items, title, value, onChange, disabled, placeholder, pickerClose, borderWidth}) => {
+export default ({items, title, value, onChange, disabled, placeholder, closeBar, closeBarColor, backgroundColor, borderWidth}) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
   const selected = items.filter(
@@ -76,10 +76,10 @@ export default ({items, title, value, onChange, disabled, placeholder, pickerClo
                 style={{flex: 1}}
                 onPress={() => setShowPicker(!showPicker)}
               />
-              {pickerClose && <View
+              {closeBar && <View
                 style={{
                   height: 50,
-                  backgroundColor: 'lightgray',
+                  backgroundColor: closeBarColor || 'lightgray',
                   borderColor: 'lightgray',
                   borderTopWidth: 1,
                   borderBottomWidth: 1,
@@ -92,7 +92,7 @@ export default ({items, title, value, onChange, disabled, placeholder, pickerClo
                   <AntDesign name={'down'} size={20} color={'gray'} />
                 </TouchableOpacity>
               </View>}
-              <View style={{backgroundColor: 'lightgray'}}>
+              <View style={{backgroundColor: closeBarColor || 'white'}}>
                 <View
                   style={{
                     justifyContent: 'center',

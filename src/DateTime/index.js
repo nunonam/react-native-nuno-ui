@@ -5,7 +5,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 
-export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onChange, pickerClose, borderWidth}) {
+export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
   const [showPicker, setShowPicker] = React.useState(false);
 
   if (!locale) {
@@ -74,10 +74,10 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
               flex: 1,
             }}>
             <TouchableOpacity style={{flex: 1}} onPress={() => setShowPicker(!showPicker)} />
-            {pickerClose && <View
+            {closeBar && <View
               style={{
                 height: 50,
-                backgroundColor: 'lightgray',
+                backgroundColor: closeBarColor || 'lightgray',
                 borderColor: 'lightgray',
                 borderTopWidth: 1,
                 borderBottomWidth: 1,
@@ -90,7 +90,7 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
                 <AntDesign name={'down'} size={20} color={'gray'} />
               </TouchableOpacity>
             </View>}
-            <View style={{backgroundColor: 'lightgray'}}>
+            <View style={{backgroundColor: backgroundColor || 'white'}}>
               <View
                 style={{
                   justifyContent: 'center',
