@@ -99,7 +99,7 @@ export default ({items, title, value, onChange, disabled, placeholder, pickerClo
                   }}>
                   <Picker
                     selectedValue={value}
-                    onChange={onChange}
+                    onValueChange={onChange}
                     enabled={
                       disabled
                         ? false
@@ -132,7 +132,7 @@ export default ({items, title, value, onChange, disabled, placeholder, pickerClo
           }}>
           <Picker
             selectedValue={value}
-            onChange={onChange}>
+            onValueChange={onChange}>
             {items.map((item, index) => {
               return (
                 <Picker.Item
