@@ -20,7 +20,7 @@ import Alert from './src/Alert';
 import Container from './src/Container';
 import Chat from './src/Chat';
 import Switch from './src/Switch';
-import Profile from './src/Profile';
+import ProfileBar from './src/Profile';
 import { log } from './funcs';
 
 class Nuno {
@@ -64,5 +64,5 @@ export {
   Container,
   Chat,
   Switch,
-  Profile,
+  ProfileBar,
 };
