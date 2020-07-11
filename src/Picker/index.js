@@ -92,7 +92,7 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
                   <AntDesign name={'down'} size={20} color={'gray'} />
                 </TouchableOpacity>
               </View>}
-              <View style={{backgroundColor: closeBarColor || 'white'}}>
+              <View style={{backgroundColor: backgroundColor || 'white'}}>
                 <View
                   style={{
                     justifyContent: 'center',
