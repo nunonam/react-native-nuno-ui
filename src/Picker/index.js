@@ -52,9 +52,9 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
             <View>
               {selected.length > 0 ? (
                 !disabled ? (
-                  <Text fontSize={14} color={'dimgray'} text={selected[0].code_nm} />
+                  <Text fontSize={14} color={'dimgray'} text={selected[0].name} />
                 ) : (
-                  <Text fontSize={14} color={'darkgray'} text={selected[0].code_nm} />
+                  <Text fontSize={14} color={'darkgray'} text={selected[0].name} />
                 )
               ) : (
                 <Text fontSize={14} color={'gray'} text={placeholder} />
