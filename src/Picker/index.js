@@ -12,7 +12,7 @@ import Text from '../Text';
 import {screenHeight} from '../style';
 import {Picker} from '@react-native-community/picker';
 
-export default ({items, title, value, onValueChange, disabled, placeholder, pickerClose, borderWidth}) => {
+export default ({items, title, value, onChange, disabled, placeholder, pickerClose, borderWidth}) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
   const selected = items.filter(
@@ -99,7 +99,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
                   }}>
                   <Picker
                     selectedValue={value}
-                    onValueChange={onValueChange}
+                    onChange={onChange}
                     enabled={
                       disabled
                         ? false
@@ -132,7 +132,7 @@ export default ({items, title, value, onValueChange, disabled, placeholder, pick
           }}>
           <Picker
             selectedValue={value}
-            onValueChange={onValueChange}>
+            onChange={onChange}>
             {items.map((item, index) => {
               return (
                 <Picker.Item

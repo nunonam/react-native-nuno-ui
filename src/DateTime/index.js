@@ -5,7 +5,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 
-export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onValueChange, pickerClose, borderWidth}) {
+export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onChange, pickerClose, borderWidth}) {
   const [showPicker, setShowPicker] = React.useState(false);
 
   if (!locale) {
@@ -102,7 +102,7 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
                   display="default"
                   minuteInterval={minuteInterval}
                   onChange={(e, date) => {
-                    onValueChange(date);
+                    onChange(date);
                   }}
                   value={value}
                 />
@@ -121,7 +121,7 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
             onChange={(e, date) => {
               setShowPicker(false);
               if (e.type === 'set') {
-                onValueChange(date);
+                onChange(date);
               }
             }}
             value={value}
