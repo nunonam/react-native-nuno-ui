@@ -36,12 +36,11 @@ export default (props) => {
                 backgroundColor: props.backgroundColor || 'white',
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
-                paddingVertical: 10,
-                textAlignVertical: 'center',
+                padding: props.padding !== undefined ? props.padding : 10,
+                textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
                 borderColor: 'lightgray',
                 borderRadius: 5,
-                paddingHorizontal: 10,
               }}
               placeholder={props.placeholder}
               placeholderTextColor={'gray'}
@@ -78,12 +77,11 @@ export default (props) => {
                 backgroundColor: props.backgroundColor || 'white',
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
-                paddingVertical: 10,
-                textAlignVertical: 'center',
+                padding: props.padding !== undefined ? props.padding : 10,
+                textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
                 borderColor: 'lightgray',
                 borderRadius: 4,
-                paddingHorizontal: 10,
               }}
               placeholder={props.placeholder}
               placeholderTextColor={'gray'}
