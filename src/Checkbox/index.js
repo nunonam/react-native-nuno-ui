@@ -12,6 +12,7 @@ export default function Checkbox({
   onPress,
   label,
   labelColor,
+  fontWeight,
   disabled,
   customChecked,
   customUnChecked,
@@ -64,7 +65,7 @@ export default function Checkbox({
         <View style={{marginLeft: 6}}>
           <Text
             fontSize={labelSize}
-            fontWeight={checked ? 'bold' : '300'}
+            fontWeight={fontWeight ? fontWeight : (checked ? 'bold' : '300')}
             color={(disabled || !checked) ? 'gray' : labelColor || 'dimgray'}
             text={label}
           />
