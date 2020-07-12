@@ -1,4 +1,5 @@
 import Button from './src/Button';
+import ButtonMulti from './src/ButtonMulti';
 import ButtonGroup from './src/ButtonGroup';
 import Loader from './src/Loader';
 import Seperator from './src/Seperator';
@@ -43,6 +44,7 @@ class Nuno {
 export {
   Nuno,
   Button,
+  ButtonMulti,
   ButtonGroup,
   Loader,
   Seperator,
