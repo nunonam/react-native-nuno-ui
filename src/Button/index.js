@@ -15,15 +15,15 @@ export default function Button({text, size, color, stretch, disable, loading, on
       paddingHorizontal = 10;
       break;
     case 'medium':
-      fontSize = 16;
+      fontSize = 14;
       fontWeight = 'normal';
       paddingVertical = 7;
       paddingHorizontal = 10;
       break;
     default:
-      fontSize = 18;
+      fontSize = 16;
       fontWeight = 'bold';
-      paddingVertical = 15;
+      paddingVertical = 10;
       paddingHorizontal = 15;
       break;
   }
