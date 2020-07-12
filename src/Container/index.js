@@ -1,15 +1,29 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import Text from '../Text';
 import Modal from '../Modal';
 import Seperator from '../Seperator';
 import Button from '../Button';
 import { Nuno, HView } from '../..';
+import { screenWidth, screenHeight } from '../style';
 
-export default ({children, alertVisible, alertTitle, alertText, alertButtonColor, onBackdropPress, onConfirm, onCancel}) => {
+export default ({
+  children,
+  alertVisible,
+  alertTitle,
+  alertText,
+  alertButtonColor,
+  backgroundImage,
+  backgroundImageStyle,
+  onBackdropPress,
+  onConfirm,
+  onCancel
+}) => {
   return (
     <View style={{flex: 1}}>
-      {children}
+      <ImageBackground source={backgroundImage} style={{width: screenWidth, height: screenHeight, ...backgroundImageStyle}}>
+        {children}
+      </ImageBackground>
       <Modal
         isVisible={alertVisible}
         onBackdropPress={onBackdropPress}>
