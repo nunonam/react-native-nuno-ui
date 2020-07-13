@@ -32,18 +32,18 @@ export default (props) => {
               ref={props.inputRef}
               style={{
                 fontSize: 14,
-                color: 'dimgray',
+                color: props.textColor || 'dimgray',
                 backgroundColor: props.backgroundColor || 'white',
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
-                borderColor: 'lightgray',
+                borderColor: props.borderColor || 'lightgray',
                 borderRadius: 5,
               }}
               placeholder={props.placeholder}
-              placeholderTextColor={'gray'}
+              placeholderTextColor={props.placeholderTextColor || 'gray'}
               onChangeText={props.onChangeText}
               onChange={props.onChange}
               blurOnSubmit={props.blurOnSubmit}
@@ -73,18 +73,18 @@ export default (props) => {
               // ref={e => (inputRef.current = e)}
               style={{
                 fontSize: 14,
-                color: 'dimgray',
+                color: props.textColor || 'dimgray',
                 backgroundColor: props.backgroundColor || 'white',
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
-                borderColor: 'lightgray',
+                borderColor: props.borderColor || 'lightgray',
                 borderRadius: 4,
               }}
               placeholder={props.placeholder}
-              placeholderTextColor={'gray'}
+              placeholderTextColor={props.placeholderTextColor || 'gray'}
               onChangeText={props.onChangeText}
               value={props.value}
               autoFocus={props.autoFocus}
