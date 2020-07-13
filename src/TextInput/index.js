@@ -17,6 +17,8 @@ const inputAccessoryViewID = 'keyboard-id';
 
 export default (props) => {
   let inputRef = React.useRef();
+  const [secureTextEntry, setSecureTextEntry] = React.useState(props.showEye ? true : false);
+
   return (
     <View>
       {props.title && (
@@ -56,7 +58,7 @@ export default (props) => {
               returnKeyType={props.returnKeyType}
               returnKeyLabel={props.returnKeyLabel}
               numberOfLines={props.numberOfLines}
-              secureTextEntry={props.secureTextEntry}
+              secureTextEntry={secureTextEntry}
               clearButtonMode={props.clearButtonMode}
               autoCapitalize={props.autoCapitalize}
               onContentSizeChange={props.onContentSizeChange}
@@ -89,7 +91,7 @@ export default (props) => {
               value={props.value}
               autoFocus={props.autoFocus}
               maxLength={props.maxLength}
-              secureTextEntry={props.secureTextEntry}
+              secureTextEntry={secureTextEntry}
               autoCapitalize={props.autoCapitalize}
               multiline={props.multiline}
               editable={props.editable}
@@ -122,10 +124,10 @@ export default (props) => {
 
         {props.showEye && (
           <TouchableOpacity
-            onPress={props.handleEye}
+            onPress={() => setSecureTextEntry(!secureTextEntry)}
             style={{position: 'absolute', right: 20}}>
-            {props.secureTextEntry ? (
-              <AntDesign name={'eye'} size={20} color={'dartgray'} />
+            {secureTextEntry ? (
+              <AntDesign name={'eye'} size={20} color={'lightgray'} />
             ) : (
               <AntDesign name={'eye'} size={20} color={'black'} />
             )}
