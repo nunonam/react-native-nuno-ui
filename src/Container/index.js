@@ -39,7 +39,7 @@ export default ({
               {onCancel && (
                 <>
                   <View style={{flex: 1}}>
-                    <Button text={'확인'} color={alertButtonColor || 'gray'} onPress={onConfirm} stretch />
+                    <Button text={'취소'} color={alertButtonColor || 'gray'} onPress={onCancel} stretch />
                   </View>
                   <Seperator width={10} />
                 </>
