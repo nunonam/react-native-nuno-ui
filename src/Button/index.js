@@ -22,9 +22,9 @@ export default function Button({text, size, color, stretch, disable, loading, on
       break;
     case 'large':
       fontSize = 18;
-      fontWeight = 'normal';
-      paddingVertical = 12;
-      paddingHorizontal = 15;
+      fontWeight = 'bold';
+      paddingVertical = 15;
+      paddingHorizontal = 20;
       break;
     default:
       fontSize = 16;
