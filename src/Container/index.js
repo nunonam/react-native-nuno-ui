@@ -21,7 +21,7 @@ export default ({
 }) => {
   return (
     <View style={{flex: 1}}>
-      <ImageBackground source={backgroundImage} style={{width: screenWidth, height: screenHeight, ...backgroundImageStyle}}>
+      <ImageBackground source={backgroundImage} style={{flex: 1, ...backgroundImageStyle}}>
         {children}
       </ImageBackground>
       <Modal
