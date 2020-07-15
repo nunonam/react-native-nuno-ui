@@ -46,8 +46,9 @@ export default function Button({text, size, color, stretch, disable, loading, on
           borderRadius: borderRadius !== undefined ? borderRadius : 4,
           borderWidth: 1,
           borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
+          opacity: disable ? 0.5 : 1,
         }}
-        activeOpacity={disable || loading ? 1 : 0.5}
+        activeOpacity={loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
         {!loading && <Text
           fontSize={fontSize}
