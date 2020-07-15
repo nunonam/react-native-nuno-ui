@@ -30,6 +30,55 @@ export function errorApi(endpoint, data) {
   console.error(data);
   console.groupEnd();
 }
+export function checkEmail(email) {
+  if (email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email)) {
+      return {
+        valid: false,
+        msg: '이메일 형식에 맞지않습니다.',
+      };
+    } else {
+      return {
+        valid: true,
+      };
+    }
+  }
+}
+export function checkPassword(password, repassword) {
+  if (password !== repassword) {
+    return {
+      valid: false,
+      msg: '입력된 두 비밀번호가 서로 다릅니다',
+    };
+  }
+  if (!password.length || !repassword.length) {
+    return {
+      valid: false,
+      msg: '비밀번호를 입력해주세요',
+    };
+  }
+  if (password) {
+    // 비밀번호 형식은 최소6자에서 최대20자, 영문 대소문자, 숫자,
+    // 특수기호를 입력할수 있고 대문자와 특수기호가 하나씩 필수로 포함해야된다 .
+    // 포함 되지 않을 때는 “비밀번호 형식은 최소6자에서 최대 20자, 영문 대문자와
+    // 특수기호가 하나씩 포함되어야 합니다.” 에러 메세지를 보여준다.
+    // const re = /^(?=.*[A-Z])(?=.*[$@$!%*#?&])[a-zA-Z0-9\d$@$!%*#?&]{6,20}$/
+
+    // 비밀번호 형식은 영문 대소문자, 숫자 반드시포함 6자리 이상 (특수문자 포함되어도 상관없음 필수는 아님)
+    const rule = /^(?=.*[0-9])(?=.*[A-z])[A-z0-9\d$@$!%*#?&]{6,}$/;
+    if(!rule.test(password)) {
+      return {
+        valid: false,
+        msg: '비밀번호 영문과 숫자가 포함 6자리 이상이어야 합니다',
+      };
+    }
+  }
+
+  return {
+    valid: true,
+  };
+}
 export function getAge(s) {
   // ISODateString => Date
   const b = s.split(/\D+/);
