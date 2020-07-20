@@ -114,7 +114,7 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
               justifyContent: 'center',
               ...ShadowStyle,
             }}>
-            <MaterialCommunityIcons name={'compass'} size={20} />
+            <MaterialIcons name={'my-location'} size={20} />
           </TouchableOpacity>
           <Seperator bottom />
         </View>

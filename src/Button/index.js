@@ -50,24 +50,13 @@ export default function Button({text, size, color, stretch, disable, loading, on
         }}
         activeOpacity={loading ? 1 : 0.5}
         onPress={disable || loading ? null : onPress}>
-        {!loading && <Text
+        {loading ?
+          <Loader color={color === 'white' ? 'black' : 'white'} /> : <Text
           fontSize={fontSize}
           fontWeight={fontWeight}
           color={textColor ? textColor : (color === 'white' ? 'darkgray' : 'white')}
           text={text}
         />}
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          {loading && <Loader color={color === 'white' ? 'black' : 'white'} />}
-        </View>
       </TouchableOpacity>
     </HView>
   );

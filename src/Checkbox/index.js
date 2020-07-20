@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Text from '../Text';
+import { Nuno } from 'react-native-nuno-ui';
 
 export default function Checkbox({
   multiple,
@@ -17,7 +18,7 @@ export default function Checkbox({
   customChecked,
   customUnChecked,
 }) {
-  let iconChecked, iconUnchecked, labelSize;
+  let iconChecked, iconUnchecked, labelSize, iconSize;
   switch (size) {
     case 'small':
       labelSize = 12;
@@ -35,23 +36,23 @@ export default function Checkbox({
   if (multiple) {
     iconChecked = customChecked || <MaterialIcons
       name={'check-box'}
-      color={disabled ? 'gray' : color || 'dimgray'}
+      color={disabled ? 'gray' : Nuno.config.themeColor}
       size={iconSize}
     />;
     iconUnchecked = customUnChecked || <MaterialIcons
       name={'check-box-outline-blank'}
-      color={disabled ? 'gray' : color || 'dimgray'}
+      color={disabled ? 'gray' : 'dimgray'}
       size={iconSize}
     />;
   } else {
     iconChecked = customChecked || <MaterialIcons
       name={'radio-button-checked'}
-      color={disabled ? 'gray' : color || 'dimgray'}
+      color={disabled ? 'gray' : Nuno.config.themeColor}
       size={iconSize}
     />;
     iconUnchecked = customUnChecked || <MaterialIcons
       name={'radio-button-unchecked'}
-      color={disabled ? 'gray' : color || 'dimgray'}
+      color={disabled ? 'gray' : 'dimgray'}
       size={iconSize}
     />;
   }
