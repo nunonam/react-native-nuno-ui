@@ -19,7 +19,7 @@ export default function ButtonMulti({items, selectedItems, onPress, color, selec
   return (
     <HView style={{flexWrap: 'wrap'}}>
       {items.map((e) => {
-        const selected = selectedItems.filter(f => f.code == e.code).length > 0;
+        const selected = selectedItems.filter(f => f == e.code).length > 0;
         if (selectedOnly && !selected) {
           return null;
         } else {
@@ -38,7 +38,7 @@ export default function ButtonMulti({items, selectedItems, onPress, color, selec
                 borderWidth: 1,
                 borderColor: selected ? Nuno.config.themeColor :  (color === 'white' ? 'darkgray' : color),
               }}
-              onPress={selectedOnly ? onPress : () => handleOnPress(e)}>
+              onPress={selectedOnly ? onPress : () => handleOnPress(e.code)}>
               <Text
                 fontSize={14}
                 color={selected ? 'white' : (color === 'white' ? 'darkgray' : 'white')}
