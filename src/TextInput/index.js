@@ -12,6 +12,7 @@ import MaskedInput from 'react-native-masked-input-text';
 import Text from '../Text';
 import HView from '../HView';
 import Seperator from '../Seperator';
+import { Nuno } from 'react-native-nuno-ui';
 
 const inputAccessoryViewID = 'keyboard-id';
 
@@ -146,7 +147,7 @@ export default (props) => {
           <View
             style={{
               alignItems: 'flex-end',
-              backgroundColor: 'lightgray',
+              backgroundColor: props.keyboardCloseBackgroundColor || Nuno.config.themeColor,
               borderTopWidth: 1,
               borderTopColor: 'lightgray',
             }}>
@@ -159,7 +160,7 @@ export default (props) => {
                 justifyContent: 'center',
               }}
               onPress={() => Keyboard.dismiss()}>
-              <AntDesign name={'down'} size={20} color={'gray'} />
+              <AntDesign name={'close'} size={20} color={props.keyboardCloseColor || 'white'} />
             </TouchableOpacity>
           </View>
         </InputAccessoryView>
