@@ -12,7 +12,6 @@ cd ios && pod install
 
 ```
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   # React Native Maps dependencies
   pod 'react-native-google-maps', :path => '../node_modules/react-native-maps'

@@ -80,6 +80,9 @@ export function checkPassword(password, repassword) {
   };
 }
 export function getAge(s) {
+  if (!s) {
+    return 0;
+  }
   // ISODateString => Date
   const b = s.split(/\D+/);
   const birthday = new Date(

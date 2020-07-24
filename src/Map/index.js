@@ -9,7 +9,7 @@ import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
 
-export default function Map({latitude, longitude, showsMyLocationButton, showsScale, customCenter, showZoom, showCompass}) {
+export default function Map({latitude, longitude, showsMyLocationButton, showsScale, customCenter, showZoom, showCurrent}) {
   let mapRef = React.useRef();
   const [latitudeDelta, setLatitudeDelta] = React.useState(0.00522);
   const [longitudeDelta, setLongitudeDelta] = React.useState(screenWidth / screenHeight * 0.00522);
@@ -68,8 +68,9 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
         {customCenter || <MaterialIcons name={'location-on'} color={'red'} size={40} />}
       </View>
       {/* zoom control */}
+      <View style={{position: 'absolute', bottom: 20, right: 20}}>
       {showZoom && (
-        <View style={{position: 'absolute', bottom: 0, right: 20}}>
+        <>
           <TouchableOpacity
             onPress={onPressZoomIn}
             style={{
@@ -101,22 +102,25 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
             }}>
             <Entypo name={'minus'} size={20} />
           </TouchableOpacity>
-          <Seperator height={10} />
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'white',
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              borderColor: 'lightgray',
-              borderWidth: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              ...ShadowStyle,
-            }}>
-            <MaterialIcons name={'my-location'} size={20} />
-          </TouchableOpacity>
-          <Seperator bottom />
+        </>)}
+        {showCurrent && (
+          <>
+            <Seperator height={10} />
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'white',
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                borderColor: 'lightgray',
+                borderWidth: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                ...ShadowStyle,
+              }}>
+              <MaterialIcons name={'my-location'} size={20} />
+            </TouchableOpacity>
+          </>)}
         </View>
       )}
     </View>
