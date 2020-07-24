@@ -70,7 +70,7 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
       {/* zoom control */}
       <View style={{position: 'absolute', bottom: 20, right: 20}}>
       {showZoom && (
-        <>
+        <View>
           <TouchableOpacity
             onPress={onPressZoomIn}
             style={{
@@ -102,9 +102,9 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
             }}>
             <Entypo name={'minus'} size={20} />
           </TouchableOpacity>
-        </>)}
+        </View>)}
         {showCurrent && (
-          <>
+          <View>
             <Seperator height={10} />
             <TouchableOpacity
               style={{
@@ -120,9 +120,9 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
               }}>
               <MaterialIcons name={'my-location'} size={20} />
             </TouchableOpacity>
-          </>)}
+          </View>)}
+          <Seperator bottom />
         </View>
-      )}
     </View>
   );
 };
