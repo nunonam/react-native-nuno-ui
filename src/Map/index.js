@@ -8,56 +8,68 @@ import DeviceInfo from 'react-native-device-info';
 import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
-import { getCurrentLocation } from 'react-native-nuno-ui/funcs';
+import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';
 
-export default function Map({latitude, longitude, showsMyLocationButton, showsScale, customCenter, showZoom, showCurrent}) {
+export default function Map({
+  latitude,
+  longitude,
+  showsMyLocationButton,
+  showsScale,
+  customCenter,
+  showZoom,
+  showCurrent,
+  getCurrentPosition,
+}) {
   let mapRef = React.useRef();
-  const [latitudeDelta, setLatitudeDelta] = React.useState(0.00522);
-  const [longitudeDelta, setLongitudeDelta] = React.useState(screenWidth / screenHeight * 0.00522);
-  const [address, setAddress] = React.useState('');
-  const [coordinate, setCoordinate] = React.useState(
-    {
-      latitude: latitude || 0,
-      longitude: longitude || 0,
-    }
-  );
+  const [region, setRegion] = React.useState({
+    latitude: latitude || 0,
+    longitude: longitude || 0,
+    latitudeDelta: 0.00522,
+    longitudeDelta: screenWidth / screenHeight * 0.00522,
+  });
+
   React.useEffect(() => {
     async function getLoc() {
       const loc = await getCurrentLocation(Nuno.config.lang);
-      setAddress(loc.address);
-      setCoordinate(loc.coords);
+      // setAddress(loc.address);
+      setRegion({...region, ...loc.coords});
+      getCurrentPosition(loc);
     }
     getLoc();
   }, []);
-  const onRegionChange = region => {
+  const onRegionChange = async region => {
     console.log('onRegionChange', region);
-    setCoordinate(region);
+    const loc = await getAddressFromGeoCode(region.latitude, region.longitude);
+    // setAddress(loc.address);
+    setRegion(region);
+    getCurrentPosition(loc);
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
-    setAddress(loc.address);
-    setCoordinate(loc.coords);
+    // setAddress(loc.address);
+    setRegion({...region, ...loc.coords});
+    getCurrentPosition(loc);
   };
 
   const onPressZoomOut = () => {
-    setLatitudeDelta(latitudeDelta * 2);
-    setLongitudeDelta(longitudeDelta * 2);
-    mapRef.animateToRegion({
-      latitude: latitude,
-      longitude: longitude,
-      latitudeDelta: latitudeDelta * 2,
-      longitudeDelta: longitudeDelta * 2,
-    }, 100);
+    const temp = {
+      latitude: region.latitude,
+      longitude: region.longitude,
+      latitudeDelta: region.latitudeDelta * 2,
+      longitudeDelta: region.longitudeDelta * 2,
+    };
+    setRegion(temp);
+    mapRef.animateToRegion(temp, 100);
   };
   const onPressZoomIn = () => {
-    setLatitudeDelta(latitudeDelta / 2);
-    setLongitudeDelta(longitudeDelta / 2);
-    mapRef.animateToRegion({
-      latitude: latitude,
-      longitude: longitude,
-      latitudeDelta: latitudeDelta / 2,
-      longitudeDelta: longitudeDelta / 2,
-    }, 100);
+    const temp = {
+      latitude: region.latitude,
+      longitude: region.longitude,
+      latitudeDelta: region.latitudeDelta / 2,
+      longitudeDelta: region.longitudeDelta / 2,
+    };
+    setRegion(temp);
+    mapRef.animateToRegion(temp, 100);
   };
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
@@ -65,12 +77,7 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
         provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
-        initialRegion={{
-          latitude: coordinate.latitude,
-          longitude: coordinate.longitude,
-          latitudeDelta: latitudeDelta,
-          longitudeDelta: longitudeDelta,
-        }}
+        region={region}
         onRegionChangeComplete={e => onRegionChange(e)}
         showsMyLocationButton={showsMyLocationButton}
         // showsScale={showsScale}

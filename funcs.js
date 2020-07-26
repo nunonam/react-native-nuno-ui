@@ -93,6 +93,44 @@ export function getAge(s) {
   const ageDate = new Date(ageDifMs); // miliseconds from epoch
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
+export async function getAddressFromGeoCode(latitude, longitude) {
+  return new Promise((resolve, reject) => {
+    fetch(
+      'https://maps.googleapis.com/maps/api/geocode/json?' +
+        new URLSearchParams({
+          latlng: `${latitude},${longitude}`,
+          key: Nuno.config.GEOCODE_API,
+          language: Nuno.config.lang,
+          // region: global.lang,
+        }),
+      {
+        method: 'GET',
+        // headers: {
+        //   'Accept-Language': global.lang + '-KR',
+        // },
+      },
+    )
+      .then(async res => {
+        const response = await res.json();
+        console.log('geocoderFrom', response);
+        if (response.status === 'OK') {
+          resolve({
+            address: response.results[0].address_components[response.results[0].address_components.length-3].short_name + ' ' + response.results[0].address_components[response.results[0].address_components.length-4].short_name,
+            coords: {
+              latitude: latitude,
+              longitude: longitude,
+            }
+          });
+        } else {
+          reject();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        reject();
+      });
+  });
+}
 export async function getCurrentLocation(lang) {
   let granted;
   if (Platform.OS === 'android') {
@@ -116,7 +154,7 @@ export async function getCurrentLocation(lang) {
               new URLSearchParams({
                 latlng: `${position.coords.latitude},${position.coords.longitude}`,
                 key: Nuno.config.GEOCODE_API,
-                language: global.lang,
+                language: Nuno.config.lang,
                 // region: global.lang,
               }),
             {
@@ -130,7 +168,10 @@ export async function getCurrentLocation(lang) {
               const response = await res.json();
               console.log('geocoderFrom', response);
               if (response.status === 'OK') {
-                resolve({address: response.results[0].address_components[2] + ' ' + response.results[0].address_components[3], coords: position.coords});
+                resolve({
+                  address: response.results[0].address_components[response.results[0].address_components.length-3].short_name + ' ' + response.results[0].address_components[response.results[0].address_components.length-4].short_name,
+                  coords: position.coords
+                });
               } else {
                 reject();
               }
