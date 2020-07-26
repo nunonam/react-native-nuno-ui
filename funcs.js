@@ -93,14 +93,14 @@ export function getAge(s) {
   const ageDate = new Date(ageDifMs); // miliseconds from epoch
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
-export async function getCurrentLocation() {
+export async function getCurrentLocation(lang) {
   let granted;
   if (Platform.OS === 'android') {
     granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         // title: '',
-        message: '현재 위치정보 확인을 위해 위치접근을 허용해 주세요',
+        message: '근접 회원님과의 매칭을 위해 회원님의 위치정보를 허락해주세요',
       },
     );
   } else {
@@ -116,7 +116,7 @@ export async function getCurrentLocation() {
               new URLSearchParams({
                 latlng: `${position.coords.latitude},${position.coords.longitude}`,
                 key: Nuno.config.GEOCODE_API,
-                // language: global.lang,
+                language: global.lang,
                 // region: global.lang,
               }),
             {
@@ -130,7 +130,7 @@ export async function getCurrentLocation() {
               const response = await res.json();
               console.log('geocoderFrom', response);
               if (response.status === 'OK') {
-                resolve(response.results);
+                resolve({address: response.results[0].address_components[2] + ' ' + response.results[0].address_components[3], coords: position.coords});
               } else {
                 reject();
               }

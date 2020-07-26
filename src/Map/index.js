@@ -8,15 +8,37 @@ import DeviceInfo from 'react-native-device-info';
 import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
+import { getCurrentLocation } from 'react-native-nuno-ui/funcs';
 
 export default function Map({latitude, longitude, showsMyLocationButton, showsScale, customCenter, showZoom, showCurrent}) {
   let mapRef = React.useRef();
   const [latitudeDelta, setLatitudeDelta] = React.useState(0.00522);
   const [longitudeDelta, setLongitudeDelta] = React.useState(screenWidth / screenHeight * 0.00522);
+  const [address, setAddress] = React.useState('');
+  const [coordinate, setCoordinate] = React.useState(
+    {
+      latitude: latitude || 0,
+      longitude: longitude || 0,
+    }
+  );
+  React.useEffect(() => {
+    async function getLoc() {
+      const loc = await getCurrentLocation(Nuno.config.lang);
+      setAddress(loc.address);
+      setCoordinate(loc.coords);
+    }
+    getLoc();
+  }, []);
   const onRegionChange = region => {
     console.log('onRegionChange', region);
-    // setCoordinate(region);
+    setCoordinate(region);
   };
+  const onPressCurrent = async () => {
+    const loc = await getCurrentLocation(Nuno.config.lang);
+    setAddress(loc.address);
+    setCoordinate(loc.coords);
+  };
+
   const onPressZoomOut = () => {
     setLatitudeDelta(latitudeDelta * 2);
     setLongitudeDelta(longitudeDelta * 2);
@@ -37,10 +59,6 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
       longitudeDelta: longitudeDelta / 2,
     }, 100);
   };
-  if (!latitude || !longitude || DeviceInfo.isEmulator()) {
-    latitude = 37.540024;
-    longitude = 126.945670;
-  }
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <MapView
@@ -48,8 +66,8 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
         initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude: coordinate.latitude,
+          longitude: coordinate.longitude,
           latitudeDelta: latitudeDelta,
           longitudeDelta: longitudeDelta,
         }}
@@ -107,6 +125,7 @@ export default function Map({latitude, longitude, showsMyLocationButton, showsSc
           <View>
             <Seperator height={10} />
             <TouchableOpacity
+              onPress={() => onPressCurrent()}
               style={{
                 backgroundColor: 'white',
                 width: 40,

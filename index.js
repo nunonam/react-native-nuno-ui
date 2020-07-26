@@ -32,6 +32,7 @@ class Nuno {
       textColor: props.textColor,
       headerTitleWeight: props.headerTitleWeight,
       dynamicLink: props.dynamicLink,
+      lang: props.lang,
       FIREBASE_WEB_API: props.FIREBASE_WEB_API,
       IOS_STORE_ID: props.IOS_STORE_ID,
       PACKAGE_NAME: props.PACKAGE_NAME,
