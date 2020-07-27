@@ -13,6 +13,7 @@ import { Nuno } from '.';
 import { screenWidth } from './src/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
+import DeviceInfo from 'react-native-device-info';
 
 export function log(func, data) {
   console.log(func, data);
@@ -146,48 +147,58 @@ export async function getCurrentLocation(lang) {
   }
   return new Promise((resolve, reject) => {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      Geolocation.getCurrentPosition(
-        position => {
-          console.log('current location', position);
-          fetch(
-            'https://maps.googleapis.com/maps/api/geocode/json?' +
-              new URLSearchParams({
-                latlng: `${position.coords.latitude},${position.coords.longitude}`,
-                key: Nuno.config.GEOCODE_API,
-                language: Nuno.config.lang,
-                // region: global.lang,
-              }),
-            {
-              method: 'GET',
-              // headers: {
-              //   'Accept-Language': global.lang + '-KR',
-              // },
-            },
-          )
-            .then(async res => {
-              const response = await res.json();
-              console.log('geocoderFrom', response);
-              if (response.status === 'OK') {
-                resolve({
-                  address: response.results[0].address_components[response.results[0].address_components.length-3].short_name + ' ' + response.results[0].address_components[response.results[0].address_components.length-4].short_name,
-                  coords: position.coords
-                });
-              } else {
+      if (DeviceInfo.isEmulator()) {
+        resolve({
+          address: '서울시 마포구',
+          coords: {latitude: 37.540032, longitude: 126.945414},
+        });
+      } else {
+        Geolocation.getCurrentPosition(
+          position => {
+            console.log('current location', position);
+            fetch(
+              'https://maps.googleapis.com/maps/api/geocode/json?' +
+                new URLSearchParams({
+                  latlng: `${position.coords.latitude},${position.coords.longitude}`,
+                  key: Nuno.config.GEOCODE_API,
+                  language: Nuno.config.lang,
+                  // region: global.lang,
+                }),
+              {
+                method: 'GET',
+                // headers: {
+                //   'Accept-Language': global.lang + '-KR',
+                // },
+              },
+            )
+              .then(async res => {
+                const response = await res.json();
+                console.log('geocoderFrom', response);
+                if (response.status === 'OK') {
+                  resolve({
+                    address: response.results[0].address_components[response.results[0].address_components.length-3].short_name + ' ' + response.results[0].address_components[response.results[0].address_components.length-4].short_name,
+                    coords: position.coords
+                  });
+                } else {
+                  reject();
+                }
+              })
+              .catch(err => {
+                console.log(err);
                 reject();
-              }
-            })
-            .catch(err => {
-              console.log(err);
-              reject();
-            });
-        },
-        error => {
-          // See error code charts below.
-          console.log('getCurrentPosition error', error.code, error.message);
-          reject(error);
-        },
-        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-      );
+              });
+          },
+          error => {
+            // See error code charts below.
+            console.log('getCurrentPosition error', error.code, error.message);
+            reject(error);
+          },
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        );
+      }
+    } else {
+      console.log('location permission not granted');
+      reject();
     }
   });
 }

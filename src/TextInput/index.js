@@ -32,7 +32,8 @@ export default (props) => {
         <View style={{flex: 1}}>
           {props.mask ? (
             <MaskedInput
-              ref={props.inputRef}
+              // ref={props.inputRef}
+              // ref={e => (inputRef.current = e)}
               style={{
                 fontSize: 14,
                 color: props.textColor || 'dimgray',
@@ -72,7 +73,7 @@ export default (props) => {
             />
           ) : (
             <TextInput
-              ref={props.inputRef}
+              // ref={props.inputRef}
               // ref={e => (inputRef.current = e)}
               style={{
                 fontSize: 14,

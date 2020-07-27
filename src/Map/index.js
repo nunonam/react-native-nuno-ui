@@ -4,7 +4,6 @@ import MapView, {Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DeviceInfo from 'react-native-device-info';
 import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
@@ -31,7 +30,6 @@ export default function Map({
   React.useEffect(() => {
     async function getLoc() {
       const loc = await getCurrentLocation(Nuno.config.lang);
-      // setAddress(loc.address);
       setRegion({...region, ...loc.coords});
       getCurrentPosition(loc);
     }
@@ -40,13 +38,11 @@ export default function Map({
   const onRegionChange = async region => {
     console.log('onRegionChange', region);
     const loc = await getAddressFromGeoCode(region.latitude, region.longitude);
-    // setAddress(loc.address);
     setRegion(region);
     getCurrentPosition(loc);
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
-    // setAddress(loc.address);
     setRegion({...region, ...loc.coords});
     getCurrentPosition(loc);
   };
@@ -77,7 +73,8 @@ export default function Map({
         provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
-        region={region}
+        // region={region}
+        initialRegion={region}
         onRegionChangeComplete={e => onRegionChange(e)}
         showsMyLocationButton={showsMyLocationButton}
         // showsScale={showsScale}
