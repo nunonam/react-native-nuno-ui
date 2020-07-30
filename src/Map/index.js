@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {AnimatedRegion, Animated, Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -55,7 +55,7 @@ export default function Map({
       longitudeDelta: region.longitudeDelta * 2,
     };
     setRegion(temp);
-    mapRef.animateToRegion(temp, 100);
+    // mapRef.animateToRegion(temp, 100);
   };
   const onPressZoomIn = () => {
     const temp = {
@@ -65,15 +65,15 @@ export default function Map({
       longitudeDelta: region.longitudeDelta / 2,
     };
     setRegion(temp);
-    mapRef.animateToRegion(temp, 100);
+    // mapRef.animateToRegion(temp, 100);
   };
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
-      <MapView
+      <Animated
         provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
-        // region={region}
+        region={new AnimatedRegion(region)}
         initialRegion={region}
         onRegionChangeComplete={e => onRegionChange(e)}
         showsMyLocationButton={showsMyLocationButton}

@@ -202,29 +202,70 @@ export async function getCurrentLocation(lang) {
     }
   });
 }
-export function saveRecentKeyword(keyword) {
-  AsyncStorage.getItem('searchKeywords')
-    .then(resStorage => {
-      let locals = [];
-      if (resStorage) {
-        locals = JSON.parse(resStorage);
-      }
-      const found = locals.map(e => e.keyword).indexOf(keyword);
-      if (found !== -1) {
-        locals.splice(found, 1);
-      }
-      locals.splice(0, 0, {
-        keyword: keyword,
-        date: moment(new Date()).format('MM-DD'),
+export async function saveRecentKeyword(keyword, max) {
+  return new Promise((resolve, reject) => {
+    AsyncStorage.getItem('searchKeywords')
+      .then(resStorage => {
+        let locals = [];
+        if (resStorage) {
+          locals = JSON.parse(resStorage);
+        }
+        const found = locals.map(e => e.keyword).indexOf(keyword);
+        if (found !== -1) {
+          locals.splice(found, 1);
+        }
+        locals.splice(0, 0, {
+          keyword: keyword,
+          date: new Date().toISOString(),
+        });
+        if (locals.length > max) {
+          locals.splice(10, 1);
+        }
+        AsyncStorage.setItem('searchKeywords', JSON.stringify(locals));
+        resolve(locals);
+      })
+      .catch(err => {
+        console.log(err);
+        reject();
       });
-      if (locals.length > 10) {
-        locals.splice(10, 1);
-      }
-      AsyncStorage.setItem('searchKeywords', JSON.stringify(locals));
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  });
+}
+export async function removeRecentKeyword(keyword) {
+  return new Promise((resolve, reject) => {
+    AsyncStorage.getItem('searchKeywords')
+      .then(resStorage => {
+        let locals = [];
+        if (resStorage) {
+          locals = JSON.parse(resStorage);
+        }
+        const found = locals.map(e => e.keyword).indexOf(keyword);
+        if (found !== -1) {
+          locals.splice(found, 1);
+        }
+        AsyncStorage.setItem('searchKeywords', JSON.stringify(locals));
+        resolve(locals);
+      })
+      .catch(err => {
+        console.log(err);
+        reject();
+      });
+  });
+}
+export async function getRecentKeyword() {
+  return new Promise((resolve, reject) => {
+    AsyncStorage.getItem('searchKeywords')
+      .then(resStorage => {
+        let locals = [];
+        if (resStorage) {
+          locals = JSON.parse(resStorage);
+        }
+        resolve(locals);
+      })
+      .catch(err => {
+        console.log(err);
+        reject();
+      });
+  });
 }
 export function showToast(msg) {
   Toast.show(msg, {
