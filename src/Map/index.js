@@ -12,8 +12,6 @@ import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/
 export default function Map({
   latitude,
   longitude,
-  showsMyLocationButton,
-  showsScale,
   customCenter,
   showZoom,
   showCurrent,
@@ -35,11 +33,13 @@ export default function Map({
     }
     getLoc();
   }, []);
-  const onRegionChange = async region => {
-    console.log('onRegionChange', region);
-    const loc = await getAddressFromGeoCode(region.latitude, region.longitude);
-    setRegion(region);
-    getCurrentPosition(loc);
+  const onRegionChangeComplete = async r => {
+    console.log('onRegionChangeComplete', r);
+    if (r.latitude !== region.latitude && r.longitude !== region.longitude) {
+      const loc = await getAddressFromGeoCode(r.latitude, r.longitude);
+      getCurrentPosition(loc);
+      setRegion(r);
+    }
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
@@ -54,8 +54,7 @@ export default function Map({
       latitudeDelta: region.latitudeDelta * 2,
       longitudeDelta: region.longitudeDelta * 2,
     };
-    setRegion(temp);
-    // mapRef.animateToRegion(temp, 100);
+    mapRef.animateToRegion(temp, 400);
   };
   const onPressZoomIn = () => {
     const temp = {
@@ -64,20 +63,18 @@ export default function Map({
       latitudeDelta: region.latitudeDelta / 2,
       longitudeDelta: region.longitudeDelta / 2,
     };
-    setRegion(temp);
-    // mapRef.animateToRegion(temp, 100);
+    mapRef.animateToRegion(temp, 400);
   };
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
-      <Animated
+      <MapView
         provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
+        // showsUserLocation={true}
         style={{width: screenWidth, flex: 1}}
-        region={new AnimatedRegion(region)}
+        region={region}
         initialRegion={region}
-        onRegionChangeComplete={e => onRegionChange(e)}
-        showsMyLocationButton={showsMyLocationButton}
-        // showsScale={showsScale}
+        onRegionChangeComplete={e => onRegionChangeComplete(e)}
       />
       <View
         style={{
