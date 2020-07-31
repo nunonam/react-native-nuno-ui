@@ -36,27 +36,47 @@ export default function Button({text, size, color, stretch, disable, loading, on
   return (
     <HView>
       <TouchableOpacity
-        style={{
-          flex: stretch ? 1 : undefined,
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingHorizontal: paddingHorizontal,
-          paddingVertical: paddingVertical,
-          backgroundColor: color,
-          borderRadius: borderRadius !== undefined ? borderRadius : 4,
-          borderWidth: 1,
-          borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
-          opacity: disable ? 0.5 : 1,
-        }}
+        style={{flex: stretch ? 1 : undefined,}}
         activeOpacity={loading ? 1 : 0.5}
-        onPress={disable || loading ? null : onPress}>
-        {loading ?
-          <Loader color={color === 'white' ? 'black' : 'white'} /> : <Text
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-          color={textColor ? textColor : (color === 'white' ? 'darkgray' : 'white')}
-          text={text}
-        />}
+        onPress={onPress}
+        disabled={disable}
+        >
+        {loading ? (
+          <View style={{
+            // flex: stretch ? 1 : undefined,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: paddingHorizontal,
+            paddingVertical: paddingVertical,
+            backgroundColor: color,
+            borderRadius: borderRadius !== undefined ? borderRadius : 4,
+            borderWidth: 1,
+            borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
+            opacity: disable ? 0.5 : 1,
+            }}>
+            <Loader color={color === 'white' ? 'black' : 'white'} />
+          </View>
+        ) : (
+          <View style={{
+            // flex: stretch ? 1 : undefined,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: paddingHorizontal,
+            paddingVertical: paddingVertical,
+            backgroundColor: color,
+            borderRadius: borderRadius !== undefined ? borderRadius : 4,
+            borderWidth: 1,
+            borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
+            opacity: disable ? 0.5 : 1,
+            }}>
+            <Text
+              fontSize={fontSize}
+              fontWeight={fontWeight}
+              color={textColor ? textColor : (color === 'white' ? 'darkgray' : 'white')}
+              text={text}
+            />
+          </View>
+        )}
       </TouchableOpacity>
     </HView>
   );
