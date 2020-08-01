@@ -51,10 +51,10 @@ export default function Map({
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
-    getCurrentPosition(loc.coords);
     const temp = {...camera};
     temp.center = loc.coords;
     mapRef.animateCamera(temp, {duration: 500});
+    getCurrentPosition(loc.coords);
   };
 
   const onPressZoomOut = () => {
