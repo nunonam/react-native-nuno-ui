@@ -15,67 +15,80 @@ export default function Map({
   customCenter,
   showZoom,
   showCurrent,
+  markers,
+  markerComponent,
+  showButton,
+  buttonText,
   getCurrentPosition,
 }) {
   let mapRef = React.useRef();
-  const [region, setRegion] = React.useState({
-    latitude: latitude || 0,
-    longitude: longitude || 0,
-    latitudeDelta: 0.00522,
-    longitudeDelta: screenWidth / screenHeight * 0.00522,
+  const [camera, setCamera] = React.useState({
+    center: {
+      latitude: latitude || 0,
+      longitude: longitude || 0,
+    },
+    pitch: 1,
+    heading: 1,
+    altitude: 1,
+    zoom: 15,
   });
 
   React.useEffect(() => {
     async function getLoc() {
       const loc = await getCurrentLocation(Nuno.config.lang);
-      setRegion({...region, ...loc.coords});
-      getCurrentPosition(loc);
+      const temp = {...camera};
+      temp.center = loc.coords;
+      setCamera(temp);
+      // getCurrentPosition(loc);
     }
     getLoc();
   }, []);
-  const onRegionChangeComplete = async r => {
-    console.log('onRegionChangeComplete', r);
-    if (r.latitude !== region.latitude && r.longitude !== region.longitude) {
-      const loc = await getAddressFromGeoCode(r.latitude, r.longitude);
-      getCurrentPosition(loc);
-      setRegion(r);
-    }
+  const onRegionChangeComplete = async e => {
+    const temp = await mapRef.getCamera();
+    temp.altitude = 1;
+    setCamera(temp);
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
-    setRegion({...region, ...loc.coords});
-    getCurrentPosition(loc);
+    // getCurrentPosition(loc);
+    const temp = {...camera};
+    temp.center = loc.coords;
+    // setCamera(temp);
+    mapRef.animateCamera(temp, {duration: 500});
   };
 
   const onPressZoomOut = () => {
-    const temp = {
-      latitude: region.latitude,
-      longitude: region.longitude,
-      latitudeDelta: region.latitudeDelta * 2,
-      longitudeDelta: region.longitudeDelta * 2,
-    };
-    mapRef.animateToRegion(temp, 400);
+    const temp = {...camera};
+    temp.zoom = temp.zoom === 1 ? 1 : temp.zoom - 1;
+    // setCamera(temp);
+    mapRef.animateCamera(temp, {duration: 500});
   };
   const onPressZoomIn = () => {
-    const temp = {
-      latitude: region.latitude,
-      longitude: region.longitude,
-      latitudeDelta: region.latitudeDelta / 2,
-      longitudeDelta: region.longitudeDelta / 2,
-    };
-    mapRef.animateToRegion(temp, 400);
+    const temp = {...camera};
+    temp.zoom = temp.zoom === 20 ? 20 : temp.zoom + 1;
+    // setCamera(temp);
+    mapRef.animateCamera(temp, {duration: 500});
   };
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <MapView
         provider={Nuno.config.mapProvider}
         ref={e => mapRef = e}
-        // showsUserLocation={true}
         style={{width: screenWidth, flex: 1}}
-        region={region}
-        initialRegion={region}
-        onRegionChangeComplete={e => onRegionChangeComplete(e)}
-      />
+        camera={camera}
+        initialCamera={camera}
+        onRegionChangeComplete={onRegionChangeComplete}
+      >
+        {markers.map((e, i) => (
+          <Marker
+            key={i}
+            coordinate={e.coords}
+            title={e.title}
+            description={e.description}
+            image={e.markerComponent}
+          />
+        ))}
+      </MapView>
       <View
         style={{
           position: 'absolute',
