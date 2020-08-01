@@ -39,7 +39,7 @@ export default function Map({
       const temp = {...camera};
       temp.center = loc.coords;
       setCamera(temp);
-      // getCurrentPosition(loc);
+      getCurrentPosition(loc.coords);
     }
     getLoc();
   }, []);
@@ -47,26 +47,24 @@ export default function Map({
     const temp = await mapRef.getCamera();
     temp.altitude = 1;
     setCamera(temp);
+    getCurrentPosition(temp.center);
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.lang);
-    // getCurrentPosition(loc);
+    getCurrentPosition(loc.coords);
     const temp = {...camera};
     temp.center = loc.coords;
-    // setCamera(temp);
     mapRef.animateCamera(temp, {duration: 500});
   };
 
   const onPressZoomOut = () => {
     const temp = {...camera};
     temp.zoom = temp.zoom === 1 ? 1 : temp.zoom - 1;
-    // setCamera(temp);
     mapRef.animateCamera(temp, {duration: 500});
   };
   const onPressZoomIn = () => {
     const temp = {...camera};
     temp.zoom = temp.zoom === 20 ? 20 : temp.zoom + 1;
-    // setCamera(temp);
     mapRef.animateCamera(temp, {duration: 500});
   };
   return (

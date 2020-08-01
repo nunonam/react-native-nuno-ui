@@ -132,6 +132,26 @@ export async function getAddressFromGeoCode(latitude, longitude) {
       });
   });
 }
+export async function getCurrentCoords() {
+  return new Promise((resolve, reject) => {
+    if (DeviceInfo.isEmulator()) {
+      resolve({latitude: 37.540032, longitude: 126.945414});
+    } else {
+      Geolocation.getCurrentPosition(
+        position => {
+          console.log('current location', position);
+          resolve(position);
+        },
+        error => {
+          // See error code charts below.
+          console.log('getCurrentPosition error', error.code, error.message);
+          reject(error);
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    }
+  });
+}
 export async function getCurrentLocation(lang) {
   let granted;
   if (Platform.OS === 'android') {
