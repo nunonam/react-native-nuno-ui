@@ -20,6 +20,7 @@ export default function Map({
   showButton,
   buttonText,
   getCurrentPosition,
+  showActionSheet,
 }) {
   let mapRef = React.useRef();
   const [camera, setCamera] = React.useState({
@@ -84,6 +85,7 @@ export default function Map({
             title={e.title}
             description={e.description}
             image={e.markerComponent}
+            onPress={() => showActionSheet(e)}
           />
         ))}
       </MapView>
