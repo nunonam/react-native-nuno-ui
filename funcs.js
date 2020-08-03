@@ -323,6 +323,7 @@ export function share(deeplink, title, callback) {
   )
     .then(async response => {
       const link = await response.json();
+      console.log('shortlink', link.shortLink);
       Share.share({
         message: link.shortLink,
         title: title,
@@ -337,16 +338,6 @@ export function share(deeplink, title, callback) {
     .catch(err => {
       Alert.alert(err);
     });
-  Share.share({
-    message: message,
-    title: title,
-  }).then(res => {
-    if (res.action === Share.sharedAction) {
-      callback();
-    } else if (res.action === Share.dismissedAction) {
-      // dismissed
-    }
-  });
 }
 
 export function getPhotos(index, multiple) {
