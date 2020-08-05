@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import MapView, {AnimatedRegion, Animated, Marker} from 'react-native-maps';
+import MapView, {Callout, Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,6 +8,7 @@ import { screenWidth, screenHeight, ShadowStyle } from '../style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
 import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';
+import Text from '../Text';
 
 export default function Map({
   latitude,
@@ -20,7 +21,9 @@ export default function Map({
   showButton,
   buttonText,
   getCurrentPosition,
-  showActionSheet,
+  markerOnSelect,
+  markerOnDeselect,
+  detailInfoComponent,
 }) {
   let mapRef = React.useRef();
   const [camera, setCamera] = React.useState({
@@ -85,10 +88,18 @@ export default function Map({
             title={e.title}
             description={e.description}
             image={e.markerComponent}
-            onPress={() => showActionSheet(e)}
-          />
+            onSelect={() => markerOnSelect(e)}
+            onDeselect={() => markerOnDeselect(e)}
+          >
+            <Callout>
+              {/* <View style={{paddingHorizontal: 20, paddingVertical: 10, borderRadius: 20, backgroundColor: 'white', borderWidth: 1, borderColor: 'lightgray'}}> */}
+                <Text text={e.title} fontSize={14} />
+              {/* </View> */}
+            </Callout>
+          </Marker>
         ))}
       </MapView>
+      {detailInfoComponent}
       <View
         style={{
           position: 'absolute',
