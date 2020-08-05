@@ -10,12 +10,12 @@ export default function ButtonGroup({color, cols, items, onPress, value}) {
         flexWrap: cols ? 'wrap' : undefined,
         justifyContent: 'space-evenly',
       }}>
-      {cols === undefined &&
+      {cols === undefined ? (
         items.map((e, i) => {
           return (
             <TouchableOpacity
               key={i}
-              onPress={onPress(e.code)}
+              onPress={() => onPress(e.code)}
               style={{
                 flex: 1,
                 borderWidth: 1,
@@ -33,13 +33,13 @@ export default function ButtonGroup({color, cols, items, onPress, value}) {
               />
             </TouchableOpacity>
           );
-        })}
-      {cols &&
+        })
+      ) : (
         items.map((e, i) => {
           return (
             <TouchableOpacity
               key={i}
-              onPress={onPress(e.code)}
+              onPress={() => onPress(e.code)}
               style={{
                 flex: 1,
                 borderWidth: 1,
@@ -65,7 +65,8 @@ export default function ButtonGroup({color, cols, items, onPress, value}) {
               />
             </TouchableOpacity>
           );
-        })}
+        })
+      )}
     </View>
   );
 }
