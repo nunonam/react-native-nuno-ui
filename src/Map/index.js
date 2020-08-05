@@ -22,8 +22,6 @@ export default function Map({
   buttonText,
   getCurrentPosition,
   markerOnSelect,
-  markerOnDeselect,
-  detailInfoComponent,
 }) {
   let mapRef = React.useRef();
   const [camera, setCamera] = React.useState({
@@ -88,8 +86,7 @@ export default function Map({
             title={e.title}
             description={e.description}
             image={e.markerComponent}
-            onSelect={() => markerOnSelect(e)}
-            onDeselect={() => markerOnDeselect(e)}
+            onPress={() => markerOnSelect(e)}
           >
             <Callout>
               {/* <View style={{paddingHorizontal: 20, paddingVertical: 10, borderRadius: 20, backgroundColor: 'white', borderWidth: 1, borderColor: 'lightgray'}}> */}
@@ -99,7 +96,6 @@ export default function Map({
           </Marker>
         ))}
       </MapView>
-      {detailInfoComponent}
       <View
         style={{
           position: 'absolute',
