@@ -6,7 +6,15 @@ import FastImage from 'react-native-fast-image';
 import ImageViewer from '../ImageViewer';
 import Modal from '../Modal';
 
-export default ({data, onPress, width, height, loop, dotColor, paginationContainerStyle}) => {
+export default ({
+  data,
+  onPress,
+  width,
+  height,
+  loop,
+  dotColor,
+  paginationContainerStyle
+}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [imageViewer, setImageViewer] = React.useState(false);
   const renderItem = ({item}) => {
@@ -41,7 +49,18 @@ export default ({data, onPress, width, height, loop, dotColor, paginationContain
         inactiveDotColor={'lightgray'}
         inactiveDotScale={1}
         inactiveDotOpacity={1}
-        containerStyle={{position: 'absolute', bottom: -20, left: 0, right: 0, ...paginationContainerStyle}}
+        dotStyle={{
+          width: 6,
+          height: 6,
+          borderRadius: 3,
+          padding: 0,
+        }}
+        dotContainerStyle={{
+          marginHorizontal: 2, // dot사이의 거리
+        }}
+        containerStyle={{
+          paddingVertical: 10,
+        }}
       />
       <Modal
         isVisible={imageViewer}
