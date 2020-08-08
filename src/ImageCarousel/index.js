@@ -13,13 +13,14 @@ export default ({
   height,
   loop,
   dotColor,
+  disableTouch,
   paginationContainerStyle
 }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [imageViewer, setImageViewer] = React.useState(false);
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={onPress ? () => onPress() : () => setImageViewer(true)} activeOpacity={onPress ? 0.5 : 1}>
+      <TouchableOpacity onPress={disableTouch ? () => null : (onPress ? () => onPress() : () => setImageViewer(true))} activeOpacity={!disableTouch ? 0.5 : 1}>
         <FastImage
           source={{uri: item}}
           style={{
