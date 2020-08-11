@@ -9,6 +9,7 @@ export default ({isVisible, animationIn, animationOut, onBackdropPress, fullScre
       animationOut={animationOut}
       onBackdropPress={onBackdropPress}
       backdropOpacity={0.5}
+      avoidKeyboard={true}
       style={{margin: fullScreen ? 0 : 45}}
       >
       {children}
