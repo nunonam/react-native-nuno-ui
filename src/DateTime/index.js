@@ -3,6 +3,7 @@ import {Platform, NativeModules, Modal, View, TouchableOpacity} from 'react-nati
 import Seperator from '../Seperator';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../Text';
 
 export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
@@ -59,7 +60,11 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
           )}
         </View>
         <View>
-          <AntDesign name={'down'} size={10} color={'black'} />
+          {mode === 'date' ? (
+            <AntDesign name={'down'} size={20} color={'black'} />
+          ) : (
+            <MaterialCommunityIcons name={'calendar-blank'} size={20} color={'black'} />
+          )}
         </View>
       </TouchableOpacity>
 
