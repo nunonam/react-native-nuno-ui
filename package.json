@@ -1,6 +1,6 @@
 {
   "name": "react-native-nuno-ui",
-  "version": "1.0.91",
+  "version": "1.0.92",
   "description": "common ui component for nuno",
   "main": "index.js",
   "scripts": {

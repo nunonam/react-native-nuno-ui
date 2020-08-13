@@ -94,6 +94,13 @@ export function getAge(s) {
   const ageDate = new Date(ageDifMs); // miliseconds from epoch
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
+export function gotoStore() {
+  if (Platform.OS === 'android') {
+    Linking.openURL(Nuno.config.ANDROID_PLAY_STORE).catch(err => console.log(err));
+  } else {
+    Linking.openURL(Nuno.config.IOS_APP_STORE).catch(err => console.log(err));
+  }
+}
 export async function getAddressFromGeoCode(latitude, longitude) {
   return new Promise((resolve, reject) => {
     fetch(
