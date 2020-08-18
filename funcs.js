@@ -346,7 +346,13 @@ export function share(deeplink, title, callback) {
       Alert.alert(err);
     });
 }
-
+export function getDateFromHours(timeStr) {
+  const h = timeStr.split(':')[0];
+  const m = timeStr.split(':')[1];
+  const s = '0';
+  let date = new Date();
+  return date.setHours(h, m, s);
+}
 export function getPhotos(index, multiple) {
   return new Promise((resolve, reject) => {
     if (index === 0) {
