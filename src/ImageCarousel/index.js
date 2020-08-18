@@ -5,6 +5,7 @@ import { screenWidth } from '../style';
 import FastImage from 'react-native-fast-image';
 import ImageViewer from '../ImageViewer';
 import Modal from '../Modal';
+import { Nuno } from 'react-native-nuno-ui';
 
 export default ({
   data,
@@ -61,6 +62,7 @@ export default ({
         }}
         containerStyle={{
           paddingVertical: 10,
+          ...paginationContainerStyle
         }}
       />
       <Modal
