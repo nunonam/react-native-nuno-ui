@@ -16,12 +16,10 @@ import {screenWidth} from '../style';
 
 export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftComponent, onSend}) => {
   const [message, setMessage] = React.useState('');
-  const [page, setPage] = React.useState(1);
-
 
   const renderItem = ({item, index}) => {
-    const currentTimestamp = new Date(item.createdAt.replace(' ', 'T')).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
-    const prevTimestamp = index > 0 && item.id === messages[index-1].id && new Date(messages[index-1].createdAt.replace(' ', 'T')).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
+    const currentTimestamp = moment(new Date(item.createdAt.replace(' ', 'T'))).format('a h:mm');
+    const prevTimestamp = index > 0 && item.id === messages[index-1].id && moment(new Date(messages[index-1].createdAt.replace(' ', 'T'))).format('a h:mm');
     const currentDate = moment(new Date(item.createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
     const nextDate = index < messages.length - 1 && moment(new Date(messages[index+1].createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
     if (me.id === item.id) {
@@ -43,7 +41,7 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: Nuno.config.themeColor, padding: 10}}>
                 <Text fontSize={fontSize || 14} color={'white'} text={item.text} />
                 {currentTimestamp !== prevTimestamp && (
-                  <View style={{position: 'absolute', left: -70, bottom: 0}}>
+                  <View style={{position: 'absolute', left: -60, bottom: 0}}>
                     <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
                   </View>
                 )}
@@ -80,7 +78,7 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
                 <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
                 {currentTimestamp !== prevTimestamp && (
-                  <View style={{position: 'absolute', right: -70, bottom: 0}}>
+                  <View style={{position: 'absolute', right: -60, bottom: 0}}>
                     <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
                   </View>
                 )}
@@ -111,14 +109,11 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
         // ListEmptyComponent={<Empty />}
         // ListHeaderComponent={FlatListHeader()}
         // refreshing={pullToRefresh}
-        ListFooterComponent={moredone ? null : <View style={{paddingVertical: 10}}><Loader /></View>}
+        // ListFooterComponent={moredone ? null : <View style={{paddingVertical: 10}}><Loader /></View>}
         onEndReached={() => {
           console.log('chat endReched!');
           if (!moredone) {
-            more(page);
-            setPage(page + 1);
-            // setIsLast(false);
-            // setPullToRefresh(true);
+            more();
           }
         }}
       />
