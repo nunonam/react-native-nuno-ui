@@ -5,32 +5,32 @@ import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
 
-export default function Button({text, size, color, stretch, disable, loading, onPress, textColor, borderColor, borderRadius}) {
-  let fontSize, fontWeight, paddingVertical, paddingHorizontal;
+export default function Button({text, size, color, stretch, disable, loading, onPress, textColor, borderColor, borderRadius, paddingVertical, paddingHorizontal}) {
+  let fontSize, fontWeight, paddingV, paddingH;
   switch (size) {
     case 'small':
       fontSize = 12;
       fontWeight = 'normal';
-      paddingVertical = 2;
-      paddingHorizontal = 10;
+      paddingV = paddingVertical || 2;
+      paddingH = paddingHorizontal || 10;
       break;
     case 'medium':
       fontSize = 14;
-      fontWeight = 'normal';
-      paddingVertical = 7;
-      paddingHorizontal = 10;
+      fontWeight = '500';
+      paddingV = paddingVertical || 7;
+      paddingH = paddingHorizontal || 10;
       break;
     case 'large':
       fontSize = 18;
       fontWeight = 'bold';
-      paddingVertical = 15;
-      paddingHorizontal = 20;
+      paddingV = paddingVertical || 15;
+      paddingH = paddingHorizontal || 20;
       break;
     default:
       fontSize = 16;
       fontWeight = 'bold';
-      paddingVertical = 10;
-      paddingHorizontal = 15;
+      paddingV = paddingVertical || 10;
+      paddingH = paddingHorizontal || 15;
       break;
   }
   return (
@@ -46,8 +46,8 @@ export default function Button({text, size, color, stretch, disable, loading, on
             // flex: stretch ? 1 : undefined,
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: paddingHorizontal,
-            paddingVertical: paddingVertical,
+            paddingHorizontal: paddingH,
+            paddingVertical: paddingV,
             backgroundColor: color,
             borderRadius: borderRadius !== undefined ? borderRadius : 4,
             borderWidth: 1,
@@ -61,8 +61,8 @@ export default function Button({text, size, color, stretch, disable, loading, on
             // flex: stretch ? 1 : undefined,
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: paddingHorizontal,
-            paddingVertical: paddingVertical,
+            paddingHorizontal: paddingH,
+            paddingVertical: paddingV,
             backgroundColor: color,
             borderRadius: borderRadius !== undefined ? borderRadius : 4,
             borderWidth: 1,
