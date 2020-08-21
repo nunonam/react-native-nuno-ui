@@ -10,21 +10,23 @@ import Image from '../Image';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
-import { Nuno } from 'react-native-nuno-ui';
+import { Nuno, Loader } from 'react-native-nuno-ui';
 import moment from 'moment';
 import {screenWidth} from '../style';
 
-export default ({messages, me, emptyAvatar, fontSize, leftComponent, onSend}) => {
+export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftComponent, onSend}) => {
   const [message, setMessage] = React.useState('');
+  const [page, setPage] = React.useState(1);
+
 
   const renderItem = ({item, index}) => {
-    const currentTimestamp = new Date(item.createdAt).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
-    const prevTimestamp = index > 0 && new Date(messages[index-1].createdAt).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
-    const currentDate = moment(new Date(item.createdAt)).format('YYYY년 MM월 DD일');
-    const nextDate = index < messages.length - 1 && moment(new Date(messages[index+1].createdAt)).format('YYYY년 MM월 DD일');
+    const currentTimestamp = new Date(item.createdAt.replace(' ', 'T')).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
+    const prevTimestamp = index > 0 && item.id === messages[index-1].id && new Date(messages[index-1].createdAt.replace(' ', 'T')).toLocaleString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true });
+    const currentDate = moment(new Date(item.createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
+    const nextDate = index < messages.length - 1 && moment(new Date(messages[index+1].createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
     if (me.id === item.id) {
       return (
-        <>
+        <View>
           {currentDate !== nextDate && (
             <View style={{padding: 20}}>
               <Seperator line />
@@ -41,40 +43,52 @@ export default ({messages, me, emptyAvatar, fontSize, leftComponent, onSend}) =>
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: Nuno.config.themeColor, padding: 10}}>
                 <Text fontSize={fontSize || 14} color={'white'} text={item.text} />
                 {currentTimestamp !== prevTimestamp && (
-                  <View style={{position: 'absolute', left: -60, bottom: 0}}>
+                  <View style={{position: 'absolute', left: -70, bottom: 0}}>
                     <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
                   </View>
                 )}
               </View>
             </View>
           </HView>
-        </>
+        </View>
       );
     } else {
       return (
-        <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
-          {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) ? (
-            item.avatar ? (
-              <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
-            ) : (
-              <Image local uri={emptyAvatar} height={36} width={36} borderRadius={18} onPress={() => null} />
-            )
-          ) : (
-            <View style={{width: 36}} />
-          )}
-          <Seperator width={10} />
-          <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
-              <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
-              {currentTimestamp !== prevTimestamp && (
-                <View style={{position: 'absolute', right: -70, bottom: 0}}>
-                  <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
+        <View>
+          {currentDate !== nextDate && (
+            <View style={{padding: 20}}>
+              <Seperator line />
+              <View style={{position: 'absolute', top: 10, alignItems: 'center', width: screenWidth}}>
+                <View style={{backgroundColor: 'white', paddingHorizontal: 20}}>
+                  <Text fontSize={fontSize || 14} color={'gray'} text={currentDate} />
                 </View>
-              )}
+              </View>
             </View>
-          </View>
-          <Seperator width={50} />
-        </HView>
+          )}
+          <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
+            {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) ? (
+              item.avatar ? (
+                <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
+              ) : (
+                <Image local uri={emptyAvatar} height={36} width={36} borderRadius={18} onPress={() => null} />
+              )
+            ) : (
+              <View style={{width: 36}} />
+            )}
+            <Seperator width={10} />
+            <View style={{flex: 1, alignItems: 'flex-start'}}>
+              <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
+                <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
+                {currentTimestamp !== prevTimestamp && (
+                  <View style={{position: 'absolute', right: -70, bottom: 0}}>
+                    <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
+                  </View>
+                )}
+              </View>
+            </View>
+            <Seperator width={50} />
+          </HView>
+        </View>
       );
     }
   };
@@ -97,10 +111,16 @@ export default ({messages, me, emptyAvatar, fontSize, leftComponent, onSend}) =>
         // ListEmptyComponent={<Empty />}
         // ListHeaderComponent={FlatListHeader()}
         // refreshing={pullToRefresh}
-        // onRefresh={() => {
-        //   setIsLast(false);
-        //   setPullToRefresh(true);
-        // }}
+        ListFooterComponent={moredone ? null : <View style={{paddingVertical: 10}}><Loader /></View>}
+        onEndReached={() => {
+          console.log('chat endReched!');
+          if (!moredone) {
+            more(page);
+            setPage(page + 1);
+            // setIsLast(false);
+            // setPullToRefresh(true);
+          }
+        }}
       />
       <Seperator marginBottom={5} />
       <HView style={{paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: 'lightgray', paddingVertical: 10}}>

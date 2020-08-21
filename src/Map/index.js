@@ -76,6 +76,7 @@ export default function Map({
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
         camera={camera}
+        showsCompass={false}
         initialCamera={camera}
         onRegionChangeComplete={onRegionChangeComplete}
       >
