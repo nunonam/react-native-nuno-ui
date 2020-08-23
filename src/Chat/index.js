@@ -125,7 +125,7 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
             <View style={{flex: 1, paddingLeft: 13}}>
               <TextInput placeholder={'메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} />
             </View>
-            <TouchableOpacity onPress={() => send()} style={{paddingHorizontal: 20}}>
+            <TouchableOpacity onPress={() => send()} style={{paddingHorizontal: 20, paddingVertical: 10}}>
               <Text text={'전송'} fontSize={14} fontWeight={'bold'} />
             </TouchableOpacity>
           </HView>
