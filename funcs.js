@@ -315,6 +315,9 @@ export function showToast(msg) {
     },
   });
 }
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 export function share(deeplink, title, callback) {
   fetch(
     `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${Nuno.config.FIREBASE_WEB_API}`,
