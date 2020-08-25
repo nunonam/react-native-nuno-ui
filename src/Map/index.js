@@ -43,7 +43,9 @@ export default function Map({
       setCamera(temp);
       getCurrentPosition(loc.coords);
     }
-    getLoc();
+    if (!latitude && !longitude) {
+      getLoc();
+    }
   }, []);
   const onRegionChangeComplete = async e => {
     const temp = await mapRef.getCamera();

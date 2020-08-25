@@ -14,7 +14,17 @@ import { Nuno, Loader } from 'react-native-nuno-ui';
 import moment from 'moment';
 import {screenWidth} from '../style';
 
-export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftComponent, onSend}) => {
+export default ({
+  messages,
+  me,
+  more,
+  moredone,
+  emptyAvatar,
+  fontSize,
+  leftComponent,
+  onSend,
+  openMap,
+}) => {
   const [message, setMessage] = React.useState('');
 
   const renderItem = ({item, index}) => {
@@ -39,7 +49,13 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
             <Seperator width={70} />
             <View style={{flex: 1, alignItems: 'flex-end'}}>
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: Nuno.config.themeColor, padding: 10}}>
-                <Text fontSize={fontSize || 14} color={'white'} text={item.text} />
+                {item.lat && item.lon ? (
+                  <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
+                    <Text fontSize={fontSize || 14} color={'white'} text={item.text} style={{textDecorationLine: 'underline'}} />
+                  </TouchableOpacity>
+                ) : (
+                  <Text fontSize={fontSize || 14} color={'white'} text={item.text} />
+                )}
                 {currentTimestamp !== prevTimestamp && (
                   <View style={{position: 'absolute', left: -60, bottom: 0}}>
                     <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
@@ -76,7 +92,13 @@ export default ({messages, me, more, moredone, emptyAvatar, fontSize, leftCompon
             <Seperator width={10} />
             <View style={{flex: 1, alignItems: 'flex-start'}}>
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
-                <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
+                {item.lat && item.lon ? (
+                  <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
+                    <Text fontSize={fontSize || 14} color={'black'} text={item.text} style={{textDecorationLine: 'underline'}} />
+                  </TouchableOpacity>
+                ) : (
+                  <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
+                )}
                 {currentTimestamp !== prevTimestamp && (
                   <View style={{position: 'absolute', right: -60, bottom: 0}}>
                     <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
