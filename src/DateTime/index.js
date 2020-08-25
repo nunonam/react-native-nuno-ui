@@ -6,7 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../Text';
 
-export default function DateTime({locale, mode, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
+export default function DateTime({locale, mode, disable, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
   const [showPicker, setShowPicker] = React.useState(false);
 
   if (!locale) {
@@ -40,7 +40,14 @@ export default function DateTime({locale, mode, value, title, placeholder, minut
         </>
       )}
       <TouchableOpacity
-        onPress={() => setShowPicker(!showPicker)}
+        onPress={
+          disable
+            ? () => null
+            : () => setShowPicker(!showPicker)
+        }
+        activeOpacity={
+          disable ? 1 : 0.5
+        }
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',

@@ -72,7 +72,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
             <Text
               fontSize={fontSize}
               fontWeight={fontWeight}
-              color={textColor ? textColor : (color === 'white' ? 'darkgray' : 'white')}
+              color={textColor ? textColor : (color === 'white' ? 'dimgray' : 'white')}
               text={text}
             />
           </View>

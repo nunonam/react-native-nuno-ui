@@ -17,13 +17,18 @@ export default ({
   backgroundImageStyle,
   onBackdropPress,
   onConfirm,
-  onCancel
+  onCancel,
+  nonFlex
 }) => {
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={backgroundImage} style={{flex: 1, ...backgroundImageStyle}}>
-        {children}
-      </ImageBackground>
+    <View style={{flex: nonFlex ? undefined : 1}}>
+      {backgroundImage ? (
+        <ImageBackground source={backgroundImage} style={{flex: 1, ...backgroundImageStyle}}>
+          {children}
+        </ImageBackground>
+      ) : (
+        children
+      )}
       <Modal
         isVisible={alertVisible}
         onBackdropPress={onBackdropPress}>
@@ -39,13 +44,13 @@ export default ({
               {onCancel && (
                 <>
                   <View style={{flex: 1}}>
-                    <Button text={'취소'} color={alertButtonColor || 'gray'} onPress={onCancel} stretch />
+                    <Button text={'취소'} color={alertButtonColor || 'gray'} onPress={onCancel} stretch size={'large'} />
                   </View>
                   <Seperator width={10} />
                 </>
               )}
               <View style={{flex: 1}}>
-                <Button text={'확인'} color={alertButtonColor || Nuno.config.themeColor} onPress={onConfirm} stretch />
+                <Button text={'확인'} color={alertButtonColor || Nuno.config.themeColor} onPress={onConfirm} stretch size={'large'} />
               </View>
             </HView>
           </View>
