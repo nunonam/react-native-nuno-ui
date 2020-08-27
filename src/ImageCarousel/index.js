@@ -6,6 +6,8 @@ import FastImage from 'react-native-fast-image';
 import ImageViewer from '../ImageViewer';
 import Modal from '../Modal';
 import { Nuno } from 'react-native-nuno-ui';
+import { getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default ({
   data,
@@ -15,6 +17,7 @@ export default ({
   loop,
   dotColor,
   disableTouch,
+  borderRadius,
   paginationContainerStyle
 }) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -27,6 +30,7 @@ export default ({
           style={{
             width: width || screenWidth,
             height: height || Math.floor(screenWidth / 2),
+            borderRadius: borderRadius || 0,
           }}
           resizeMode={'cover'}
         />
@@ -74,6 +78,9 @@ export default ({
           enableSwipeDown={true}
           onSwipeDown={() => setImageViewer(false)}
         />
+        <TouchableOpacity onPress={() => setImageViewer(false)} style={{position: 'absolute', top: 20 + (isIphoneX() ? getStatusBarHeight() : 0), right: 20 }}>
+          <AntDesign name={'close'} size={20} color={'white'} />
+        </TouchableOpacity>
       </Modal>
     </View>
   );
