@@ -47,7 +47,12 @@ export default ({
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', paddingHorizontal: 15, paddingVertical: 2}}>
             <Seperator width={70} />
-            <View style={{flex: 1, alignItems: 'flex-end'}}>
+            <HView style={{flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end'}}>
+              {currentTimestamp !== prevTimestamp && (
+                <View style={{marginRight: 10}}>
+                  <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
+                </View>
+              )}
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: Nuno.config.themeColor, padding: 10}}>
                 {item.lat && item.lon ? (
                   <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
@@ -56,13 +61,8 @@ export default ({
                 ) : (
                   <Text fontSize={fontSize || 14} color={'white'} text={item.text} />
                 )}
-                {currentTimestamp !== prevTimestamp && (
-                  <View style={{position: 'absolute', left: -60, bottom: 0}}>
-                    <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
-                  </View>
-                )}
               </View>
-            </View>
+            </HView>
           </HView>
         </View>
       );
@@ -90,7 +90,7 @@ export default ({
               <View style={{width: 36}} />
             )}
             <Seperator width={10} />
-            <View style={{flex: 1, alignItems: 'flex-start'}}>
+            <HView style={{flex: 1, alignItems: 'flex-end'}}>
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
                 {item.lat && item.lon ? (
                   <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
@@ -99,14 +99,14 @@ export default ({
                 ) : (
                   <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
                 )}
-                {currentTimestamp !== prevTimestamp && (
-                  <View style={{position: 'absolute', right: -60, bottom: 0}}>
-                    <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
-                  </View>
-                )}
               </View>
-            </View>
-            <Seperator width={50} />
+              {currentTimestamp !== prevTimestamp && (
+                <View style={{marginLeft: 10}}>
+                  <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
+                </View>
+              )}
+            </HView>
+            <Seperator width={70} />
           </HView>
         </View>
       );
