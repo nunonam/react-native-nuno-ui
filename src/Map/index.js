@@ -82,7 +82,7 @@ export default function Map({
         initialCamera={camera}
         onRegionChangeComplete={onRegionChangeComplete}
       >
-        {markers.map((e, i) => (
+        {markers && markers.map((e, i) => (
           <Marker
             key={i}
             coordinate={e.coords}
