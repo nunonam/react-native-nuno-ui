@@ -20,6 +20,7 @@ export default function Map({
   markerComponent,
   showButton,
   buttonText,
+  onMapReady,
   getCurrentPosition,
   markerOnSelect,
 }) {
@@ -75,6 +76,7 @@ export default function Map({
     <View style={{flex: 1, alignItems: 'center'}}>
       <MapView
         provider={Nuno.config.mapProvider}
+        onMapReady={onMapReady}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}
         camera={camera}

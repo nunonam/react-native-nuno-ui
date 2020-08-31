@@ -294,25 +294,30 @@ export async function getRecentKeyword() {
       });
   });
 }
-export function showToast(msg) {
-  Toast.show(msg, {
-    duration: 1000,
-    position: Toast.positions.TOP,
-    shadow: true,
-    animation: true,
-    hideOnPress: true,
-    delay: 0,
-    opacity: 0.8,
-    // backgroundColor: cs.theme,
-    textStyle: {fontSize: 14, fontWeight: 'bold', color: 'white'},
-    containerStyle: {
+export function showToast(msg, duration, position) {
+  if (position === 'center') {
+    position = Toast.positions.CENTER;
+  } else {
+    position = Toast.positions.TOP;
+    containerStyle = {
       width: screenWidth,
       height: 70 + (isIphoneX() ? getStatusBarHeight() : 0),
       paddingTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
       top: -20,
       borderRadius: 0,
       justifyContent: 'center',
-    },
+    };
+  }
+  Toast.show(msg, {
+    duration: duration,
+    position: position,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+    opacity: 0.8,
+    textStyle: {fontSize: 14, color: 'white'},
+    containerStyle: containerStyle,
   });
 }
 export const swap = (arr, index1, index2) => arr.map((val, idx) => {

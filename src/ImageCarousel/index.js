@@ -72,6 +72,7 @@ export default ({
       <Modal
         isVisible={imageViewer}
         fullScreen={true}
+        onBackButtonPress={() => setImageViewer(false)}
         onBackdropPress={() => setImageViewer(false)}>
         <ImageViewer
           data={data}
