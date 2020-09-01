@@ -1,10 +1,9 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Modal, TouchableOpacity, View} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { screenWidth } from '../style';
 import FastImage from 'react-native-fast-image';
 import ImageViewer from '../ImageViewer';
-import Modal from '../Modal';
 import { Nuno } from 'react-native-nuno-ui';
 import { getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -70,10 +69,14 @@ export default ({
         }}
       />
       <Modal
-        isVisible={imageViewer}
-        fullScreen={true}
-        onBackButtonPress={() => setImageViewer(false)}
-        onBackdropPress={() => setImageViewer(false)}>
+        visible={imageViewer}
+        transparent={true}
+        hardwareAccelerated={true}
+        animationType={'slide'}
+        onRequestClose={() => {
+          setImageViewer(false);
+        }}
+      >
         <ImageViewer
           data={data}
           enableSwipeDown={true}
