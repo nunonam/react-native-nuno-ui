@@ -5,6 +5,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../Text';
+import moment from 'moment';
 
 export default function DateTime({locale, mode, disable, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
   const [showPicker, setShowPicker] = React.useState(false);
@@ -27,7 +28,8 @@ export default function DateTime({locale, mode, disable, value, title, placehold
       });
       break;
     default:
-      formattedValue = value.toLocaleDateString(locale);
+      // formattedValue = value.toLocaleDateString(locale);
+      formattedValue = moment(value).format('YYYY/MM/DD');
       break;
   }
 
