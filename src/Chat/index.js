@@ -28,10 +28,39 @@ export default ({
   const [message, setMessage] = React.useState('');
 
   const renderItem = ({item, index}) => {
-    const currentTimestamp = moment(new Date(item.createdAt.replace(' ', 'T'))).format('a h:mm');
-    const prevTimestamp = index > 0 && item.id === messages[index-1].id && moment(new Date(messages[index-1].createdAt.replace(' ', 'T'))).format('a h:mm');
-    const currentDate = moment(new Date(item.createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
-    const nextDate = index < messages.length - 1 && moment(new Date(messages[index+1].createdAt.replace(' ', 'T'))).format('YYYY년 MM월 DD일');
+    let dateTimeParts, createdAt, prevCreatedAt, nextCreatedAt;
+    dateTimeParts = item.createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
+    dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
+    createdAt = new Date(...dateTimeParts); // our Date object
+
+    if (index > 0) {
+      dateTimeParts = messages[index-1].createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
+      dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
+      prevCreatedAt = new Date(...dateTimeParts);
+    }
+    if (index < messages.length - 1) {
+      dateTimeParts = messages[index+1].createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
+      dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
+      nextCreatedAt = new Date(...dateTimeParts);
+    }
+
+    const currentTimestamp = moment(createdAt).format('a h:mm');
+    const prevTimestamp = index > 0 && item.id === messages[index-1].id && moment(prevCreatedAt).format('a h:mm');
+    const currentDate = moment(createdAt).format('YYYY년 MM월 DD일');
+    const nextDate = index < messages.length - 1 && moment(nextCreatedAt).format('YYYY년 MM월 DD일');
+
+    // system message
+    if (item.id === 0) {
+      return (
+        <View style={{padding: 20}}>
+          <View style={{alignItems: 'center', backgroundColor: 'whitesmoke', padding: 20, borderRadius: 5}}>
+            <Text text={item.text} fontSize={fontSize || 14} color={'dimgray'} />
+          </View>
+        </View>
+      )
+    }
+
+    // user message
     if (me.id === item.id) {
       return (
         <View>
