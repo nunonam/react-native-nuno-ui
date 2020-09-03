@@ -29,8 +29,6 @@ export default ({
 
   const renderItem = ({item, index}) => {
     let dateTimeParts, createdAt, prevCreatedAt, nextCreatedAt;
-
-    // mySQL 의 경우 "2020-01-01 10:00:00" 와 같은 형태로 오는 경우에 해당
     dateTimeParts = item.createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
     createdAt = new Date(...dateTimeParts); // our Date object
@@ -55,8 +53,8 @@ export default ({
     if (item.id === 0) {
       return (
         <View style={{padding: 20}}>
-          <View style={{alignItems: 'center', backgroundColor: 'whitesmoke', padding: 20, borderRadius: 5}}>
-            <Text text={item.text} fontSize={fontSize || 14} color={'dimgray'} />
+          <View style={{alignItems: 'center', backgroundColor: 'white', padding: 20, borderRadius: 5}}>
+            <Text text={item.text} fontSize={fontSize || 14} color={'#FE7262'} />
           </View>
         </View>
       )
@@ -75,6 +73,9 @@ export default ({
                 </View>
               </View>
             </View>
+          )}
+          {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
+            <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', paddingHorizontal: 15, paddingVertical: 2}}>
             <Seperator width={70} />
@@ -121,22 +122,27 @@ export default ({
               <View style={{width: 36}} />
             )}
             <Seperator width={10} />
-            <HView style={{flex: 1, alignItems: 'flex-end'}}>
-              <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
-                {item.lat && item.lon ? (
-                  <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
-                    <Text fontSize={fontSize || 14} color={'black'} text={item.text} style={{textDecorationLine: 'underline'}} />
-                  </TouchableOpacity>
-                ) : (
-                  <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
-                )}
-              </View>
-              {currentTimestamp !== prevTimestamp && (
-                <View style={{marginLeft: 10}}>
-                  <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
-                </View>
+            <View style={{flex: 1}}>
+              {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
+                <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
               )}
-            </HView>
+              <HView style={{flex: 1, alignItems: 'flex-end'}}>
+                <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
+                  {item.lat && item.lon ? (
+                    <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
+                      <Text fontSize={fontSize || 14} color={'black'} text={item.text} style={{textDecorationLine: 'underline'}} />
+                    </TouchableOpacity>
+                  ) : (
+                    <Text fontSize={fontSize || 14} color={'black'} text={item.text} />
+                  )}
+                </View>
+                {currentTimestamp !== prevTimestamp && (
+                  <View style={{marginLeft: 10}}>
+                    <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
+                  </View>
+                )}
+              </HView>
+            </View>
             <Seperator width={70} />
           </HView>
         </View>
@@ -148,7 +154,8 @@ export default ({
       setMessage('');
       onSend({
         text: message,
-        avatar: me.avatar
+        avatar: me.avatar,
+        name: me.name,
       });
     }
   };
