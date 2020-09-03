@@ -13,7 +13,8 @@ import { Nuno } from '.';
 import { screenWidth } from './src/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
-import DeviceInfo from 'react-native-device-info';
+// import DeviceInfo from 'react-native-device-info';
+import deviceInfoModule from 'react-native-device-info';
 
 export function log(func, data) {
   console.log(func, data);
@@ -140,9 +141,10 @@ export async function getAddressFromGeoCode(latitude, longitude) {
   });
 }
 export async function getCurrentCoords() {
+  const isEmulator = await deviceInfoModule.isEmulator();
   return new Promise((resolve, reject) => {
-    if (DeviceInfo.isEmulator()) {
-      resolve({latitude: 37.540032, longitude: 126.945414});
+    if (isEmulator) {
+      resolve({latitude: 37.568676, longitude: 126.978031});
     } else {
       Geolocation.getCurrentPosition(
         position => {
@@ -172,12 +174,14 @@ export async function getCurrentLocation(lang) {
   } else {
     granted = PermissionsAndroid.RESULTS.GRANTED;
   }
+  const isEmulator = await deviceInfoModule.isEmulator();
+
   return new Promise((resolve, reject) => {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      if (DeviceInfo.isEmulator()) {
+      if (isEmulator) {
         resolve({
-          address: '서울시 마포구',
-          coords: {latitude: 37.540032, longitude: 126.945414},
+          address: '서울시 중구',
+          coords: {latitude: 37.568676, longitude: 126.978031},
         });
       } else {
         Geolocation.getCurrentPosition(
