@@ -29,6 +29,8 @@ export default ({
 
   const renderItem = ({item, index}) => {
     let dateTimeParts, createdAt, prevCreatedAt, nextCreatedAt;
+
+    // mySQL 의 경우 "2020-01-01 10:00:00" 와 같은 형태로 오는 경우에 해당
     dateTimeParts = item.createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
     dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
     createdAt = new Date(...dateTimeParts); // our Date object

@@ -295,6 +295,7 @@ export async function getRecentKeyword() {
   });
 }
 export function showToast(msg, duration, position) {
+  let containerStyle = {};
   if (position === 'center') {
     position = Toast.positions.CENTER;
   } else {
