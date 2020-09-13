@@ -17,7 +17,6 @@ import { Nuno } from 'react-native-nuno-ui';
 const inputAccessoryViewID = 'keyboard-id';
 
 export default (props) => {
-  let inputRef = React.useRef();
   const [secureTextEntry, setSecureTextEntry] = React.useState(props.showEye ? true : false);
 
   return (
@@ -32,8 +31,7 @@ export default (props) => {
         <View style={{flex: 1}}>
           {props.mask ? (
             <MaskedInput
-              // ref={props.inputRef}
-              // ref={e => (inputRef.current = e)}
+              ref={props.forwardRef}
               style={{
                 fontSize: 14,
                 color: props.textColor || 'dimgray',
@@ -73,8 +71,7 @@ export default (props) => {
             />
           ) : (
             <TextInput
-              // ref={props.inputRef}
-              // ref={e => (inputRef.current = e)}
+              ref={props.forwardRef}
               style={{
                 fontSize: 14,
                 color: props.textColor || 'dimgray',

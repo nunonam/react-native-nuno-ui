@@ -13,7 +13,6 @@ import { Nuno } from '.';
 import { screenWidth } from './src/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
-// import DeviceInfo from 'react-native-device-info';
 import deviceInfoModule from 'react-native-device-info';
 
 export function log(func, data) {
@@ -298,31 +297,25 @@ export async function getRecentKeyword() {
       });
   });
 }
-export function showToast(msg, duration, position) {
-  let containerStyle = {};
-  if (position === 'center') {
-    position = Toast.positions.CENTER;
-  } else {
-    position = Toast.positions.TOP;
-    containerStyle = {
+export function showToast(msg) {
+  Toast.show(msg, {
+    duration: 2000,
+    position: Toast.positions.TOP,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+    opacity: 0.7,
+    // backgroundColor: cs.theme,
+    textStyle: {fontSize: 14, fontWeight: 'bold', color: 'white'},
+    containerStyle: {
       width: screenWidth,
       height: 70 + (isIphoneX() ? getStatusBarHeight() : 0),
       paddingTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
       top: -20,
       borderRadius: 0,
       justifyContent: 'center',
-    };
-  }
-  Toast.show(msg, {
-    duration: duration,
-    position: position,
-    shadow: true,
-    animation: true,
-    hideOnPress: true,
-    delay: 0,
-    opacity: 0.8,
-    textStyle: {fontSize: 14, color: 'white'},
-    containerStyle: containerStyle,
+    },
   });
 }
 export const swap = (arr, index1, index2) => arr.map((val, idx) => {
