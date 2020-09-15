@@ -7,7 +7,7 @@ import Button from '../Button';
 import HView from '../HView';
 import TextInput from '../TextInput';
 import Image from '../Image';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import { Nuno, Loader } from 'react-native-nuno-ui';
@@ -180,13 +180,13 @@ export default ({
       <Seperator marginBottom={5} />
       <HView style={{paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: 'lightgray', paddingVertical: 10}}>
         {leftComponent}
-        <View style={{flex: 1, borderWidth: 1, borderColor: 'lightgray', borderRadius: 20}}>
+        <View style={{flex: 1}}>
           <HView>
             <View style={{flex: 1, paddingLeft: 13}}>
               <TextInput placeholder={'메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} />
             </View>
             <TouchableOpacity onPress={() => send()} style={{paddingHorizontal: 20, paddingVertical: 10}}>
-              <Text text={'전송'} fontSize={14} fontWeight={'bold'} />
+              <MaterialIcons name={'send'} size={20} color={Nuno.themeColor} />
             </TouchableOpacity>
           </HView>
         </View>
