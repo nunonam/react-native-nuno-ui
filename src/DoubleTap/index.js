@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Platform} from 'react-native';
+import {View, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 
 export default function DoubleTap(props) {
   const [lastTap, setLastTap] = React.useState(null);
@@ -14,8 +14,8 @@ export default function DoubleTap(props) {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={handleDoubleTap}>
+    <TouchableOpacity onPress={handleDoubleTap} activeOpacity={1}>
       {props.children}
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
