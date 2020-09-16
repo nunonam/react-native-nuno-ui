@@ -50,7 +50,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
             paddingVertical: paddingV,
             backgroundColor: color,
             borderRadius: borderRadius !== undefined ? borderRadius : 4,
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
             opacity: disable ? 0.5 : 1,
             }}>
@@ -65,7 +65,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
             paddingVertical: paddingV,
             backgroundColor: color,
             borderRadius: borderRadius !== undefined ? borderRadius : 4,
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
             opacity: disable ? 0.5 : 1,
             }}>

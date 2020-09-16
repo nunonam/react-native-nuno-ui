@@ -20,7 +20,7 @@ const Seperator = ({
     height = Platform.OS === 'ios' ? getStatusBarHeight() : 0;
   }
   if (line) {
-    height = 1;
+    height = 0.5;
     color = color || 'lightgray';
   }
   if (vline) {
