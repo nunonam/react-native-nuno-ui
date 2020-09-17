@@ -28,20 +28,14 @@ export default ({
   const [message, setMessage] = React.useState('');
 
   const renderItem = ({item, index}) => {
-    let dateTimeParts, createdAt, prevCreatedAt, nextCreatedAt;
-    dateTimeParts = item.createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
-    dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
-    createdAt = new Date(...dateTimeParts); // our Date object
+    let createdAt, prevCreatedAt, nextCreatedAt;
+    createdAt = new Date(item.createdAt); // our Date object
 
     if (index > 0) {
-      dateTimeParts = messages[index-1].createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
-      dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
-      prevCreatedAt = new Date(...dateTimeParts);
+      prevCreatedAt = new Date(messages[index-1].createdAt);
     }
     if (index < messages.length - 1) {
-      dateTimeParts = messages[index+1].createdAt.split(/[- :]/); // regular expression split that creates array with: year, month, day, hour, minutes, seconds values
-      dateTimeParts[1]--; // monthIndex begins with 0 for January and ends with 11 for December so we need to decrement by one
-      nextCreatedAt = new Date(...dateTimeParts);
+      nextCreatedAt = new Date(messages[index+1].createdAt);
     }
 
     const currentTimestamp = moment(createdAt).format('a h:mm');
@@ -53,7 +47,7 @@ export default ({
     if (item.id === 0) {
       return (
         <View style={{padding: 20}}>
-          <View style={{alignItems: 'center', backgroundColor: 'white', padding: 20, borderRadius: 5}}>
+          <View style={{alignItems: 'center', backgroundColor: 'whitesmoke', padding: 20, borderRadius: 5}}>
             <Text text={item.text} fontSize={fontSize || 14} color={'#FE7262'} />
           </View>
         </View>
@@ -74,9 +68,9 @@ export default ({
               </View>
             </View>
           )}
-          {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
+          {/* {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
             <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
-          )}
+          )} */}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-end', paddingHorizontal: 15, paddingVertical: 2}}>
             <Seperator width={70} />
             <HView style={{flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end'}}>
@@ -124,7 +118,10 @@ export default ({
             <Seperator width={10} />
             <View style={{flex: 1}}>
               {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
-                <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
+                <View>
+                  <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
+                  <Seperator height={10} />
+                </View>
               )}
               <HView style={{flex: 1, alignItems: 'flex-end'}}>
                 <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: 'lightgray', paddingVertical: 10, paddingHorizontal: 15}}>
@@ -178,14 +175,14 @@ export default ({
         }}
       />
       <Seperator marginBottom={5} />
-      <HView style={{paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: 'lightgray', paddingVertical: 10}}>
+      <HView style={{paddingHorizontal: 15, borderTopWidth: 1, borderTopColor: 'lightgray', paddingVertical: 2}}>
         {leftComponent}
         <View style={{flex: 1}}>
           <HView>
-            <View style={{flex: 1, paddingLeft: 13}}>
+            <View style={{flex: 1}}>
               <TextInput placeholder={'메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} />
             </View>
-            <TouchableOpacity onPress={() => send()} style={{paddingHorizontal: 20, paddingVertical: 10}}>
+            <TouchableOpacity onPress={() => send()}>
               <MaterialIcons name={'send'} size={20} color={Nuno.themeColor} />
             </TouchableOpacity>
           </HView>
