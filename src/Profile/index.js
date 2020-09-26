@@ -35,10 +35,7 @@ export default ({size, uri, name, desc, status, icon, onPress}) => {
         {name !== undefined && <Text text={name} fontSize={12} />}
         {desc !== undefined && <Text text={desc} fontSize={12} color={'gray'} />}
         {status !== undefined && (
-          <View>
-            <Seperator height={5} />
-            <Text text={status} fontSize={12} color={Nuno.config.themeColor} fontWeight={'bold'} />
-          </View>
+          <Text text={status} fontSize={12} color={Nuno.config.themeColor} fontWeight={'bold'} />
         )}
       </View>
     </TouchableOpacity>

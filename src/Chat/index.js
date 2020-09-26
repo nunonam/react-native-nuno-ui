@@ -19,7 +19,6 @@ export default ({
   me,
   more,
   moredone,
-  emptyAvatar,
   fontSize,
   leftComponent,
   onSend,
@@ -39,12 +38,12 @@ export default ({
     }
 
     const currentTimestamp = moment(createdAt).format('a h:mm');
-    const prevTimestamp = index > 0 && item.id === messages[index-1].id && moment(prevCreatedAt).format('a h:mm');
+    const prevTimestamp = index > 0 && item.UserId === messages[index-1].UserId && moment(prevCreatedAt).format('a h:mm');
     const currentDate = moment(createdAt).format('YYYY년 MM월 DD일');
     const nextDate = index < messages.length - 1 && moment(nextCreatedAt).format('YYYY년 MM월 DD일');
 
     // system message
-    if (item.id === 0) {
+    if (!item.UserId) {
       return (
         <View style={{padding: 20}}>
           <View style={{alignItems: 'center', backgroundColor: 'whitesmoke', padding: 20, borderRadius: 5}}>
@@ -55,7 +54,7 @@ export default ({
     }
 
     // user message
-    if (me.id === item.id) {
+    if (me.id === item.UserId) {
       return (
         <View>
           {currentDate !== nextDate && (
@@ -106,20 +105,21 @@ export default ({
             </View>
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
-            {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) ? (
-              item.avatar ? (
-                <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
-              ) : (
-                <Image local uri={emptyAvatar} height={36} width={36} borderRadius={18} onPress={() => null} />
-              )
+            {((index < messages.length - 1 && item.UserId !== messages[index+1].UserId) || index+1 === messages.length) ? (
+              <Image uri={me.photo} height={36} width={36} borderRadius={18} onPress={() => null} />
+              // item.avatar ? (
+              //   <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
+              // ) : (
+              //   <Image local uri={emptyAvatar} height={36} width={36} borderRadius={18} onPress={() => null} />
+              // )
             ) : (
               <View style={{width: 36}} />
             )}
             <Seperator width={10} />
             <View style={{flex: 1}}>
-              {((index < messages.length - 1 && item.id !== messages[index+1].id) || index+1 === messages.length) && (
+              {((index < messages.length - 1 && item.UserId !== messages[index+1].UserId) || index+1 === messages.length) && (
                 <View>
-                  <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
+                  <Text fontSize={fontSize || 14} color={'dimgray'} text={me.name} />
                   <Seperator height={10} />
                 </View>
               )}
@@ -149,18 +149,14 @@ export default ({
   const send = () => {
     if (message) {
       setMessage('');
-      onSend({
-        text: message,
-        avatar: me.avatar,
-        name: me.name,
-      });
+      onSend({text: message});
     }
   };
   return (
     <View style={{flex: 1}}>
       <FlatList
         data={messages}
-        keyExtractor={item => item.index}
+        keyExtractor={item => JSON.stringify(item.id)}
         renderItem={renderItem}
         inverted={true}
         // ListEmptyComponent={<Empty />}
@@ -175,7 +171,7 @@ export default ({
         }}
       />
       <Seperator marginBottom={5} />
-      <HView style={{paddingHorizontal: 15, borderTopWidth: 1, borderTopColor: 'lightgray', paddingVertical: 2}}>
+      <HView style={{paddingHorizontal: 15, borderTopWidth: 0.5, borderTopColor: 'lightgray', paddingVertical: 2}}>
         {leftComponent}
         <View style={{flex: 1}}>
           <HView>
@@ -183,7 +179,7 @@ export default ({
               <TextInput placeholder={'메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} />
             </View>
             <TouchableOpacity onPress={() => send()}>
-              <MaterialIcons name={'send'} size={20} color={Nuno.themeColor} />
+              <MaterialIcons name={'send'} size={20} color={message ? 'black' : 'darkgray'} />
             </TouchableOpacity>
           </HView>
         </View>
