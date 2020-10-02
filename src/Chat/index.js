@@ -23,6 +23,8 @@ export default ({
   leftComponent,
   onSend,
   openMap,
+  disable,
+  gotoProfile,
 }) => {
   const [message, setMessage] = React.useState('');
 
@@ -106,7 +108,7 @@ export default ({
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
             {((index < messages.length - 1 && item.UserId !== messages[index+1].UserId) || index+1 === messages.length) ? (
-              <Image uri={me.photo} height={36} width={36} borderRadius={18} onPress={() => null} />
+              <Image uri={item.photo} height={36} width={36} borderRadius={18} onPress={() => gotoProfile(item.UserId)} />
               // item.avatar ? (
               //   <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
               // ) : (
@@ -119,7 +121,7 @@ export default ({
             <View style={{flex: 1}}>
               {((index < messages.length - 1 && item.UserId !== messages[index+1].UserId) || index+1 === messages.length) && (
                 <View>
-                  <Text fontSize={fontSize || 14} color={'dimgray'} text={me.name} />
+                  <Text fontSize={fontSize || 14} color={'dimgray'} text={item.name} />
                   <Seperator height={10} />
                 </View>
               )}
@@ -176,7 +178,7 @@ export default ({
         <View style={{flex: 1}}>
           <HView>
             <View style={{flex: 1}}>
-              <TextInput placeholder={'메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} />
+              <TextInput placeholder={disable ? '메세지를 입력할수 없습니다': '메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} editable={!disable} />
             </View>
             <TouchableOpacity onPress={() => send()}>
               <MaterialIcons name={'send'} size={20} color={message ? 'black' : 'darkgray'} />

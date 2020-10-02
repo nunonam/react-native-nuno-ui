@@ -96,7 +96,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         height: 50,
         justifyContent: 'space-between',
         marginTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
-        borderBottomWidth: transparent ? 0 : 1,
+        borderBottomWidth: transparent ? 0 : 0.5,
         borderBottomColor: 'lightgray',
         paddingTop: 5,
         position: transparent ? 'absolute' : undefined,
