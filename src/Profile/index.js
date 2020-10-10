@@ -32,9 +32,9 @@ export default ({size, uri, name, desc, status, icon, onPress}) => {
       </View>
       <Seperator width={10} />
       <View>
-        {name !== undefined && <Text text={name} fontSize={12} />}
-        {desc !== undefined && <Text text={desc} fontSize={12} color={'gray'} />}
-        {status !== undefined && (
+        {name && <Text text={name} fontSize={12} />}
+        {desc && <Text text={desc} fontSize={12} color={'gray'} />}
+        {status && (
           <Text text={status} fontSize={12} color={Nuno.config.themeColor} fontWeight={'bold'} />
         )}
       </View>

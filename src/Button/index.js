@@ -4,8 +4,24 @@ import Loader from '../Loader';
 import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
+import Seperator from 'react-native-nuno-ui/src/Seperator';
 
-export default function Button({text, size, color, stretch, disable, loading, onPress, textColor, borderColor, borderRadius, paddingVertical, paddingHorizontal}) {
+export default function Button({
+  text,
+  size,
+  color,
+  stretch,
+  disable,
+  loading,
+  onPress,
+  textColor,
+  borderColor,
+  borderRadius,
+  paddingVertical,
+  paddingHorizontal,
+  left,
+  right,
+}) {
   let fontSize, fontWeight, paddingV, paddingH;
   switch (size) {
     case 'small':
@@ -36,7 +52,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
   return (
     <HView>
       <TouchableOpacity
-        style={{flex: stretch ? 1 : undefined,}}
+        style={{flex: stretch ? 1 : undefined}}
         activeOpacity={loading ? 1 : 0.5}
         onPress={onPress}
         disabled={disable}
@@ -44,6 +60,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
         {loading ? (
           <View style={{
             // flex: stretch ? 1 : undefined,
+            // flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             paddingHorizontal: paddingH,
@@ -59,6 +76,7 @@ export default function Button({text, size, color, stretch, disable, loading, on
         ) : (
           <View style={{
             // flex: stretch ? 1 : undefined,
+            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             paddingHorizontal: paddingH,
@@ -69,12 +87,16 @@ export default function Button({text, size, color, stretch, disable, loading, on
             borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
             opacity: disable ? 0.5 : 1,
             }}>
+            {left}
+            <Seperator width={10} />
             <Text
               fontSize={fontSize}
               fontWeight={fontWeight}
               color={textColor ? textColor : (color === 'white' ? 'dimgray' : 'white')}
               text={text}
             />
+            <Seperator width={10} />
+            {right}
           </View>
         )}
       </TouchableOpacity>

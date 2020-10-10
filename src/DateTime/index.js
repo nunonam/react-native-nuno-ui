@@ -15,21 +15,17 @@ export default function DateTime({locale, mode, disable, value, title, placehold
         ? NativeModules.SettingsManager.settings.AppleLanguages[0]
         : NativeModules.I18nManager.localeIdentifier;
   }
-  if (!value) {
-    value = new Date();
-  }
   let formattedValue;
   switch (mode) {
     case 'time':
-      formattedValue = value.toLocaleTimeString(locale, {
+      formattedValue = value ? value.toLocaleTimeString(locale, {
         hour12: true,
         hour: '2-digit',
         minute: '2-digit',
-      });
+      }) : '';
       break;
     default:
-      // formattedValue = value.toLocaleDateString(locale);
-      formattedValue = moment(value).format('YYYY/MM/DD');
+      formattedValue = value ? moment(value).format('YYYY/MM/DD') : '';
       break;
   }
 
@@ -118,7 +114,7 @@ export default function DateTime({locale, mode, disable, value, title, placehold
                   onChange={(e, date) => {
                     onChange(date);
                   }}
-                  value={value}
+                  value={value || new Date()}
                 />
               </View>
               <Seperator bottom />
@@ -138,7 +134,7 @@ export default function DateTime({locale, mode, disable, value, title, placehold
                 onChange(date);
               }
             }}
-            value={value}
+            value={value || new Date()}
           />
         )
       )}

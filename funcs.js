@@ -210,12 +210,12 @@ export async function getCurrentLocation(lang) {
                     coords: position.coords
                   });
                 } else {
-                  reject();
+                  reject({});
                 }
               })
               .catch(err => {
                 console.log(err);
-                reject();
+                reject({});
               });
           },
           error => {
@@ -227,8 +227,9 @@ export async function getCurrentLocation(lang) {
         );
       }
     } else {
-      console.log('location permission not granted');
-      reject();
+      // console.log('location permission not granted');
+      Linking.openURL('app-settings:');
+      reject({});
     }
   });
 }
