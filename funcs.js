@@ -14,6 +14,7 @@ import { screenWidth } from './src/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import deviceInfoModule from 'react-native-device-info';
+import analytics from '@react-native-firebase/analytics';
 
 export function log(func, data) {
   console.log(func, data);
@@ -30,6 +31,13 @@ export function errorApi(endpoint, data) {
   console.groupCollapsed(`[API ERROR] ${endpoint}`);
   console.error(data);
   console.groupEnd();
+}
+export function ga(event, payload) {
+  // event, payload 둘다 string
+  analytics().logEvent(event, {
+    id: new Date().getTime(),
+    item: payload,
+  });
 }
 export function checkEmail(email) {
   if (email) {
