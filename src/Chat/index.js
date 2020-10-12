@@ -45,7 +45,7 @@ export default ({
     const nextDate = index < messages.length - 1 && moment(nextCreatedAt).format('YYYY년 MM월 DD일');
 
     // system message
-    if (!item.UserId) {
+    if (item.bySystem) {
       return (
         <View style={{padding: 20}}>
           <View style={{alignItems: 'center', backgroundColor: 'whitesmoke', padding: 20, borderRadius: 5}}>
@@ -108,7 +108,7 @@ export default ({
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
             {((index < messages.length - 1 && item.UserId !== messages[index+1].UserId) || index+1 === messages.length) ? (
-              <Image uri={item.photo} height={36} width={36} borderRadius={18} onPress={() => gotoProfile(item.UserId)} />
+              <Image uri={item.photo} height={36} width={36} borderRadius={18} onPress={() => item.UserId !== null && gotoProfile(item.UserId)} />
               // item.avatar ? (
               //   <Image uri={item.avatar} height={36} width={36} borderRadius={18} onPress={() => null} />
               // ) : (
