@@ -43,7 +43,11 @@ export default ({
       {!onlyImage && <View>
         {user ? (
           <Text
-            text={user.name + ' • ' + getAge(user.birthday) + '세 • ' + user.height + 'cm'}
+            text={
+              (user.name ? (user.name + ' • ') : '') +
+              (user.birthday ? (getAge(user.birthday) + '세 • ') : '') +
+              (user.height ? (user.height + 'cm') : '')
+            }
             fontSize={12}
           />
          ) : (
