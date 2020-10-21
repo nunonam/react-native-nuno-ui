@@ -44,9 +44,9 @@ export default ({
         {user ? (
           <Text
             text={
-              (user.name ? (user.name + ' • ') : '') +
-              (user.birthday ? (getAge(user.birthday) + '세 • ') : '') +
-              (user.height ? (user.height + 'cm') : '')
+              (user.name ? user.name : '') +
+              (user.birthday ? ' • ' + getAge(user.birthday) + '세' : '') +
+              (user.height ? ' • ' + user.height + 'cm' : '')
             }
             fontSize={12}
           />
