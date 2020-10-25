@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import deviceInfoModule from 'react-native-device-info';
 import analytics from '@react-native-firebase/analytics';
+import Axios from 'axios';
 
 export function log(func, data) {
   console.log(func, data);
@@ -27,10 +28,24 @@ export function logApi(func, data) {
   console.info(data);
   console.groupEnd();
 }
-export function errorApi(endpoint, data) {
-  console.groupCollapsed(`[API ERROR] ${endpoint}`);
-  console.error(data);
+export function errorApi(req, err) {
+  console.groupCollapsed(`[API ERROR] ${req}`);
+  console.error(err);
   console.groupEnd();
+  if (__DEV__) {
+    Alert.alert(`ERROR-${req}`, JSON.stringify(err));
+  } else {
+    Alert.alert('죄송합니다', '문제가 발생하였습니다. 확인후 빠른시간에 정상화 하도록 하겠습니다');
+  }
+  if (err.response.status !== 555) {
+    Axios.post('error', {
+      request: req,
+      error: err,
+      from: 'frontend',
+    })
+    .then((res) => console.log('[ERROR UPLOAD]', res.data))
+    .catch((e) => console.log('[ERROR UPLOAD] error', e));
+  }
 }
 export function ga(event, payload) {
   // event, payload 둘다 string
@@ -308,22 +323,24 @@ export async function getRecentKeyword() {
 }
 export function showToast(msg) {
   Toast.show(msg, {
-    duration: 2000,
+    duration: 2500,
     position: Toast.positions.TOP,
     shadow: true,
     animation: true,
     hideOnPress: true,
     delay: 0,
-    opacity: 0.7,
-    // backgroundColor: cs.theme,
-    textStyle: {fontSize: 14, fontWeight: 'bold', color: 'white'},
+    opacity: 1,
+    backgroundColor: 'white',
+    textStyle: {fontSize: 14, color: 'dimgray'},
     containerStyle: {
-      width: screenWidth,
-      height: 70 + (isIphoneX() ? getStatusBarHeight() : 0),
+      width: screenWidth - 20,
+      height: 60 + (isIphoneX() ? getStatusBarHeight() : 0),
       paddingTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
-      top: -20,
-      borderRadius: 0,
+      top: -10,
+      borderWidth: 0.5,
+      borderColor: 'whitesmoke',
       justifyContent: 'center',
+      alignItems: 'flex-start',
     },
   });
 }
