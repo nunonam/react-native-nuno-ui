@@ -39,7 +39,7 @@ export function errorApi(req, err) {
   }
   if (err.response.status !== 555) {
     Axios.post('error', {
-      request: req,
+      request: {restApi: req},
       error: err,
       from: 'frontend',
     })
@@ -323,22 +323,22 @@ export async function getRecentKeyword() {
 }
 export function showToast(msg) {
   Toast.show(msg, {
-    duration: 2500,
+    duration: 3000,
     position: Toast.positions.TOP,
-    shadow: true,
+    shadow: false,
     animation: true,
     hideOnPress: true,
     delay: 0,
     opacity: 1,
-    backgroundColor: 'white',
-    textStyle: {fontSize: 14, color: 'dimgray'},
+    backgroundColor: Nuno.config.themeColor,
+    textStyle: {fontSize: 12, color: 'white'},
     containerStyle: {
       width: screenWidth - 20,
-      height: 60 + (isIphoneX() ? getStatusBarHeight() : 0),
-      paddingTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
+      height: 60,
+      marginTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
       top: -10,
       borderWidth: 0.5,
-      borderColor: 'whitesmoke',
+      borderColor: 'lightgray',
       justifyContent: 'center',
       alignItems: 'flex-start',
     },
