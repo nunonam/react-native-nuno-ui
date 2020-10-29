@@ -19,7 +19,7 @@ export default ({
   onPressImage
 }) => {
   return (
-    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={onPress}>
+    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={onPress} activeOpacity={onPress ? 0.5 : 1} >
       <View>
         {user?.photo ? (
           <Image
