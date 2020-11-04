@@ -32,15 +32,22 @@ export function errorApi(req, err) {
   console.groupCollapsed(`[API ERROR] ${req}`);
   console.error(err);
   console.groupEnd();
+
+  // 네트워크 에러
+  if (!err.response) {
+    Alert.alert('죄송합니다', '사용중인 네트워크 상태를 확인해 주세요');
+    return;
+  }
+
   if (__DEV__) {
-    Alert.alert(`ERROR-${req}`, JSON.stringify(err));
+    Alert.alert(`[ERROR] ${req}`, err.message || JSON.stringify(err));
   } else {
     Alert.alert('죄송합니다', '문제가 발생하였습니다. 확인후 빠른시간에 정상화 하도록 하겠습니다');
   }
-  if (err.response.status !== 555) {
+  if (err.response?.status !== 555) {
     Axios.post('error', {
       request: {restApi: req},
-      error: err,
+      error: err.message || JSON.stringify(err),
       from: 'frontend',
     })
     .then((res) => console.log('[ERROR UPLOAD]', res.data))
@@ -130,7 +137,7 @@ export async function getAddressFromGeoCode(latitude, longitude) {
       'https://maps.googleapis.com/maps/api/geocode/json?' +
         new URLSearchParams({
           latlng: `${latitude},${longitude}`,
-          key: Nuno.config.GEOCODE_API,
+          key: Nuno.config.GOOGLE_API_KEY,
           language: Nuno.config.lang,
           // region: global.lang,
         }),
@@ -184,6 +191,9 @@ export async function getCurrentCoords() {
   });
 }
 export async function getCurrentLocation(lang) {
+  /*
+  * 사용하기 위해서 GCM console 에서 GeoCoding API 설정이 필요하다
+  */
   let granted;
   if (Platform.OS === 'android') {
     granted = await PermissionsAndroid.request(
@@ -213,7 +223,7 @@ export async function getCurrentLocation(lang) {
               'https://maps.googleapis.com/maps/api/geocode/json?' +
                 new URLSearchParams({
                   latlng: `${position.coords.latitude},${position.coords.longitude}`,
-                  key: Nuno.config.GEOCODE_API,
+                  key: Nuno.config.GOOGLE_API_KEY,
                   language: Nuno.config.lang,
                   // region: global.lang,
                 }),
@@ -352,7 +362,7 @@ export const swap = (arr, index1, index2) => arr.map((val, idx) => {
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-export function share(deeplink, title, callback) {
+export function share(deeplink, title, message) {
   fetch(
     `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${Nuno.config.FIREBASE_WEB_API}`,
     {
@@ -369,11 +379,15 @@ export function share(deeplink, title, callback) {
       const link = await response.json();
       console.log('shortlink', link.shortLink);
       Share.share({
-        message: link.shortLink,
+        // message: link.shortLink,
+        message: message,
         title: title,
+      }, {
+        subject: title,
+        dialogTitle: title,
       }).then(res => {
         if (res.action === Share.sharedAction) {
-          callback && callback();
+          // callback && callback();
         } else if (res.action === Share.dismissedAction) {
           // dismissed
         }
