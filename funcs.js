@@ -190,7 +190,7 @@ export async function getCurrentCoords() {
     }
   });
 }
-export async function getCurrentLocation(lang) {
+export async function getCurrentLocation() {
   /*
   * 사용하기 위해서 GCM console 에서 GeoCoding API 설정이 필요하다
   */
@@ -199,7 +199,6 @@ export async function getCurrentLocation(lang) {
     granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
-        // title: '',
         message: '근접 회원님과의 매칭을 위해 회원님의 위치정보를 허락해주세요',
       },
     );
@@ -225,13 +224,9 @@ export async function getCurrentLocation(lang) {
                   latlng: `${position.coords.latitude},${position.coords.longitude}`,
                   key: Nuno.config.GOOGLE_API_KEY,
                   language: Nuno.config.lang,
-                  // region: global.lang,
                 }),
               {
                 method: 'GET',
-                // headers: {
-                //   'Accept-Language': global.lang + '-KR',
-                // },
               },
             )
               .then(async res => {
@@ -243,26 +238,25 @@ export async function getCurrentLocation(lang) {
                     coords: position.coords
                   });
                 } else {
-                  reject({});
+                  reject();
                 }
               })
               .catch(err => {
                 console.log(err);
-                reject({});
+                reject();
               });
           },
           error => {
             // See error code charts below.
-            console.log('getCurrentPosition error', error.code, error.message);
-            reject(error);
+            console.log('getCurrentPosition error', error);
+            reject();
           },
           {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
         );
       }
     } else {
-      // console.log('location permission not granted');
-      Linking.openURL('app-settings:');
-      reject({});
+      console.log('location permission not granted');
+      reject();
     }
   });
 }
