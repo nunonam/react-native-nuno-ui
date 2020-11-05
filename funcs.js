@@ -203,7 +203,8 @@ export async function getCurrentLocation() {
       },
     );
   } else {
-    granted = PermissionsAndroid.RESULTS.GRANTED;
+    granted = await Geolocation.requestAuthorization('whenInUse');
+    // granted = PermissionsAndroid.RESULTS.GRANTED;
   }
   const isEmulator = await deviceInfoModule.isEmulator();
 
