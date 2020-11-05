@@ -22,12 +22,12 @@ import Container from './src/Container';
 import Chat from './src/Chat';
 import Switch from './src/Switch';
 import ProfileBar from './src/Profile';
-import { log } from './funcs';
+import DoubleTap from './src/DoubleTap';
 
 class Nuno {
   static init(props) {
-    log('Nuno Init', props);
-    Nuno.config = {...props};
+    console.log('[NUNO CONFIG]', props);
+    Nuno.config = props;
   }
 }
 export {
@@ -56,4 +56,5 @@ export {
   Chat,
   Switch,
   ProfileBar,
+  DoubleTap,
 };
