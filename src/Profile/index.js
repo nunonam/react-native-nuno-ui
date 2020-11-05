@@ -57,7 +57,7 @@ export default ({
          )}
         {desc && <Text text={desc} fontSize={12} color={color('darkgray')} />}
         {status && (
-          <Text text={status} fontSize={12} color={Nuno.config.themeColor} fontWeight={'bold'} />
+          <Text text={status} fontSize={12} color={color('theme')} fontWeight={'bold'} />
         )}
       </View>}
     </TouchableOpacity>

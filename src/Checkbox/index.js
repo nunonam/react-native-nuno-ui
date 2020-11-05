@@ -8,7 +8,7 @@ export default function Checkbox({
   multiple,
   type,
   size,
-  color,
+  // color,
   checked,
   onPress,
   label,
@@ -36,7 +36,7 @@ export default function Checkbox({
   if (multiple) {
     iconChecked = customChecked || <MaterialIcons
       name={'check-box'}
-      color={disabled ? 'gray' : Nuno.config.themeColor}
+      color={disabled ? 'gray' : color('theme')}
       size={iconSize}
     />;
     iconUnchecked = customUnChecked || <MaterialIcons
@@ -47,7 +47,7 @@ export default function Checkbox({
   } else {
     iconChecked = customChecked || <MaterialIcons
       name={'radio-button-checked'}
-      color={disabled ? 'gray' : Nuno.config.themeColor}
+      color={disabled ? 'gray' : color('theme')}
       size={iconSize}
     />;
     iconUnchecked = customUnChecked || <MaterialIcons

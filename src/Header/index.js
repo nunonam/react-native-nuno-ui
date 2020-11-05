@@ -4,7 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
-import { Nuno } from '../..';
+import { Nuno } from 'react-native-nuno-ui';
 import { color, ShadowStyle } from 'react-native-nuno-ui/style';
 
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle, transparent}) {
@@ -12,7 +12,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
   let headerRight;
   let headerCenter = centerComponent || (
     <View style={{alignItems: 'center'}}>
-      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || color('darkgray')} text={title}/>
+      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={color('darkgray')} text={title}/>
     </View>
     );
 

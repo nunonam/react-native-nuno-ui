@@ -3,7 +3,9 @@ import {View, TouchableOpacity} from 'react-native';
 import Loader from '../Loader';
 import HView from '../HView';
 import Text from '../Text';
-import { Nuno } from '../..';
+import { Nuno } from 'react-native-nuno-ui';
+import { color as themeColor } from 'react-native-nuno-ui/style';
+
 
 export default function ButtonMulti({items, selectedItems, onPress, color, selectedOnly, borderRadius}) {
   const handleOnPress = (e) => {
@@ -33,10 +35,10 @@ export default function ButtonMulti({items, selectedItems, onPress, color, selec
                 paddingVertical: 5,
                 marginRight: 4,
                 marginBottom: 4,
-                backgroundColor: selected ? Nuno.config.themeColor : color,
+                backgroundColor: selected ? themeColor('theme') : color,
                 borderRadius: borderRadius !== undefined ? borderRadius : 4,
                 borderWidth: 1,
-                borderColor: selected ? Nuno.config.themeColor :  (color === 'white' ? 'darkgray' : color),
+                borderColor: selected ? themeColor('theme') :  (color === 'white' ? 'darkgray' : color),
               }}
               onPress={selectedOnly ? onPress : () => handleOnPress(e.code)}>
               <Text

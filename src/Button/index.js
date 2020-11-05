@@ -3,7 +3,7 @@ import {View, TouchableOpacity} from 'react-native';
 import Loader from '../Loader';
 import HView from '../HView';
 import Text from '../Text';
-import { Nuno } from '../..';
+import { Nuno } from 'react-native-nuno-ui';
 import Seperator from 'react-native-nuno-ui/src/Seperator';
 
 export default function Button({

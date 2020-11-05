@@ -9,8 +9,8 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 import Toast from 'react-native-root-toast';
 import {isIphoneX, getStatusBarHeight} from 'react-native-iphone-x-helper';
-import { Nuno } from '.';
-import { screenWidth } from 'react-native-nuno-ui/style';
+import { Nuno } from 'react-native-nuno-ui';
+import { screenWidth, color } from 'react-native-nuno-ui/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import deviceInfoModule from 'react-native-device-info';
@@ -335,7 +335,7 @@ export function showToast(msg) {
     hideOnPress: true,
     delay: 0,
     opacity: 1,
-    backgroundColor: Nuno.config.themeColor,
+    backgroundColor: color('theme'),
     textStyle: {fontSize: 12, color: 'white'},
     containerStyle: {
       width: screenWidth - 20,
@@ -366,7 +366,7 @@ export function share(deeplink, title, message) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        longDynamicLink: `${Nuno.config.dynamicLink}/?link=${deeplink}&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}`,
+        longDynamicLink: `${Nuno.config.DYNAMIC_LINK}/?link=${deeplink}&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}`,
       }),
     },
   )

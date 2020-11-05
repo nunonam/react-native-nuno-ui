@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { screenWidth, screenHeight, ShadowStyle } from 'react-native-nuno-ui/style';
 import Seperator from '../Seperator';
-import { Nuno } from '../..';
+import { Nuno } from 'react-native-nuno-ui';
 import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';
 import Text from '../Text';
 
@@ -75,7 +75,7 @@ export default function Map({
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <MapView
-        provider={Nuno.config.mapProvider}
+        provider={Nuno.config.MAP_PROVIDER}
         onMapReady={onMapReady}
         ref={e => mapRef = e}
         style={{width: screenWidth, flex: 1}}

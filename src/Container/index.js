@@ -5,7 +5,7 @@ import Modal from '../Modal';
 import Seperator from '../Seperator';
 import Button from '../Button';
 import { Nuno, HView } from '../..';
-import { screenWidth, screenHeight } from 'react-native-nuno-ui/style';
+import { screenWidth, screenHeight, color } from 'react-native-nuno-ui/style';
 
 export default ({
   children,
@@ -50,7 +50,7 @@ export default ({
                 </>
               )}
               <View style={{flex: 1}}>
-                <Button text={'확인'} color={alertButtonColor || Nuno.config.themeColor} onPress={onConfirm} stretch size={'large'} />
+                <Button text={'확인'} color={alertButtonColor || color('theme')} onPress={onConfirm} stretch size={'large'} />
               </View>
             </HView>
           </View>

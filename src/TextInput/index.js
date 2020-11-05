@@ -13,6 +13,7 @@ import Text from '../Text';
 import HView from '../HView';
 import Seperator from '../Seperator';
 import { Nuno } from 'react-native-nuno-ui';
+import {color} from 'react-native-nuno-ui/style';
 
 const inputAccessoryViewID = 'keyboard-id';
 
@@ -145,7 +146,7 @@ export default (props) => {
           <View
             style={{
               alignItems: 'flex-end',
-              backgroundColor: props.keyboardCloseBackgroundColor || Nuno.config.themeColor,
+              backgroundColor: props.keyboardCloseBackgroundColor || color('theme'),
               borderTopWidth: 1,
               borderTopColor: 'lightgray',
             }}>

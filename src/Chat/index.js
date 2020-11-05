@@ -12,7 +12,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import { Nuno, Loader } from 'react-native-nuno-ui';
 import moment from 'moment';
-import {screenWidth} from 'react-native-nuno-ui/style';
+import {screenWidth, color} from 'react-native-nuno-ui/style';
 
 export default ({
   messages,
@@ -80,7 +80,7 @@ export default ({
                   <Text fontSize={14} color={'darkgray'} text={currentTimestamp} />
                 </View>
               )}
-              <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: Nuno.config.themeColor, padding: 10}}>
+              <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: color('theme'), padding: 10}}>
                 {item.lat && item.lon ? (
                   <TouchableOpacity onPress={() => openMap({lat: item.lat, lng: item.lon})}>
                     <Text fontSize={fontSize || 14} color={'white'} text={item.text} style={{textDecorationLine: 'underline'}} />
