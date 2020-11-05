@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Text from '../Text';
-import { Nuno } from 'react-native-nuno-ui';
+import { color } from 'react-native-nuno-ui/style';
 
 export default function Checkbox({
   multiple,
