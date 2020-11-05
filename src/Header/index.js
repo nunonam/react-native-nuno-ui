@@ -5,14 +5,14 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
-import { ShadowStyle } from 'react-native-nuno-ui/src/style';
+import { color, ShadowStyle } from 'react-native-nuno-ui/src/style';
 
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle, transparent}) {
   let headerLeft;
   let headerRight;
   let headerCenter = centerComponent || (
     <View style={{alignItems: 'center'}}>
-      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || 'dimgray'} text={title}/>
+      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={Nuno.config.textColor || color('darkgray')} text={title}/>
     </View>
     );
 
@@ -22,7 +22,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={20} color={transparent ? 'white' : 'black'} />
+          <AntDesign name={'close'} size={20} color={transparent ? color('white') : color('black')} />
         </TouchableOpacity>
       );
       break;
@@ -31,7 +31,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 15, paddingVertical: 5, ...ShadowStyle}}>
-          <AntDesign name={'left'} size={20} color={transparent ? 'white' : 'black'} />
+          <AntDesign name={'left'} size={20} color={transparent ? color('white') : color('black')} />
         </TouchableOpacity>
       );
       break;
@@ -40,7 +40,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.toggleDrawer()}
           style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name="menuunfold" size={20} color={'black'} />
+          <AntDesign name="menuunfold" size={20} color={color('black')} />
         </TouchableOpacity>
       );
       break;
@@ -58,7 +58,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={20} color={'black'} />
+          <AntDesign name={'close'} size={20} color={color('black')} />
         </TouchableOpacity>
       );
       break;
@@ -68,7 +68,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
           <TouchableOpacity
             onPress={() => null}
             style={{paddingHorizontal: 15, paddingVertical: 5}}>
-            <AntDesign name="search1" size={20} color={'black'} />
+            <AntDesign name="search1" size={20} color={color('black')} />
           </TouchableOpacity>
         </View>
       );
@@ -78,7 +78,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         <TouchableOpacity
           onPress={() => navigation.navigate('Setting')}
           style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name="setting" size={20} color={'black'} />
+          <AntDesign name="setting" size={20} color={color('black')} />
         </TouchableOpacity>
       );
       break;
@@ -97,7 +97,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
         justifyContent: 'space-between',
         marginTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
         borderBottomWidth: transparent ? 0 : 0.5,
-        borderBottomColor: 'lightgray',
+        borderBottomColor: color('lightgray'),
         paddingTop: 5,
         position: transparent ? 'absolute' : undefined,
         top: transparent ? 0 : undefined,

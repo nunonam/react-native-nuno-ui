@@ -7,6 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Nuno } from 'react-native-nuno-ui';
 import { getAge } from 'react-native-nuno-ui/funcs';
+import { color } from 'react-native-nuno-ui/src/style';
 
 export default ({
   size,
@@ -31,7 +32,7 @@ export default ({
             onPress={onPressImage || onPress}
           />
         ) : (
-          <FontAwesome name={'user-circle'} size={size} color={'lightgray'} />
+          <FontAwesome name={'user-circle'} size={size} color={color('lightgray')} />
         )}
         {icon && (
           <View style={{position: 'absolute', left: -5, top: -3}}>
@@ -49,11 +50,12 @@ export default ({
               (user.height ? ' • ' + user.height + 'cm' : '')
             }
             fontSize={12}
+            color={color('darkgray')}
           />
          ) : (
           <Text text={'탈퇴한 회원입니다'} fontSize={12} />
          )}
-        {desc && <Text text={desc} fontSize={12} color={'gray'} />}
+        {desc && <Text text={desc} fontSize={12} color={color('darkgray')} />}
         {status && (
           <Text text={status} fontSize={12} color={Nuno.config.themeColor} fontWeight={'bold'} />
         )}

@@ -10,7 +10,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Toast from 'react-native-root-toast';
 import {isIphoneX, getStatusBarHeight} from 'react-native-iphone-x-helper';
 import { Nuno } from '.';
-import { screenWidth } from './src/style';
+import { screenWidth } from 'react-native-nuno-ui/src/style';
 import AsyncStorage from '@react-native-community/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import deviceInfoModule from 'react-native-device-info';

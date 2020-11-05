@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Platform} from 'react-native';
 import {getStatusBarHeight, getBottomSpace} from 'react-native-iphone-x-helper';
+import {color as themeColor} from 'react-native-nuno-ui/src/style';
 
 const Seperator = ({
   height,
@@ -21,12 +22,12 @@ const Seperator = ({
   }
   if (line) {
     height = 0.5;
-    color = color || 'lightgray';
+    color = color || themeColor('lightgray');
   }
   if (vline) {
     width = 1;
     height = height;
-    color = color || 'lightgray';
+    color = color || themeColor('lightgray');
   }
 
   return (

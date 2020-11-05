@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
-import { Nuno } from '../..';
+import {color as themeColor} from 'react-native-nuno-ui/src/style';
 
 export default ({
   text,
@@ -18,7 +18,7 @@ export default ({
       style={{
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: color || Nuno.config.textColor,
+        color: color || themeColor('black'),
         ...style
       }}>
       {text}

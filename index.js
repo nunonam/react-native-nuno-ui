@@ -27,19 +27,7 @@ import { log } from './funcs';
 class Nuno {
   static init(props) {
     log('Nuno Init', props);
-    Nuno.config = {
-      themeColor: props.themeColor,
-      textColor: props.textColor,
-      headerTitleWeight: props.headerTitleWeight,
-      dynamicLink: props.dynamicLink,
-      lang: props.lang,
-      FIREBASE_WEB_API: props.FIREBASE_WEB_API,
-      IOS_STORE_ID: props.IOS_STORE_ID,
-      PACKAGE_NAME: props.PACKAGE_NAME,
-      BUNDLE_ID: props.BUNDLE_ID,
-      GEOCODE_API: props.GEOCODE_API,
-      ...props,
-    }
+    Nuno.config = {...props};
   }
 }
 export {
