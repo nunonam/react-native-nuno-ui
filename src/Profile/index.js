@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Nuno } from 'react-native-nuno-ui';
 import { getAge } from 'react-native-nuno-ui/funcs';
-import { color } from 'react-native-nuno-ui/src/style';
+import { color } from 'react-native-nuno-ui/style';
 
 export default ({
   size,

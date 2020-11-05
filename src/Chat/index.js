@@ -12,7 +12,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import { Nuno, Loader } from 'react-native-nuno-ui';
 import moment from 'moment';
-import {screenWidth} from '../style';
+import {screenWidth} from 'react-native-nuno-ui/style';
 
 export default ({
   messages,

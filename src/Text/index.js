@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {color as themeColor} from 'react-native-nuno-ui/src/style';
+import {color as themeColor} from 'react-native-nuno-ui/style';
 
 export default ({
   text,

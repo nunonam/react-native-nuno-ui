@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { screenWidth } from '../style';
+import { screenWidth } from 'react-native-nuno-ui/style';
 import FastImage from 'react-native-fast-image';
 
 export default ({data, onPress, width, height, loop, dotColor, paginationContainerStyle}) => {

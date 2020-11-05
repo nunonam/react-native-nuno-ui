@@ -9,7 +9,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Seperator from '../Seperator';
 import Text from '../Text';
-import {screenHeight} from '../style';
+import {screenHeight} from 'react-native-nuno-ui/style';
 import {Picker} from '@react-native-community/picker';
 
 export default ({items, title, value, onChange, disabled, placeholder, closeBar, closeBarColor, backgroundColor, borderWidth}) => {

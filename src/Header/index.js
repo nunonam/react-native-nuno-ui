@@ -5,7 +5,7 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
 import { Nuno } from '../..';
-import { color, ShadowStyle } from 'react-native-nuno-ui/src/style';
+import { color, ShadowStyle } from 'react-native-nuno-ui/style';
 
 export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle, transparent}) {
   let headerLeft;

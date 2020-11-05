@@ -4,7 +4,7 @@ import MapView, {Callout, Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { screenWidth, screenHeight, ShadowStyle } from '../style';
+import { screenWidth, screenHeight, ShadowStyle } from 'react-native-nuno-ui/style';
 import Seperator from '../Seperator';
 import { Nuno } from '../..';
 import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';

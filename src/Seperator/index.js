@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Platform} from 'react-native';
 import {getStatusBarHeight, getBottomSpace} from 'react-native-iphone-x-helper';
-import {color as themeColor} from 'react-native-nuno-ui/src/style';
+import {color as themeColor} from 'react-native-nuno-ui/style';
 
 const Seperator = ({
   height,

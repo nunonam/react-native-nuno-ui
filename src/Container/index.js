@@ -5,7 +5,7 @@ import Modal from '../Modal';
 import Seperator from '../Seperator';
 import Button from '../Button';
 import { Nuno, HView } from '../..';
-import { screenWidth, screenHeight } from '../style';
+import { screenWidth, screenHeight } from 'react-native-nuno-ui/style';
 
 export default ({
   children,
