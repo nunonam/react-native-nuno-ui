@@ -4,7 +4,7 @@ import MapView, {Callout, Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { screenWidth, screenHeight, ShadowStyle } from 'react-native-nuno-ui/style';
+import { screenWidth, color, ShadowStyle } from 'react-native-nuno-ui/style';
 import Seperator from '../Seperator';
 import { Nuno } from 'react-native-nuno-ui';
 import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';
@@ -118,11 +118,11 @@ export default function Map({
           <TouchableOpacity
             onPress={onPressZoomIn}
             style={{
-              backgroundColor: 'white',
+              backgroundColor: color('white'),
               width: 40,
               height: 40,
               borderRadius: 20,
-              borderColor: 'lightgray',
+              borderColor: color('lightgray'),
               borderWidth: 1,
               alignItems: 'center',
               justifyContent: 'center',
@@ -134,11 +134,11 @@ export default function Map({
           <TouchableOpacity
             onPress={onPressZoomOut}
             style={{
-              backgroundColor: 'white',
+              backgroundColor: color('white'),
               width: 40,
               height: 40,
               borderRadius: 20,
-              borderColor: 'lightgray',
+              borderColor: color('lightgray'),
               borderWidth: 1,
               alignItems: 'center',
               justifyContent: 'center',
@@ -153,11 +153,11 @@ export default function Map({
             <TouchableOpacity
               onPress={() => onPressCurrent()}
               style={{
-                backgroundColor: 'white',
+                backgroundColor: color('white'),
                 width: 40,
                 height: 40,
                 borderRadius: 20,
-                borderColor: 'lightgray',
+                borderColor: color('lightgray'),
                 borderWidth: 1,
                 alignItems: 'center',
                 justifyContent: 'center',

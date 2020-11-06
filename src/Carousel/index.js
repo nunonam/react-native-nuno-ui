@@ -3,6 +3,7 @@ import {TouchableOpacity, View} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { screenWidth } from 'react-native-nuno-ui/style';
 import FastImage from 'react-native-fast-image';
+import { color } from 'react-native-nuno-ui/style';
 
 export default ({data, onPress, width, height, loop, dotColor, paginationContainerStyle}) => {
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -23,8 +24,8 @@ export default ({data, onPress, width, height, loop, dotColor, paginationContain
       <Pagination
         dotsLength={data.length}
         activeDotIndex={activeIndex}
-        dotColor={dotColor || 'white'}
-        inactiveDotColor={'lightgray'}
+        dotColor={dotColor || color('white')}
+        inactiveDotColor={color('lightgray')}
         inactiveDotScale={1}
         inactiveDotOpacity={1}
         dotStyle={{

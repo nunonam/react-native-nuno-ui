@@ -1,26 +1,27 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import Text from '../Text';
+import { color } from 'react-native-nuno-ui/style';
 
-export default function ButtonGroup({color, cols, items, onPress, value}) {
+export default function ButtonGroup(props) {
   return (
     <View
       style={{
         flexDirection: 'row',
-        flexWrap: cols ? 'wrap' : undefined,
+        flexWrap: props.cols ? 'wrap' : undefined,
         justifyContent: 'space-evenly',
       }}>
-      {cols === undefined ? (
-        items.map((e, i) => {
+      {props.cols === undefined ? (
+        props.items.map((e, i) => {
           return (
             <TouchableOpacity
               key={i}
-              onPress={() => onPress(e.code)}
+              onPress={() => props.onPress(e.code)}
               style={{
                 flex: 1,
                 borderWidth: 1,
-                borderColor: value === e.code ? color : 'lightgray',
-                zIndex: value === e.code ? 100 : undefined,
+                borderColor: props.value === e.code ? props.color : color('lightgray'),
+                zIndex: props.value === e.code ? 100 : undefined,
                 alignItems: 'center',
                 paddingVertical: 10,
                 marginLeft: i !== 0 ? -1 : 0,
@@ -29,39 +30,39 @@ export default function ButtonGroup({color, cols, items, onPress, value}) {
                 fontSize={14}
                 fontWeight={'500'}
                 text={e.name}
-                color={value === e.code ? color : 'gray'}
+                color={props.value === e.code ? props.color : color('gray')}
               />
             </TouchableOpacity>
           );
         })
       ) : (
-        items.map((e, i) => {
+        props.items.map((e, i) => {
           return (
             <TouchableOpacity
               key={i}
-              onPress={() => onPress(e.code)}
+              onPress={() => props.onPress(e.code)}
               style={{
                 flex: 1,
                 borderWidth: 1,
-                borderColor: value === e.code ? color : 'lightgray',
-                zIndex: value === e.code ? 100 : undefined,
+                borderColor: props.value === e.code ? props.color : color('lightgray'),
+                zIndex: props.value === e.code ? 100 : undefined,
                 alignItems: 'center',
                 paddingVertical: 10,
                 marginLeft:
-                  cols === undefined
+                  props.cols === undefined
                     ? i === 0
                       ? 0
                       : -1
-                    : 0 === i % cols
+                    : 0 === i % props.cols
                     ? 0
                     : -1,
-                marginTop: cols === undefined ? undefined : i < cols ? 0 : -1,
+                marginTop: props.cols === undefined ? undefined : i < props.cols ? 0 : -1,
               }}>
               <Text
                 fontSize={14}
                 fontWeight={'500'}
                 text={e.name}
-                color={value === e.code ? color : 'gray'}
+                color={props.value === e.code ? props.color : color('gray')}
               />
             </TouchableOpacity>
           );

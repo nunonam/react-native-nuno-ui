@@ -7,6 +7,7 @@ import ImageViewer from '../ImageViewer';
 import { Nuno } from 'react-native-nuno-ui';
 import { getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {color} from 'react-native-nuno-ui/style';
 
 export default ({
   data,
@@ -50,8 +51,8 @@ export default ({
       <Pagination
         dotsLength={data.length}
         activeDotIndex={activeIndex}
-        dotColor={dotColor || 'white'}
-        inactiveDotColor={'lightgray'}
+        dotColor={dotColor || color('white')}
+        inactiveDotColor={color('lightgray')}
         inactiveDotScale={1}
         inactiveDotOpacity={1}
         dotStyle={{
@@ -83,7 +84,7 @@ export default ({
           onSwipeDown={() => setImageViewer(false)}
         />
         <TouchableOpacity onPress={() => setImageViewer(false)} style={{position: 'absolute', top: 20 + (isIphoneX() ? getStatusBarHeight() : 0), right: 20 }}>
-          <AntDesign name={'close'} size={20} color={'white'} />
+          <AntDesign name={'close'} size={20} color={color('white')} />
         </TouchableOpacity>
       </Modal>
     </View>

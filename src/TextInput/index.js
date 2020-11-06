@@ -46,7 +46,7 @@ export default (props) => {
                 borderRadius: 5,
               }}
               placeholder={props.placeholder}
-              placeholderTextColor={props.placeholderTextColor || 'gray'}
+              placeholderTextColor={props.placeholderTextColor || color('gray')}
               onChangeText={props.onChangeText}
               onChange={props.onChange}
               blurOnSubmit={props.blurOnSubmit}
@@ -86,7 +86,7 @@ export default (props) => {
                 borderRadius: 4,
               }}
               placeholder={props.placeholder}
-              placeholderTextColor={props.placeholderTextColor || 'gray'}
+              placeholderTextColor={props.placeholderTextColor || color('gray')}
               onChangeText={props.onChangeText}
               value={props.value}
               autoFocus={props.autoFocus}
@@ -112,7 +112,7 @@ export default (props) => {
             <Text
               fontSize={14}
               fontWeight={'500'}
-              color={'gray'}
+              color={color('gray')}
               text={
                 props.value.length
                   ? props.value.length + ' / ' + props.maxLength
@@ -127,9 +127,9 @@ export default (props) => {
             onPress={() => setSecureTextEntry(!secureTextEntry)}
             style={{position: 'absolute', right: 20}}>
             {secureTextEntry ? (
-              <AntDesign name={'eye'} size={20} color={'lightgray'} />
+              <AntDesign name={'eye'} size={20} color={color('lightgray')} />
             ) : (
-              <AntDesign name={'eye'} size={20} color={'black'} />
+              <AntDesign name={'eye'} size={20} color={color('black')} />
             )}
           </TouchableOpacity>
         )}
@@ -148,7 +148,7 @@ export default (props) => {
               alignItems: 'flex-end',
               backgroundColor: props.keyboardCloseBackgroundColor || color('theme'),
               borderTopWidth: 1,
-              borderTopColor: 'lightgray',
+              borderTopColor: color('lightgray'),
             }}>
             <TouchableOpacity
               style={{
@@ -159,7 +159,7 @@ export default (props) => {
                 justifyContent: 'center',
               }}
               onPress={() => Keyboard.dismiss()}>
-              <AntDesign name={'close'} size={20} color={props.keyboardCloseColor || 'white'} />
+              <AntDesign name={'close'} size={20} color={props.keyboardCloseColor || color('white')} />
             </TouchableOpacity>
           </View>
         </InputAccessoryView>

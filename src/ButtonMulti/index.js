@@ -38,12 +38,12 @@ export default function ButtonMulti(props) {
                 backgroundColor: selected ? color('theme') : props.color,
                 borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
                 borderWidth: 1,
-                borderColor: selected ? color('theme') :  (props.color === 'white' ? 'darkgray' : props.color),
+                borderColor: selected ? color('theme') :  (props.color === color('white') ? color('darkgray') : props.color),
               }}
               onPress={props.selectedOnly ? props.onPress : () => handleOnPress(e.code)}>
               <Text
                 fontSize={14}
-                color={selected ? 'white' : (props.color === 'white' ? 'darkgray' : 'white')}
+                color={selected ? 'white' : (props.color === color('white') ? color('darkgray') : color('white'))}
                 text={e.name}
               />
             </TouchableOpacity>

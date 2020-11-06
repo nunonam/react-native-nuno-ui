@@ -8,7 +8,7 @@ export default ({checked, disabled, onPress}) => {
     <Switch
       value={checked}
       onChange={onPress}
-      trackColor={{true: color('theme'), false: 'lightgray'}}
+      trackColor={{true: color('theme'), false: color('lightgray')}}
       disabled={disabled}
     />
   );
