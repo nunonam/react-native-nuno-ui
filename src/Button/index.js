@@ -3,61 +3,46 @@ import {View, TouchableOpacity} from 'react-native';
 import Loader from '../Loader';
 import HView from '../HView';
 import Text from '../Text';
-import { Nuno } from 'react-native-nuno-ui';
+import { color } from 'react-native-nuno-ui/style';
 import Seperator from 'react-native-nuno-ui/src/Seperator';
 
-export default function Button({
-  text,
-  size,
-  color,
-  stretch,
-  disable,
-  loading,
-  onPress,
-  textColor,
-  borderColor,
-  borderRadius,
-  paddingVertical,
-  paddingHorizontal,
-  left,
-  right,
-}) {
+export default function Button(props) {
   let fontSize, fontWeight, paddingV, paddingH;
-  switch (size) {
+  switch (props.size) {
     case 'small':
       fontSize = 12;
       fontWeight = 'normal';
-      paddingV = paddingVertical || 2;
-      paddingH = paddingHorizontal || 10;
+      paddingV = props.paddingVertical || 2;
+      paddingH = props.paddingHorizontal || 10;
       break;
     case 'medium':
       fontSize = 14;
       fontWeight = '500';
-      paddingV = paddingVertical || 7;
-      paddingH = paddingHorizontal || 10;
+      paddingV = props.paddingVertical || 7;
+      paddingH = props.paddingHorizontal || 10;
       break;
     case 'large':
       fontSize = 18;
       fontWeight = 'bold';
-      paddingV = paddingVertical || 15;
-      paddingH = paddingHorizontal || 20;
+      paddingV = props.paddingVertical || 15;
+      paddingH = props.paddingHorizontal || 20;
       break;
     default:
       fontSize = 16;
       fontWeight = 'bold';
-      paddingV = paddingVertical || 10;
-      paddingH = paddingHorizontal || 15;
+      paddingV = props.paddingVertical || 10;
+      paddingH = props.paddingHorizontal || 15;
       break;
   }
   return (
     <HView>
       <TouchableOpacity
-        style={{flex: stretch ? 1 : undefined}}
-        activeOpacity={loading ? 1 : 0.5}
-        onPress={onPress}
-        disabled={disable}
+        style={{flex: props.stretch ? 1 : undefined}}
+        activeOpacity={props.loading ? 1 : 0.5}
+        onPress={props.onPress}
+        disabled={props.disable}
         >
-        {loading ? (
+        {props.loading ? (
           <View style={{
             // flex: stretch ? 1 : undefined,
             // flexDirection: 'row',
@@ -65,13 +50,13 @@ export default function Button({
             alignItems: 'center',
             paddingHorizontal: paddingH,
             paddingVertical: paddingV,
-            backgroundColor: color,
-            borderRadius: borderRadius !== undefined ? borderRadius : 4,
+            backgroundColor: props.color,
+            borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
             borderWidth: 0.5,
-            borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
-            opacity: disable ? 0.5 : 1,
+            borderColor: props.borderColor ? props.borderColor :  (props.color === color('white') ? color('gray') : props.color),
+            opacity: props.disable ? 0.5 : 1,
             }}>
-            <Loader color={color === 'white' ? 'black' : 'white'} />
+            <Loader color={props.color === color('white') ? color('black') : color('white')} />
           </View>
         ) : (
           <View style={{
@@ -81,22 +66,22 @@ export default function Button({
             alignItems: 'center',
             paddingHorizontal: paddingH,
             paddingVertical: paddingV,
-            backgroundColor: color,
-            borderRadius: borderRadius !== undefined ? borderRadius : 4,
+            backgroundColor: props.color,
+            borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
             borderWidth: 0.5,
-            borderColor: borderColor ? borderColor :  (color === 'white' ? 'darkgray' : color),
-            opacity: disable ? 0.5 : 1,
+            borderColor: props.borderColor ? props.borderColor :  (props.color === color('white') ? color('gray') : props.color),
+            opacity: props.disable ? 0.5 : 1,
             }}>
-            {left}
+            {props.left}
             <Seperator width={10} />
             <Text
               fontSize={fontSize}
               fontWeight={fontWeight}
-              color={textColor ? textColor : (color === 'white' ? 'dimgray' : 'white')}
-              text={text}
+              color={props.textColor ? props.textColor : (props.color === color('white') ? color('darkgray') : color('white'))}
+              text={props.text}
             />
             <Seperator width={10} />
-            {right}
+            {props.right}
           </View>
         )}
       </TouchableOpacity>

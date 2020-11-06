@@ -33,11 +33,11 @@ export function color(lightValue) {
     case 'black':
       return Nuno.config.DARKMODE ? 'white' : 'black';
     case 'darkgray':
-      return Nuno.config.DARKMODE ? '#f5f5f5' : '#333333';
+      return Nuno.config.DARKMODE ? '#DEDEDE' : '#333333';
     case 'gray':
-      return '#888888';
+      return Nuno.config.DARKMODE ? '#616161' : '#a9a9a9';
     case 'lightgray':
-      return Nuno.config.DARKMODE ? '#333333' : '#f5f5f5';
+      return Nuno.config.DARKMODE ? '#333333' : '#DEDEDE';
     case 'white':
       return Nuno.config.DARKMODE ? 'black' : 'white';
     case 'theme':

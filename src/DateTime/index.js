@@ -1,75 +1,66 @@
 import React from 'react';
-import {Platform, NativeModules, Modal, View, TouchableOpacity} from 'react-native';
+import {Platform, Modal, View, TouchableOpacity} from 'react-native';
 import Seperator from '../Seperator';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Text from '../Text';
 import moment from 'moment';
+import { Nuno } from 'react-native-nuno-ui';
+import { color } from 'react-native-nuno-ui/style';
 
-export default function DateTime({locale, mode, disable, value, title, placeholder, minuteInterval, onChange, closeBar, closeBarColor, backgroundColor, borderWidth}) {
+export default function DateTime(props) {
   const [showPicker, setShowPicker] = React.useState(false);
-
-  if (!locale) {
-    locale = Platform.OS === 'ios'
-        ? NativeModules.SettingsManager.settings.AppleLanguages[0]
-        : NativeModules.I18nManager.localeIdentifier;
-  }
   let formattedValue;
-  switch (mode) {
+  switch (props.mode) {
     case 'time':
-      formattedValue = value ? value.toLocaleTimeString(locale, {
+      formattedValue = props.value ? props.value.toLocaleTimeString(Nuno.config.LANG, {
         hour12: true,
         hour: '2-digit',
         minute: '2-digit',
       }) : '';
       break;
     default:
-      formattedValue = value ? moment(value).format('YYYY/MM/DD') : '';
+      formattedValue = props.value ? moment(props.value).format('YYYY/MM/DD') : '';
       break;
   }
 
   return (
     <View>
-      {title && (
+      {props.title && (
         <>
-          <Text fontSize={16} fontWeight={'500'} text={title} color={'dimgray'} />
+          <Text fontSize={16} fontWeight={'500'} text={props.title} color={color('darkgray')} />
           <Seperator height={10} />
         </>
       )}
       <TouchableOpacity
         onPress={
-          disable
+          props.disable
             ? () => null
             : () => setShowPicker(!showPicker)
         }
         activeOpacity={
-          disable ? 1 : 0.5
+          props.disable ? 1 : 0.5
         }
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: 'white',
-          borderWidth: borderWidth !== undefined ? borderWidth : 1,
-          borderColor: 'lightgray',
+          backgroundColor: color('white'),
+          borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
+          borderColor: color('lightgray'),
           borderRadius: 5,
           paddingHorizontal: 10,
           height: 44,
         }}>
         <View style={{flex: 1}}>
           {formattedValue ? (
-            <Text fontSize={14} color={'dimgray'} text={formattedValue} />
+            <Text fontSize={14} color={color('darkgray')} text={formattedValue} />
           ) : (
-            <Text fontSize={14} color={'gray'} text={placeholder} />
+            <Text fontSize={14} color={color('gray')} text={props.placeholder} />
           )}
         </View>
         <View>
-          {mode === 'date' ? (
-            <AntDesign name={'down'} size={20} color={'black'} />
-          ) : (
-            <MaterialCommunityIcons name={'calendar-blank'} size={20} color={'black'} />
-          )}
+          <AntDesign name={'down'} size={10} color={color('black')} />
         </View>
       </TouchableOpacity>
 
@@ -84,37 +75,38 @@ export default function DateTime({locale, mode, disable, value, title, placehold
               flex: 1,
             }}>
             <TouchableOpacity style={{flex: 1}} onPress={() => setShowPicker(!showPicker)} />
-            {closeBar && <View
+            {props.closeBar && <View
               style={{
                 height: 50,
-                backgroundColor: closeBarColor || 'lightgray',
-                borderColor: 'lightgray',
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
+                backgroundColor: props.closeBarColor || color('lightgray'),
+                borderColor: color('lightgray'),
+                borderTopWidth: 0.5,
+                borderBottomWidth: 0.5,
                 justifyContent: 'center',
                 alignItems: 'flex-end',
               }}>
               <TouchableOpacity
                 onPress={() => setShowPicker(!showPicker)}
                 style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                <AntDesign name={'down'} size={20} color={'gray'} />
+                <AntDesign name={'close'} size={20} color={color('gray')} />
               </TouchableOpacity>
             </View>}
-            <View style={{backgroundColor: backgroundColor || 'white'}}>
+            <View style={{backgroundColor: props.backgroundColor || color('lightgray')}}>
               <View
                 style={{
                   justifyContent: 'center',
                 }}>
                 <RNDateTimePicker
-                  mode={mode || 'date'}
-                  locale={locale}
+                  mode={props.mode || 'date'}
+                  locale={Nuno.config.LANG}
                   format="lll"
                   display="default"
-                  minuteInterval={minuteInterval}
+                  minuteInterval={props.minuteInterval}
                   onChange={(e, date) => {
-                    onChange(date);
+                    props.onChange(date);
                   }}
-                  value={value || new Date()}
+                  textColor={color('black')}
+                  value={props.value || new Date()}
                 />
               </View>
               <Seperator bottom />
@@ -124,17 +116,18 @@ export default function DateTime({locale, mode, disable, value, title, placehold
       ) : (
         showPicker && (
           <RNDateTimePicker
-            mode={mode || 'date'}
-            locale={locale}
+            mode={props.mode || 'date'}
+            locale={Nuno.config.LANG}
             format="lll"
             display="spinner"
             onChange={(e, date) => {
               setShowPicker(false);
               if (e.type === 'set') {
-                onChange(date);
+                props.onChange(date);
               }
             }}
-            value={value || new Date()}
+            textColor={color('black')}
+            value={props.value || new Date()}
           />
         )
       )}

@@ -35,8 +35,8 @@ export default (props) => {
               ref={props.forwardRef}
               style={{
                 fontSize: 14,
-                color: color('darkgray'),
-                backgroundColor: color('white'),
+                color: props.color || color('darkgray'),
+                backgroundColor: props.backgroundColor || color('white'),
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
@@ -75,8 +75,8 @@ export default (props) => {
               ref={props.forwardRef}
               style={{
                 fontSize: 14,
-                color: color('darkgray'),
-                backgroundColor: color('white'),
+                color: props.color || color('darkgray'),
+                backgroundColor: props.backgroundColor || color('white'),
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
