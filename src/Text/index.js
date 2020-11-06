@@ -1,27 +1,19 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {color as themeColor} from 'react-native-nuno-ui/style';
+import {color} from 'react-native-nuno-ui/style';
 
-export default ({
-  text,
-  ellipsizeMode,
-  numberOfLines,
-  fontSize,
-  fontWeight,
-  color,
-  style
-}) => {
+export default (props) => {
   return (
     <Text
-      ellipsizeMode={ellipsizeMode}
-      numberOfLines={numberOfLines}
+      ellipsizeMode={props.ellipsizeMode}
+      numberOfLines={props.numberOfLines}
       style={{
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        color: color || themeColor('black'),
-        ...style
+        fontSize: props.fontSize,
+        fontWeight: props.fontWeight,
+        color: props.color || color('black'),
+        ...props.style
       }}>
-      {text}
+      {props.text}
     </Text>
   );
 }

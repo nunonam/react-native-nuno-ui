@@ -1,43 +1,26 @@
 import React from 'react';
 import {View, Platform} from 'react-native';
 import {getStatusBarHeight, getBottomSpace} from 'react-native-iphone-x-helper';
-import {color as themeColor} from 'react-native-nuno-ui/style';
+import {color} from 'react-native-nuno-ui/style';
 
-const Seperator = ({
-  height,
-  width,
-  marginTop,
-  marginBottom,
-  bottom,
-  top,
-  color,
-  line,
-  vline
-}) => {
-  if (bottom) {
+const Seperator = (props) => {
+  let height = props.height;
+
+  if (props.bottom) {
     height = getBottomSpace();
   }
-  if (top) {
+  if (props.top) {
     height = Platform.OS === 'ios' ? getStatusBarHeight() : 0;
-  }
-  if (line) {
-    height = 0.5;
-    color = color || themeColor('lightgray');
-  }
-  if (vline) {
-    width = 1;
-    height = height;
-    color = color || themeColor('lightgray');
   }
 
   return (
     <View
       style={{
-        backgroundColor: color,
-        height: height,
-        width: width,
-        marginTop: marginTop,
-        marginBottom: marginBottom,
+        backgroundColor: props.line ? color('lightgray') : props.color,
+        height: props.line ? 0.5 : height,
+        width: props.width,
+        marginTop: props.marginTop,
+        marginBottom: props.marginBottom,
       }}
     />
   );

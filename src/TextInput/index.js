@@ -24,7 +24,7 @@ export default (props) => {
     <View>
       {props.title && (
         <View>
-          <Text fontSize={16} fontWeight={'500'} text={props.title} color={'dimgray'} />
+          <Text fontSize={16} fontWeight={'500'} text={props.title} color={color('darkgray')} />
           <Seperator height={10} />
         </View>
       )}
@@ -35,14 +35,14 @@ export default (props) => {
               ref={props.forwardRef}
               style={{
                 fontSize: 14,
-                color: props.textColor || 'dimgray',
-                backgroundColor: props.backgroundColor || 'white',
+                color: color('darkgray'),
+                backgroundColor: color('white'),
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
-                borderColor: props.borderColor || 'lightgray',
+                borderColor: props.borderColor || color('lightgray'),
                 borderRadius: 5,
               }}
               placeholder={props.placeholder}
@@ -75,14 +75,14 @@ export default (props) => {
               ref={props.forwardRef}
               style={{
                 fontSize: 14,
-                color: props.textColor || 'dimgray',
-                backgroundColor: props.backgroundColor || 'white',
+                color: color('darkgray'),
+                backgroundColor: color('white'),
                 height: props.height || (props.multiline ? 150 : 44),
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
-                borderColor: props.borderColor || 'lightgray',
+                borderColor: props.borderColor || color('lightgray'),
                 borderRadius: 4,
               }}
               placeholder={props.placeholder}

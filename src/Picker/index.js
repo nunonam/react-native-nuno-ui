@@ -9,10 +9,21 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Seperator from '../Seperator';
 import Text from '../Text';
-import {screenHeight} from 'react-native-nuno-ui/style';
+import {color} from 'react-native-nuno-ui/style';
 import {Picker} from '@react-native-community/picker';
 
-export default ({items, title, value, onChange, disabled, placeholder, closeBar, closeBarColor, backgroundColor, borderWidth}) => {
+export default ({
+  items,
+  title,
+  value,
+  onChange,
+  disabled,
+  placeholder,
+  closeBar,
+  closeBarColor,
+  backgroundColor,
+  borderWidth
+}) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
   const selected = items.filter(
@@ -22,7 +33,7 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
     <View>
       {title && (
         <>
-          <Text fontSize={16} fontWeight={'500'} text={title} color={'dimgray'} />
+          <Text fontSize={16} fontWeight={'500'} text={title} color={color('darkgray')} />
           <Seperator height={10} />
         </>
       )}
@@ -43,24 +54,24 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
               justifyContent: 'space-between',
               alignItems: 'center',
               borderWidth: borderWidth !== undefined ? borderWidth : 1,
-              borderColor: 'lightgray',
+              borderColor: color('lightgray'),
               borderRadius: 4,
-              backgroundColor: 'white',
+              backgroundColor: color('white'),
               height: 44,
               paddingHorizontal: 10,
             }}>
             <View>
               {selected.length > 0 ? (
                 !disabled ? (
-                  <Text fontSize={14} color={'dimgray'} text={selected[0].name} />
+                  <Text fontSize={14} color={color('darkgray')} text={selected[0].name} />
                 ) : (
-                  <Text fontSize={14} color={'darkgray'} text={selected[0].name} />
+                  <Text fontSize={14} color={color('lightgray')} text={selected[0].name} />
                 )
               ) : (
-                <Text fontSize={14} color={'gray'} text={placeholder} />
+                <Text fontSize={14} color={color('darkgray')} text={placeholder} />
               )}
             </View>
-            <AntDesign name={'down'} size={10} color={'black'} />
+            <AntDesign name={'down'} size={10} color={color('black')} />
           </TouchableOpacity>
 
           <Modal
@@ -71,6 +82,7 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
               style={{
                 flex: 1,
                 justifyContent: 'flex-end',
+                // backgroundColor: color('white'),
               }}>
               <TouchableOpacity
                 style={{flex: 1}}
@@ -79,8 +91,8 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
               {closeBar && <View
                 style={{
                   height: 50,
-                  backgroundColor: closeBarColor || 'lightgray',
-                  borderColor: 'lightgray',
+                  backgroundColor: closeBarColor || color('lightgray'),
+                  borderColor: color('lightgray'),
                   borderTopWidth: 1,
                   borderBottomWidth: 1,
                   justifyContent: 'center',
@@ -89,15 +101,16 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
                 <TouchableOpacity
                   onPress={() => setShowPicker(!showPicker)}
                   style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                  <AntDesign name={'down'} size={20} color={'gray'} />
+                  <AntDesign name={'close'} size={20} color={color('gray')} />
                 </TouchableOpacity>
               </View>}
-              <View style={{backgroundColor: backgroundColor || 'white'}}>
+              <View style={{backgroundColor: backgroundColor || color('lightgray')}}>
                 <View
                   style={{
                     justifyContent: 'center',
                   }}>
                   <Picker
+                    itemStyle={{color: color('black')}}
                     selectedValue={value}
                     onValueChange={onChange}
                     enabled={
@@ -125,7 +138,7 @@ export default ({items, title, value, onChange, disabled, placeholder, closeBar,
         <View
           style={{
             borderWidth: borderWidth !== undefined ? borderWidth : 1,
-            borderColor: 'lightgray',
+            borderColor: color('lightgray'),
             borderRadius: 5,
             height: 44,
             justifyContent: 'center',
