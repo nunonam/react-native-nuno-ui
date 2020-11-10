@@ -357,39 +357,40 @@ export const swap = (arr, index1, index2) => arr.map((val, idx) => {
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-export function share(deeplink, title, message) {
-  fetch(
-    `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${Nuno.config.FIREBASE_WEB_API}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+export function share(deeplink, title, message, image) {
+  return new Promise((resolve, reject) => {
+      fetch(
+      `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${Nuno.config.FIREBASE_WEB_API}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          longDynamicLink: `${Nuno.config.DYNAMIC_LINK}/?link=${deeplink}&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}&st=${title}&sd${message}&si=${image}`,
+        }),
       },
-      body: JSON.stringify({
-        longDynamicLink: `${Nuno.config.DYNAMIC_LINK}/?link=${deeplink}&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}`,
-      }),
-    },
-  )
-    .then(async response => {
-      const link = await response.json();
-      console.log('shortlink', link.shortLink);
-      Share.share({
-        // message: link.shortLink,
-        message: message,
-        title: title,
-      }, {
-        subject: title,
-        dialogTitle: title,
-      }).then(res => {
-        if (res.action === Share.sharedAction) {
-          // callback && callback();
-        } else if (res.action === Share.dismissedAction) {
-          // dismissed
-        }
+    )
+      .then(async response => {
+        const link = await response.json();
+        console.log('shortlink', link.shortLink);
+        Share.share({
+          message: link.shortLink,
+          title: title,
+        }, {
+          subject: title,
+          dialogTitle: title,
+        }).then(res => {
+          if (res.action === Share.sharedAction) {
+            resolve();
+          } else if (res.action === Share.dismissedAction) {
+            reject();
+          }
+        });
+      })
+      .catch(err => {
+        Alert.alert(err);
       });
-    })
-    .catch(err => {
-      Alert.alert(err);
     });
 }
 export function getDateFromHours(timeStr) {

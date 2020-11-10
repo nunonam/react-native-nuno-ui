@@ -161,7 +161,7 @@ export default (props) => {
         }}
       />
       <Seperator marginBottom={5} />
-      <HView style={{paddingHorizontal: 15, borderTopWidth: 0.5, borderTopColor: 'lightgray', paddingVertical: 2}}>
+      <HView style={{paddingHorizontal: 15, borderTopWidth: 0.5, borderTopColor: color('lightgray'), paddingVertical: 2}}>
         {props.leftComponent}
         <View style={{flex: 1}}>
           <HView>
@@ -169,7 +169,7 @@ export default (props) => {
               <TextInput placeholder={props.disable ? '메세지를 입력할수 없습니다': '메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} editable={!props.disable} />
             </View>
             <TouchableOpacity onPress={() => send()}>
-              <MaterialIcons name={'send'} size={20} color={message ? 'black' : 'darkgray'} />
+              <MaterialIcons name={'send'} size={20} color={message ? color('black') : color('gray')} />
             </TouchableOpacity>
           </HView>
         </View>
