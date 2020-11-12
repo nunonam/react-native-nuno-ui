@@ -38,7 +38,7 @@ export default function Map({
 
   React.useEffect(() => {
     async function getLoc() {
-      const loc = await getCurrentLocation(Nuno.config.lang);
+      const loc = await getCurrentLocation(Nuno.config.LANG);
       const temp = {...camera};
       temp.center = loc.coords;
       setCamera(temp);
@@ -55,7 +55,7 @@ export default function Map({
     getCurrentPosition(temp.center);
   };
   const onPressCurrent = async () => {
-    const loc = await getCurrentLocation(Nuno.config.lang);
+    const loc = await getCurrentLocation(Nuno.config.LANG);
     const temp = {...camera};
     temp.center = loc.coords;
     mapRef.animateCamera(temp, {duration: 500});

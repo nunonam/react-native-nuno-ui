@@ -138,7 +138,7 @@ export async function getAddressFromGeoCode(latitude, longitude) {
         new URLSearchParams({
           latlng: `${latitude},${longitude}`,
           key: Nuno.config.GOOGLE_API_KEY,
-          language: Nuno.config.lang,
+          language: Nuno.config.LANG,
           // region: global.lang,
         }),
       {
@@ -224,7 +224,7 @@ export async function getCurrentLocation() {
                 new URLSearchParams({
                   latlng: `${position.coords.latitude},${position.coords.longitude}`,
                   key: Nuno.config.GOOGLE_API_KEY,
-                  language: Nuno.config.lang,
+                  language: Nuno.config.LANG,
                 }),
               {
                 method: 'GET',
@@ -336,14 +336,14 @@ export function showToast(msg) {
     delay: 0,
     opacity: 1,
     backgroundColor: color('theme'),
-    textStyle: {fontSize: 12, color: 'white'},
+    textStyle: {fontSize: 12, color: color('white')},
     containerStyle: {
       width: screenWidth - 20,
       height: 60,
       marginTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
       top: -10,
       borderWidth: 0.5,
-      borderColor: 'lightgray',
+      borderColor: color('lightgray'),
       justifyContent: 'center',
       alignItems: 'flex-start',
     },
@@ -432,7 +432,6 @@ export function getPhotos(index, multiple) {
         .then(res => {
           console.log('ImagePicker openPicker', res);
           if (res.mime !== 'image/jpeg' && res.mime !== 'image/png') {
-            Alert.alert(lang[global.lang].notSupportedFile);
             reject();
           } else {
             resolve(res);
