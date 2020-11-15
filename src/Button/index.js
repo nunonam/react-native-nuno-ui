@@ -39,7 +39,7 @@ export default function Button(props) {
       <TouchableOpacity
         style={{flex: props.stretch ? 1 : undefined}}
         activeOpacity={props.loading ? 1 : 0.5}
-        onPress={props.onPress}
+        onPress={props.disable || props.loading ? null : props.onPress}
         disabled={props.disable}
         >
         {props.loading ? (

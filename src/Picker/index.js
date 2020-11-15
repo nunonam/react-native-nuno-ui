@@ -110,7 +110,7 @@ export default ({
                     justifyContent: 'center',
                   }}>
                   <Picker
-                    itemStyle={{color: color('black')}}
+                    style={{color: color('black')}}
                     selectedValue={value}
                     onValueChange={onChange}
                     enabled={
@@ -144,7 +144,7 @@ export default ({
             justifyContent: 'center',
           }}>
           <Picker
-            itemStyle={{color: color('black')}}
+            style={{color: color('black')}}
             selectedValue={value}
             onValueChange={onChange}>
             {items.map((item, index) => {
