@@ -4,7 +4,6 @@ import Seperator from '../Seperator';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
-import moment from 'moment';
 import { Nuno } from 'react-native-nuno-ui';
 import { color } from 'react-native-nuno-ui/style';
 
@@ -20,7 +19,7 @@ export default function DateTime(props) {
       }) : '';
       break;
     default:
-      formattedValue = props.value ? moment(props.value).format('YYYY/MM/DD') : '';
+      formattedValue = props.value ? formatYYMMDD(props.value) : '';
       break;
   }
 

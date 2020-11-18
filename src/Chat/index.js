@@ -10,8 +10,8 @@ import Image from '../Image';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
-import moment from 'moment';
 import {screenWidth, color} from 'react-native-nuno-ui/style';
+import { formatAMPM, formatYYMMDD } from '../../funcs';
 
 export default (props) => {
   const [message, setMessage] = React.useState('');
@@ -27,10 +27,10 @@ export default (props) => {
       nextCreatedAt = new Date(props.messages[index+1].createdAt);
     }
 
-    const currentTimestamp = moment(createdAt).format('a h:mm');
-    const prevTimestamp = index > 0 && item.UserId === props.messages[index-1].UserId && moment(prevCreatedAt).format('a h:mm');
-    const currentDate = moment(createdAt).format('YYYY년 MM월 DD일');
-    const nextDate = index < props.messages.length - 1 && moment(nextCreatedAt).format('YYYY년 MM월 DD일');
+    const currentTimestamp = formatAMPM(createdAt);
+    const prevTimestamp = index > 0 && item.UserId === props.messages[index-1].UserId && formatAMPM(prevCreatedAt);
+    const currentDate = formatYYMMDD(createdAt);
+    const nextDate = index < props.messages.length - 1 && formatYYMMDD(nextCreatedAt);
 
     // system message
     if (item.bySystem) {
