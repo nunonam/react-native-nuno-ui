@@ -12,6 +12,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {screenWidth, color} from 'react-native-nuno-ui/style';
 import { formatAMPM, formatYYMMDD } from '../../funcs';
+import { ProfileBar } from 'react-native-nuno-ui';
 
 export default (props) => {
   const [message, setMessage] = React.useState('');
@@ -93,7 +94,12 @@ export default (props) => {
           )}
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
             {((index < props.messages.length - 1 && item.UserId !== props.messages[index+1].UserId) || index+1 === props.messages.length) ? (
-              <Image uri={props.tUser.photo} height={36} width={36} borderRadius={18} onPress={() => props.gotoProfile(props.tUser.id)} />
+              <ProfileBar
+                size={34}
+                user={props.tUser}
+                onlyImage
+                onPress={() => props.tUser ? props.gotoProfile(props.tUser.id) : null}
+              />
             ) : (
               <View style={{width: 36}} />
             )}
@@ -101,7 +107,7 @@ export default (props) => {
             <View style={{flex: 1}}>
               {((index < props.messages.length - 1 && item.UserId !== props.messages[index+1].UserId) || index+1 === props.messages.length) && (
                 <View>
-                  <Text fontSize={props.fontSize || 14} color={color('darkgray')} text={props.tUser.name} />
+                  <Text fontSize={props.fontSize || 14} color={color('darkgray')} text={props.tUser?.name} />
                   <Seperator height={10} />
                 </View>
               )}

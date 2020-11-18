@@ -403,19 +403,49 @@ export function getDateFromHours(timeStr) {
 export function formatAMPM(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  let ampm = hours >= 12 ? 'pm' : 'am';
+  let ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+minutes : minutes;
   const strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
-export function formatYYMMDD(date) {
-  let year = date.getFullYear();
-  let month = date.getMinutes() + 1;
-  let date = today.getDate();
+export function formatYYMMDD(d) {
+  const date = new Date(d);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
-  return year + '년 ' + month + '월 ' + date + '일';
+  return year + '년 ' + month + '월 ' + day + '일';
+}
+export function fromNow(date) {
+
+  const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+  let interval = seconds / 31536000;
+
+  if (interval > 1) {
+    // return Math.floor(interval) + " 년 전";
+    return formatYYMMDD(date);
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    // return Math.floor(interval) + " 달 전";
+    return formatYYMMDD(date);
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + " 일 전";
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + " 시간 전";
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + " 분 전";
+  }
+  return Math.floor(seconds) + " 초 전";
 }
 export function getPhotos(index, multiple) {
   return new Promise((resolve, reject) => {
