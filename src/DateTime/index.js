@@ -6,6 +6,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 import { Nuno } from 'react-native-nuno-ui';
 import { color } from 'react-native-nuno-ui/style';
+import { formatYYMMDD } from 'react-native-nuno-ui/funcs';
 
 export default function DateTime(props) {
   const [showPicker, setShowPicker] = React.useState(false);
