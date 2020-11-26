@@ -12,7 +12,7 @@ export default function Header({navigation, left, leftComponent, title, right, r
   let headerRight;
   let headerCenter = centerComponent || (
     <View style={{alignItems: 'center'}}>
-      <Text fontSize={18} fontWeight={Nuno.config.headerTitleWeight || '500'} color={color('darkgray')} text={title}/>
+      <Text fontSize={18} fontWeight={'500'} color={color('darkgray')} text={title}/>
     </View>
     );
 

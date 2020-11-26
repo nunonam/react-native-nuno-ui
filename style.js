@@ -14,7 +14,7 @@ export const ShadowStyle = {
   },
   shadowOpacity: 0.7,
   shadowRadius: 6,
-  elevation: 11,
+  elevation: 3,
 };
 
 export const ShadowStyleUp = {

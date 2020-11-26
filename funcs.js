@@ -54,6 +54,13 @@ export function errorApi(req, err) {
     .catch((e) => console.log('[ERROR UPLOAD] error', e));
   }
 }
+export function toCurrencyFormat(value) {
+  if (value === undefined || value === null) {
+    return;
+  }
+  const temp = value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  return temp + '원';
+}
 export function ga(event, payload) {
   // event, payload 둘다 string
   analytics().logEvent(event, {

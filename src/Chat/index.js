@@ -136,8 +136,9 @@ export default (props) => {
   };
   const send = () => {
     if (message) {
-      setMessage('');
-      props.onSend({text: message});
+      if (props.onSend({text: message})) {
+        setMessage('');
+      }
     }
   };
   return (
