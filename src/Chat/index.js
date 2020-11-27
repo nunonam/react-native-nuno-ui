@@ -38,7 +38,7 @@ export default (props) => {
       return (
         <View style={{padding: 20}}>
           <View style={{alignItems: 'center', backgroundColor: color('lightgray'), padding: 20, borderRadius: 5}}>
-            <Text text={item.text} fontSize={props.fontSize || 14} color={'#FE7262'} />
+            <Text text={item.text} fontSize={props.fontSize || 14} color={color('darkgray')} />
           </View>
         </View>
       )
@@ -79,7 +79,7 @@ export default (props) => {
           </HView>
         </View>
       );
-    } else {
+    } else { // 채팅상대 메세지
       return (
         <View>
           {currentDate !== nextDate && (
@@ -95,15 +95,15 @@ export default (props) => {
           <HView style={{flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', paddingHorizontal: 15, paddingVertical: 2}}>
             {((index < props.messages.length - 1 && item.UserId !== props.messages[index+1].UserId) || index+1 === props.messages.length) ? (
               <ProfileBar
-                size={34}
+                size={30}
                 user={props.tUser}
                 onlyImage
                 onPress={() => props.tUser ? props.gotoProfile(props.tUser.id) : null}
               />
             ) : (
-              <View style={{width: 36}} />
+              <View style={{width: 40}} />
             )}
-            <Seperator width={10} />
+            {/* <Seperator width={6} /> */}
             <View style={{flex: 1}}>
               {((index < props.messages.length - 1 && item.UserId !== props.messages[index+1].UserId) || index+1 === props.messages.length) && (
                 <View>

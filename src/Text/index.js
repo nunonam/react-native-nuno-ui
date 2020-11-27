@@ -11,6 +11,7 @@ export default (props) => {
         fontSize: props.fontSize,
         fontWeight: props.fontWeight,
         color: props.color || color('black'),
+        letterSpacing: -0.2,
         ...props.style
       }}>
       {props.text}

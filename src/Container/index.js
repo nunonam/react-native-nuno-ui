@@ -33,18 +33,18 @@ export default ({
         isVisible={alertVisible}
         onBackdropPress={onBackdropPress}>
         <View
-          style={{padding: 20, backgroundColor: 'white', borderRadius: 5}}>
+          style={{padding: 15, backgroundColor: color('white'), borderRadius: 5}}>
           <View style={{flex: 1}} />
           <View>
-            <Text fontSize={18} fontWeight={'bold'} color={'black'} text={alertTitle} style={{textAlign: 'center'}} />
+            <Text fontSize={16} fontWeight={'600'} color={color('black')} text={alertTitle} style={{textAlign: 'center'}} />
             <Seperator height={30} />
-            <Text fontSize={16} fontWeight={'500'} color={'dimgray'} text={alertText} style={{textAlign: 'center'}} />
+            <Text fontSize={14} fontWeight={'200'} color={color('darkgray')} text={alertText} style={{textAlign: 'center'}} />
             <Seperator height={30} />
             <HView>
               {onCancel && (
                 <>
                   <View style={{flex: 1}}>
-                    <Button text={'취소'} color={alertButtonColor || 'gray'} onPress={onCancel} stretch size={'large'} />
+                    <Button text={'취소'} color={alertButtonColor || color('gray')} onPress={onCancel} stretch size={'large'} />
                   </View>
                   <Seperator width={10} />
                 </>
