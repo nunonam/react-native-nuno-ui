@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Linking, Alert} from 'react-native';
 import MapView, {Callout, Marker} from 'react-native-maps';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -38,11 +38,29 @@ export default function Map({
 
   React.useEffect(() => {
     async function getLoc() {
-      const loc = await getCurrentLocation(Nuno.config.LANG);
-      const temp = {...camera};
-      temp.center = loc.coords;
-      setCamera(temp);
-      getCurrentPosition(loc.coords);
+      try {
+        const loc = await getCurrentLocation(Nuno.config.LANG);
+        const temp = {...camera};
+        temp.center = loc.coords;
+        setCamera(temp);
+        getCurrentPosition(loc.coords);
+      } catch (err) {
+        if (err === 'denied') {
+          Alert.alert('위치정보 동의', '현재 내위치를 확인하기 위해 위치정보 동의가 필요합니다.', [
+            {
+              text: '취소',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            {
+              text: '설정하기',
+              onPress: () => {
+                Linking.openSettings();
+              },
+            },
+          ]);
+        }
+      }
     }
     if (!latitude && !longitude) {
       getLoc();

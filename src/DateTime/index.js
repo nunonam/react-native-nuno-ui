@@ -99,6 +99,7 @@ export default function DateTime(props) {
                 <RNDateTimePicker
                   mode={props.mode || 'date'}
                   locale={Nuno.config.LANG}
+                  maximumDate={props.maximumDate}
                   format="lll"
                   display="default"
                   minuteInterval={props.minuteInterval}
@@ -118,6 +119,7 @@ export default function DateTime(props) {
           <RNDateTimePicker
             mode={props.mode || 'date'}
             locale={Nuno.config.LANG}
+            maximumDate={props.maximumDate}
             format="lll"
             display="spinner"
             onChange={(e, date) => {
