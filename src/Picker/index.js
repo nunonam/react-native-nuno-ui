@@ -104,13 +104,12 @@ export default ({
                   <AntDesign name={'close'} size={20} color={color('gray')} />
                 </TouchableOpacity>
               </View>}
-              <View style={{backgroundColor: backgroundColor || color('lightgray')}}>
+              <View style={{backgroundColor: backgroundColor || color('gray')}}>
                 <View
                   style={{
                     justifyContent: 'center',
                   }}>
                   <Picker
-                    style={{color: color('black')}}
                     selectedValue={value}
                     onValueChange={onChange}
                     enabled={
