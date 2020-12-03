@@ -91,7 +91,7 @@ export default function DateTime(props) {
                 <AntDesign name={'close'} size={20} color={color('gray')} />
               </TouchableOpacity>
             </View>}
-            <View style={{backgroundColor: props.backgroundColor || color('gray')}}>
+            <View style={{backgroundColor: props.backgroundColor || 'dimgray'}}>
               <View
                 style={{
                   justifyContent: 'center',
