@@ -31,7 +31,7 @@ export default function DoubleTap(props) {
   }
 
   return (
-    <TouchableOpacity onPress={handleDoubleTap} activeOpacity={1}>
+    <TouchableOpacity onPress={showAnimation ? () => null : handleDoubleTap} activeOpacity={1}>
       {props.children}
       {showAnimation && (
         <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center'}}>

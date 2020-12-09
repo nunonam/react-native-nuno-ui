@@ -34,10 +34,10 @@ export function errorApi(req, err) {
   console.groupEnd();
 
   // 네트워크 에러
-  if (!err.response) {
-    Alert.alert('죄송합니다', '사용중인 네트워크 상태를 확인해 주세요');
-    return;
-  }
+  // if (!err.response) {
+  //   Alert.alert('죄송합니다', '사용중인 네트워크 상태를 확인해 주세요');
+  //   return;
+  // }
 
   if (__DEV__) {
     Alert.alert(`[ERROR] ${req}`, err.message || JSON.stringify(err));

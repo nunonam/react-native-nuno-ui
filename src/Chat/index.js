@@ -163,7 +163,14 @@ export default (props) => {
         <View style={{flex: 1}}>
           <HView>
             <View style={{flex: 1, paddingHorizontal: 15, paddingVertical: 2}}>
-              <TextInput placeholder={props.disable ? '메세지를 입력할수 없습니다': '메세지를 입력해주세요'} onChangeText={(e) => setMessage(e)} value={message} borderWidth={0} editable={!props.disable} />
+              <TextInput
+                placeholder={props.disable ? '메세지를 입력할수 없습니다': '메세지를 입력해주세요'}
+                onChangeText={(e) => setMessage(e)}
+                value={message}
+                borderWidth={0}
+                editable={!props.disable}
+                // autoFocus={!props.disable}
+              />
             </View>
             <TouchableOpacity onPress={() => send()} style={{padding: 15}}>
               <MaterialIcons name={'send'} size={20} color={message ? color('black') : color('gray')} />
