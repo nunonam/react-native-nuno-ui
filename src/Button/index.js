@@ -42,23 +42,6 @@ export default function Button(props) {
         onPress={props.disable || props.loading ? null : props.onPress}
         disabled={props.disable}
         >
-        {props.loading ? (
-          <View style={{
-            // flex: stretch ? 1 : undefined,
-            // flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingHorizontal: paddingH,
-            paddingVertical: paddingV,
-            backgroundColor: props.color,
-            borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
-            borderWidth: 0.5,
-            borderColor: props.borderColor ? props.borderColor :  (props.color === color('white') ? color('gray') : props.color),
-            opacity: props.disable ? 0.5 : 1,
-            }}>
-            <Loader color={props.color === color('white') ? color('black') : color('white')} />
-          </View>
-        ) : (
           <View style={{
             // flex: stretch ? 1 : undefined,
             flexDirection: 'row',
@@ -83,7 +66,21 @@ export default function Button(props) {
             <Seperator width={10} />
             {props.right}
           </View>
-        )}
+          {props.loading && (
+            <View style={{
+              backgroundColor: props.color,
+              borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              alignItems: 'center',
+              justifyContent: 'center'
+              }}>
+              <Loader color={props.color === color('white') ? color('black') : color('white')} />
+            </View>
+          )}
       </TouchableOpacity>
     </HView>
   );
