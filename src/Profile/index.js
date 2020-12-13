@@ -36,7 +36,7 @@ export default ({
         )}
         {icon && (
           <View style={{position: 'absolute', left: -5, top: -3}}>
-            <MaterialCommunityIcons name={'heart-multiple'} size={15} color={'red'} />
+            <MaterialCommunityIcons name={'heart-multiple'} size={15} color={'#713dc7'} />
           </View>
         )}
       </View>

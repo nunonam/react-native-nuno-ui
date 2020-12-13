@@ -35,12 +35,13 @@ export default function ButtonMulti(props) {
                 paddingVertical: 5,
                 marginRight: 4,
                 marginBottom: 4,
-                backgroundColor: selected ? color('theme') : props.color,
+                backgroundColor: selected ? color('themelight') : props.color,
                 borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
                 borderWidth: 1,
-                borderColor: selected ? color('theme') :  (props.color === color('white') ? color('darkgray') : props.color),
+                borderColor: selected ? color('themelight') :  (props.color === color('white') ? color('darkgray') : props.color),
               }}
-              onPress={props.selectedOnly ? props.onPress : () => handleOnPress(e.code)}>
+              onPress={props.selectedOnly ? props.onPress : () => handleOnPress(e.code)}
+              activeOpacity={props.selectedOnly ? 1 : 0.5}>
               <Text
                 fontSize={14}
                 color={selected ? 'white' : (props.color === color('white') ? color('darkgray') : color('white'))}

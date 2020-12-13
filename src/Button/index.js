@@ -8,6 +8,8 @@ import Seperator from 'react-native-nuno-ui/src/Seperator';
 
 export default function Button(props) {
   let fontSize, fontWeight, paddingV, paddingH;
+  const borderstyle = {borderWidth: 0.5, borderRadius: 4};
+  const textstyle = {color: 'white'};
   switch (props.size) {
     case 'small':
       fontSize = 12;
@@ -16,52 +18,75 @@ export default function Button(props) {
       paddingH = props.paddingHorizontal || 10;
       break;
     case 'medium':
-      fontSize = 14;
-      fontWeight = '500';
+      fontSize = 13;
+      fontWeight = 'bold';
       paddingV = props.paddingVertical || 7;
       paddingH = props.paddingHorizontal || 10;
       break;
     case 'large':
-      fontSize = 18;
+      fontSize = 16;
       fontWeight = 'bold';
-      paddingV = props.paddingVertical || 15;
+      paddingV = props.paddingVertical || 12;
       paddingH = props.paddingHorizontal || 20;
       break;
     default:
-      fontSize = 16;
+      fontSize = 14;
       fontWeight = 'bold';
       paddingV = props.paddingVertical || 10;
       paddingH = props.paddingHorizontal || 15;
       break;
+  }
+
+  // border style
+  if (props.borderColor) {
+    borderstyle.borderColor = props.borderColor;
+  } else {
+    if (props.color === color('white')) {
+      borderstyle.borderColor = color('gray');
+    } else {
+      borderstyle.borderWidth = 0;
+    }
+  }
+  if (props.borderRadius) {
+    borderstyle.borderRadius = props.borderRadius;
+  }
+
+  // text color
+  if (props.disable) {
+    textstyle.color = color('gray');
+  } else {
+    if (props.textColor) {
+      textstyle.color = props.textColor;
+    } else {
+      if (props.color === color('white')) {
+        textstyle.color = color('darkgray');
+      }
+    }
   }
   return (
     <HView>
       <TouchableOpacity
         style={{flex: props.stretch ? 1 : undefined}}
         activeOpacity={props.loading ? 1 : 0.5}
-        onPress={props.disable || props.loading ? null : props.onPress}
-        disabled={props.disable}
+        onPress={props.onPress}
+        disabled={props.disable || props.loading}
         >
           <View style={{
-            // flex: stretch ? 1 : undefined,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
             paddingHorizontal: paddingH,
             paddingVertical: paddingV,
-            backgroundColor: props.color,
-            borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
-            borderWidth: 0.5,
-            borderColor: props.borderColor ? props.borderColor :  (props.color === color('white') ? color('gray') : props.color),
-            opacity: props.disable ? 0.5 : 1,
+            backgroundColor: props.disable ? color('lightgray') : props.color,
+            ...borderstyle,
             }}>
             {props.left}
             <Seperator width={10} />
             <Text
               fontSize={fontSize}
               fontWeight={fontWeight}
-              color={props.textColor ? props.textColor : (props.color === color('white') ? color('darkgray') : color('white'))}
               text={props.text}
+              style={textstyle}
             />
             <Seperator width={10} />
             {props.right}

@@ -38,7 +38,7 @@ export default (props) => {
       return (
         <View style={{padding: 20}}>
           <View style={{alignItems: 'center', backgroundColor: color('lightgray'), padding: 20, borderRadius: 5}}>
-            <Text text={item.text} fontSize={props.fontSize || 14} color={color('darkgray')} />
+            <Text text={item.text} fontSize={props.fontSize || 12} color={color('darkgray')} />
           </View>
         </View>
       )
@@ -53,7 +53,7 @@ export default (props) => {
               <Seperator line />
               <View style={{position: 'absolute', top: 10, alignItems: 'center', width: screenWidth}}>
                 <View style={{backgroundColor: color('white'), paddingHorizontal: 20}}>
-                  <Text fontSize={props.fontSize || 14} color={color('gray')} text={currentDate} />
+                  <Text fontSize={props.fontSize || 10} color={color('gray')} text={currentDate} />
                 </View>
               </View>
             </View>
@@ -63,16 +63,16 @@ export default (props) => {
             <HView style={{flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end'}}>
               {currentTimestamp !== prevTimestamp && (
                 <View style={{marginRight: 10}}>
-                  <Text fontSize={14} color={color('gray')} text={currentTimestamp} />
+                  <Text fontSize={10} color={color('gray')} text={currentTimestamp} />
                 </View>
               )}
               <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 5, backgroundColor: color('theme'), padding: 10}}>
                 {item.lat && item.lon ? (
                   <TouchableOpacity onPress={() => props.openMap({lat: item.lat, lng: item.lon})}>
-                    <Text fontSize={props.fontSize || 14} color={color('white')} text={item.text} style={{textDecorationLine: 'underline'}} />
+                    <Text fontSize={props.fontSize || 12} color={color('white')} text={item.text} style={{textDecorationLine: 'underline'}} />
                   </TouchableOpacity>
                 ) : (
-                  <Text fontSize={props.fontSize || 14} color={color('white')} text={item.text} />
+                  <Text fontSize={props.fontSize || 12} color={'white'} text={item.text} />
                 )}
               </View>
             </HView>
@@ -87,7 +87,7 @@ export default (props) => {
               <Seperator line />
               <View style={{position: 'absolute', top: 10, alignItems: 'center', width: screenWidth}}>
                 <View style={{backgroundColor: color('white'), paddingHorizontal: 20}}>
-                  <Text fontSize={props.fontSize || 14} color={color('gray')} text={currentDate} />
+                  <Text fontSize={props.fontSize || 10} color={color('gray')} text={currentDate} />
                 </View>
               </View>
             </View>
@@ -107,7 +107,7 @@ export default (props) => {
             <View style={{flex: 1}}>
               {((index < props.messages.length - 1 && item.UserId !== props.messages[index+1].UserId) || index+1 === props.messages.length) && (
                 <View>
-                  <Text fontSize={props.fontSize || 14} color={color('darkgray')} text={props.tUser?.name} />
+                  <Text fontSize={props.fontSize || 12} color={color('darkgray')} text={props.tUser?.name} />
                   <Seperator height={10} />
                 </View>
               )}
@@ -115,15 +115,15 @@ export default (props) => {
                 <View style={{borderTopLeftRadius: 20, borderBottomLeftRadius: 5, borderTopRightRadius: 20, borderBottomRightRadius: 20, backgroundColor: color('lightgray'), paddingVertical: 10, paddingHorizontal: 15}}>
                   {item.lat && item.lon ? (
                     <TouchableOpacity onPress={() => props.openMap({lat: item.lat, lng: item.lon})}>
-                      <Text fontSize={props.fontSize || 14} color={color('black')} text={item.text} style={{textDecorationLine: 'underline'}} />
+                      <Text fontSize={props.fontSize || 12} color={color('black')} text={item.text} style={{textDecorationLine: 'underline'}} />
                     </TouchableOpacity>
                   ) : (
-                    <Text fontSize={props.fontSize || 14} color={color('black')} text={item.text} />
+                    <Text fontSize={props.fontSize || 12} color={color('black')} text={item.text} />
                   )}
                 </View>
                 {currentTimestamp !== prevTimestamp && (
                   <View style={{marginLeft: 10}}>
-                    <Text fontSize={14} color={color('gray')} text={currentTimestamp} />
+                    <Text fontSize={10} color={color('gray')} text={currentTimestamp} />
                   </View>
                 )}
               </HView>

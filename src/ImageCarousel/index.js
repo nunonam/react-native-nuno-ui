@@ -80,12 +80,13 @@ export default ({
       >
         <ImageViewer
           data={data}
+          index={activeIndex}
           enableSwipeDown={true}
           onSwipeDown={() => setImageViewer(false)}
         />
-        <TouchableOpacity onPress={() => setImageViewer(false)} style={{position: 'absolute', top: 20 + (isIphoneX() ? getStatusBarHeight() : 0), right: 20 }}>
+        {/* <TouchableOpacity onPress={() => setImageViewer(false)} style={{position: 'absolute', top: 20 + (isIphoneX() ? getStatusBarHeight() : 0), right: 20 }}>
           <AntDesign name={'close'} size={20} color={color('white')} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </Modal>
     </View>
   );
