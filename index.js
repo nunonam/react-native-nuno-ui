@@ -23,6 +23,7 @@ import Chat from './src/Chat';
 import Switch from './src/Switch';
 import ProfileBar from './src/Profile';
 import DoubleTap from './src/DoubleTap';
+import Icon from './src/Icon';
 
 class Nuno {
   static init(props) {
@@ -57,4 +58,5 @@ export {
   Switch,
   ProfileBar,
   DoubleTap,
+  Icon,
 };

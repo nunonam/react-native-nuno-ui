@@ -26,7 +26,7 @@ export default function Button(props) {
     case 'large':
       fontSize = 16;
       fontWeight = 'bold';
-      paddingV = props.paddingVertical || 12;
+      paddingV = props.paddingVertical || 14;
       paddingH = props.paddingHorizontal || 20;
       break;
     default:
@@ -47,7 +47,7 @@ export default function Button(props) {
       borderstyle.borderWidth = 0;
     }
   }
-  if (props.borderRadius) {
+  if (props.borderRadius !== undefined) {
     borderstyle.borderRadius = props.borderRadius;
   }
 
@@ -105,6 +105,9 @@ export default function Button(props) {
               }}>
               <Loader color={props.color === color('white') ? color('black') : color('white')} />
             </View>
+          )}
+          {props.bottom && (
+            <Seperator bottom color={props.color} />
           )}
       </TouchableOpacity>
     </HView>

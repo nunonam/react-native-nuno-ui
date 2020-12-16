@@ -67,7 +67,7 @@ export default function Checkbox({
           <Text
             fontSize={labelSize}
             fontWeight={fontWeight ? fontWeight : (checked ? 'bold' : '300')}
-            color={(disabled || !checked) ? 'gray' : labelColor || 'dimgray'}
+            color={(disabled || !checked) ? color('gray') : labelColor || color('darkgray')}
             text={label}
           />
         </View>

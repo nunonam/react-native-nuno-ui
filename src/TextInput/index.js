@@ -41,7 +41,7 @@ export default (props) => {
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
-                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
+                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
                 borderColor: props.borderColor || color('lightgray'),
                 borderRadius: 5,
               }}
@@ -81,7 +81,7 @@ export default (props) => {
                 justifyContent: 'center',
                 padding: props.padding !== undefined ? props.padding : 10,
                 textAlignVertical: props.multiline ? 'top' : 'center',
-                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 1,
+                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
                 borderColor: props.borderColor || color('lightgray'),
                 borderRadius: 4,
               }}

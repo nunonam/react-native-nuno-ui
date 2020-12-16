@@ -1,119 +1,138 @@
 import React from 'react';
 import {TouchableOpacity, View, Platform} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import HView from '../HView';
 import Text from '../Text';
-import { Nuno } from 'react-native-nuno-ui';
+import Icon from '../Icon';
 import { color, ShadowStyle } from 'react-native-nuno-ui/style';
 
-export default function Header({navigation, left, leftComponent, title, right, rightComponent, centerComponent, containerStyle, transparent}) {
-  let headerLeft;
-  let headerRight;
-  let headerCenter = centerComponent || (
-    <View style={{alignItems: 'center'}}>
-      <Text fontSize={18} fontWeight={'500'} color={color('darkgray')} text={title}/>
-    </View>
-    );
+export default function Header(props) {
+  let leftComponent;
+  let rightComponent;
+  let centerComponent;
 
-  switch (left) {
-    case 'close':
-      headerLeft = (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={20} color={transparent ? color('white') : color('black')} />
-        </TouchableOpacity>
-      );
-      break;
-    case 'back':
-      headerLeft = (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{paddingHorizontal: 15, paddingVertical: 5, ...ShadowStyle}}>
-          <AntDesign name={'left'} size={20} color={transparent ? color('white') : color('black')} />
-        </TouchableOpacity>
-      );
-      break;
-    case 'menu':
-      headerLeft = (
-        <TouchableOpacity
-          onPress={() => navigation.toggleDrawer()}
-          style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name="menuunfold" size={20} color={color('black')} />
-        </TouchableOpacity>
-      );
-      break;
-    default:
-      headerLeft = leftComponent || (
-        <View style={{paddingHorizontal: 15, paddingTop: 5}}>
-          <View style={{width: 24, height: 24}} />
-        </View>
-      );
-      break;
+  if (typeof props.center === 'string') {
+    centerComponent = (
+      <View style={{alignItems: 'center'}}>
+        <Text fontSize={16} fontWeight={'500'} color={color('darkgray')} text={props.center}/>
+      </View>
+    )
+  } else {
+    centerComponent = props.center;
   }
-  switch (right) {
-    case 'close':
-      headerRight = (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name={'close'} size={20} color={color('black')} />
-        </TouchableOpacity>
-      );
-      break;
-    case 'search':
-      headerRight = (
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+
+  if (typeof props.right === 'string') {
+    rightComponent = (
+      <View style={{padding: 15}}>
+        <Text fontSize={14} fontWeight={'bold'} color={color('theme')} text={props.right}/>
+      </View>
+    )
+  } else {
+    rightComponent = props.right;
+  }
+
+  if (typeof props.left === 'string') {
+    switch (props.left) {
+      case 'close':
+        leftComponent = (
           <TouchableOpacity
-            onPress={() => null}
-            style={{paddingHorizontal: 15, paddingVertical: 5}}>
-            <AntDesign name="search1" size={20} color={color('black')} />
+            onPress={() => props.navigation.goBack()}
+            style={{padding: 15}}>
+            <Icon name={'close'} size={24} color={props.transparent ? color('white') : color('black')} />
           </TouchableOpacity>
-        </View>
-      );
-      break;
-    case 'setting':
-      headerRight = (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Setting')}
-          style={{paddingHorizontal: 15, paddingVertical: 5}}>
-          <AntDesign name="setting" size={20} color={color('black')} />
-        </TouchableOpacity>
-      );
-      break;
-    default:
-      headerRight = rightComponent || (
-        <View style={{paddingHorizontal: 15, paddingTop: 5}}>
-          <View style={{width: 24, height: 24}} />
-        </View>
-      );
-      break;
+        );
+        break;
+      case 'back':
+        leftComponent = (
+          <TouchableOpacity
+            onPress={() => props.navigation.goBack()}
+            style={{padding: 15}}>
+            <Icon name={'arrow-left'} size={24} color={props.transparent ? color('white') : color('black')} />
+          </TouchableOpacity>
+        );
+        break;
+      case 'menu':
+        leftComponent = (
+          <TouchableOpacity
+            onPress={() => props.navigation.toggleDrawer()}
+            style={{padding: 15}}>
+            <Icon name={'menu'} size={24} color={color('black')} />
+          </TouchableOpacity>
+        );
+        break;
+      default:
+        leftComponent = (
+          <View style={{padding: 15, width: 24, height: 24}} />
+        );
+        break;
+    }
+  } else {
+    leftComponent = props.left;
   }
+
+  // if (typeof props.right === 'string') {
+  //   switch (props.right) {
+  //     case 'close':
+  //       rightComponent = (
+  //         <TouchableOpacity
+  //           onPress={() => props.navigation.goBack()}
+  //           style={{padding: 15}}>
+  //           <Icon name={'close'} size={24} color={color('black')} />
+  //         </TouchableOpacity>
+  //       );
+  //       break;
+  //     case 'search':
+  //       rightComponent = (
+  //         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+  //           <TouchableOpacity
+  //             onPress={() => null}
+  //             style={{padding: 15}}>
+  //             <Icon name={'search'} size={24} color={color('black')} />
+  //           </TouchableOpacity>
+  //         </View>
+  //       );
+  //       break;
+  //     case 'setting':
+  //       rightComponent = (
+  //         <TouchableOpacity
+  //           onPress={() => props.navigation.navigate('Setting')}
+  //           style={{padding: 15}}>
+  //           <Icon name={'setting'} size={24} color={color('black')} />
+  //         </TouchableOpacity>
+  //       );
+  //       break;
+  //     default:
+  //       rightComponent = (
+  //         <View style={{padding: 15, width: 24, height: 24}} />
+  //       );
+  //       break;
+  //   }
+  // } else {
+  //   rightComponent = props.right;
+  // }
+
   return (
     <HView
       style={{
-        height: 50,
-        justifyContent: 'space-between',
-        marginTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
-        borderBottomWidth: transparent ? 0 : 0.5,
+        backgroundColor: color('smokewhite'),
+        paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
+        borderBottomWidth: props.transparent ? 0 : 0.5,
         borderBottomColor: color('lightgray'),
-        paddingTop: 5,
-        position: transparent ? 'absolute' : undefined,
-        top: transparent ? 0 : undefined,
-        left: transparent ? 0 : undefined,
-        right: transparent ? 0 : undefined,
-        zIndex: transparent ? 1 : undefined,
-        ...containerStyle,
+        position: props.transparent ? 'absolute' : undefined,
+        top: props.transparent ? 0 : undefined,
+        left: props.transparent ? 0 : undefined,
+        right: props.transparent ? 0 : undefined,
+        zIndex: props.transparent ? 1 : undefined,
+        ...props.containerStyle,
       }}>
       {/* Left */}
-      <View style={{alignItems: 'flex-start'}}>{headerLeft}</View>
+      <View style={{alignItems: 'flex-start', flex: 0.2}}>{leftComponent}</View>
 
       {/* Title */}
-      {headerCenter}
+      <View style={{alignItems: 'center', flex: 0.6}}>{centerComponent}</View>
 
       {/* Right */}
-      <View style={{alignItems: 'flex-end'}}>{headerRight}</View>
+      <View style={{alignItems: 'flex-end', flex: 0.2}}>{rightComponent}</View>
     </HView>
   );
 }
