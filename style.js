@@ -40,6 +40,8 @@ export function color(lightValue) {
       return Nuno.config.DARKMODE ? '#333333' : '#DEDEDE';
     case 'white':
       return Nuno.config.DARKMODE ? 'black' : 'white';
+    case 'smokewhite':
+      return Nuno.config.DARKMODE ? '#151515' : '#F9F9F9';
     case 'theme':
       return Nuno.config.DARKMODE ? Nuno.config.THEME : Nuno.config.THEME;
     case 'themelight':
