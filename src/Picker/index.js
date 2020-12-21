@@ -6,11 +6,11 @@ import {
   // Picker,
   TouchableOpacity,
 } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Seperator from '../Seperator';
 import Text from '../Text';
 import {color} from 'react-native-nuno-ui/style';
 import {Picker} from '@react-native-community/picker';
+import Icon from 'react-native-nuno-ui/src/Icon';
 
 export default ({
   items,
@@ -51,27 +51,28 @@ export default ({
             }
             style={{
               flexDirection: 'row',
-              justifyContent: 'space-between',
+              // justifyContent: 'space-between',
               alignItems: 'center',
               borderWidth: borderWidth !== undefined ? borderWidth : 1,
               borderColor: color('lightgray'),
               borderRadius: 4,
               backgroundColor: color('white'),
               height: 44,
-              paddingHorizontal: 10,
+              // paddingHorizontal: 10,
             }}>
             <View>
               {selected.length > 0 ? (
                 !disabled ? (
-                  <Text fontSize={14} color={color('darkgray')} text={selected[0].name} />
+                  <Text fontSize={14} color={color('black')} text={selected[0].name} />
                 ) : (
-                  <Text fontSize={14} color={color('lightgray')} text={selected[0].name} />
+                  <Text fontSize={14} color={color('gray')} text={selected[0].name} />
                 )
               ) : (
-                <Text fontSize={14} color={color('darkgray')} text={placeholder} />
+                <Text fontSize={14} color={color('black')} text={placeholder} />
               )}
             </View>
-            <AntDesign name={'down'} size={10} color={color('black')} />
+            <Seperator width={5} />
+            <Icon name={'chevron-right'} size={18} color={color('theme')} />
           </TouchableOpacity>
 
           <Modal
@@ -101,7 +102,7 @@ export default ({
                 <TouchableOpacity
                   onPress={() => setShowPicker(!showPicker)}
                   style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                  <AntDesign name={'close'} size={20} color={color('gray')} />
+                  <Icon name={'close'} size={20} color={color('gray')} />
                 </TouchableOpacity>
               </View>}
               <View style={{backgroundColor: backgroundColor || color('gray')}}>

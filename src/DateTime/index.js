@@ -2,9 +2,8 @@ import React from 'react';
 import {Platform, Modal, View, TouchableOpacity} from 'react-native';
 import Seperator from '../Seperator';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
-import { Nuno } from 'react-native-nuno-ui';
+import { Icon, Nuno } from 'react-native-nuno-ui';
 import { color } from 'react-native-nuno-ui/style';
 import { formatYYMMDD } from 'react-native-nuno-ui/funcs';
 
@@ -47,7 +46,7 @@ export default function DateTime(props) {
           alignItems: 'center',
           backgroundColor: color('white'),
           borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
-          borderColor: color('lightgray'),
+          borderColor: color('gray'),
           borderRadius: 5,
           paddingHorizontal: 10,
           height: 44,
@@ -60,7 +59,7 @@ export default function DateTime(props) {
           )}
         </View>
         <View>
-          <AntDesign name={'down'} size={10} color={color('black')} />
+          <Icon name={'chevron-down'} size={18} color={color('black')} />
         </View>
       </TouchableOpacity>
 
@@ -88,7 +87,7 @@ export default function DateTime(props) {
               <TouchableOpacity
                 onPress={() => setShowPicker(!showPicker)}
                 style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                <AntDesign name={'close'} size={20} color={color('gray')} />
+                <Icon name={'close'} size={20} color={color('black')} />
               </TouchableOpacity>
             </View>}
             <View style={{backgroundColor: props.backgroundColor || 'dimgray'}}>

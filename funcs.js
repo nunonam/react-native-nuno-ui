@@ -176,6 +176,30 @@ export async function getAddressFromGeoCode(latitude, longitude) {
       });
   });
 }
+export function getPlaces(keyword) {
+  return new Promise((resolve, reject) => {
+    fetch(
+      'https://maps.googleapis.com/maps/api/place/textsearch/json?' +
+        new URLSearchParams({
+          query: keyword,
+          key: Nuno.config.GOOGLE_API_KEY,
+          fields: 'formatted_address,name,geometry',
+          language: 'ko-KR',
+          region: 'ko-KR',
+        }),
+      {
+        method: 'GET',
+      },
+    )
+      .then(async res => {
+        const response = await res.json();
+        resolve({data: response.results});
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}
 export async function getCurrentCoords() {
   const isEmulator = await deviceInfoModule.isEmulator();
   return new Promise((resolve, reject) => {

@@ -7,33 +7,37 @@ import { color } from 'react-native-nuno-ui/style';
 import Seperator from 'react-native-nuno-ui/src/Seperator';
 
 export default function Button(props) {
-  let fontSize, fontWeight, paddingV, paddingH;
+  let fontSize, fontWeight, paddingHorizontal, height;
   const borderstyle = {borderWidth: 0.5, borderRadius: 4};
   const textstyle = {color: 'white'};
   switch (props.size) {
     case 'small':
       fontSize = 12;
       fontWeight = 'normal';
-      paddingV = props.paddingVertical || 2;
-      paddingH = props.paddingHorizontal || 10;
-      break;
-    case 'medium':
-      fontSize = 13;
-      fontWeight = 'bold';
-      paddingV = props.paddingVertical || 7;
-      paddingH = props.paddingHorizontal || 10;
+      paddingHorizontal = props.paddingHorizontal || 10;
+      height = 24;
+      if (props.rounded) {
+        borderstyle.borderRadius = 12;
+      }
       break;
     case 'large':
       fontSize = 16;
       fontWeight = 'bold';
-      paddingV = props.paddingVertical || 14;
-      paddingH = props.paddingHorizontal || 20;
+      paddingHorizontal = props.paddingHorizontal || 20;
+      height = 44;
+      if (props.rounded) {
+        borderstyle.borderRadius = 22;
+      }
       break;
+    case 'medium':
     default:
-      fontSize = 14;
+      fontSize = 13;
       fontWeight = 'bold';
-      paddingV = props.paddingVertical || 10;
-      paddingH = props.paddingHorizontal || 15;
+      paddingHorizontal = props.paddingHorizontal || 10;
+      height = 34;
+      if (props.rounded) {
+        borderstyle.borderRadius = 17;
+      }
       break;
   }
 
@@ -50,6 +54,7 @@ export default function Button(props) {
   if (props.borderRadius !== undefined) {
     borderstyle.borderRadius = props.borderRadius;
   }
+
 
   // text color
   if (props.disable) {
@@ -75,8 +80,8 @@ export default function Button(props) {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingHorizontal: paddingH,
-            paddingVertical: paddingV,
+            height: height,
+            paddingHorizontal: paddingHorizontal,
             backgroundColor: props.disable ? color('lightgray') : props.color,
             ...borderstyle,
             }}>
@@ -107,7 +112,7 @@ export default function Button(props) {
             </View>
           )}
           {props.bottom && (
-            <Seperator bottom color={props.color} />
+            <Seperator bottom color={props.disable ? color('lightgray') : props.color} />
           )}
       </TouchableOpacity>
     </HView>

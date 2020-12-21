@@ -116,6 +116,7 @@ export default function Header(props) {
       style={{
         backgroundColor: color('smokewhite'),
         paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
+        height: Platform.OS === 'ios' ? 60 + getStatusBarHeight() : 60,
         borderBottomWidth: props.transparent ? 0 : 0.5,
         borderBottomColor: color('lightgray'),
         position: props.transparent ? 'absolute' : undefined,
