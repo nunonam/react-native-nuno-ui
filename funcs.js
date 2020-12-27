@@ -449,6 +449,13 @@ export function formatYYMMDD(d) {
 
   return year + '년 ' + month + '월 ' + day + '일';
 }
+export function formatYYMM(d) {
+  const date = new Date(d);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+
+  return year + '년 ' + month + '월 ';
+}
 export function fromNow(date) {
 
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);

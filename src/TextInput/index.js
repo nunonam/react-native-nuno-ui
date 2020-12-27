@@ -12,7 +12,7 @@ import MaskedInput from 'react-native-masked-input-text';
 import Text from '../Text';
 import HView from '../HView';
 import Seperator from '../Seperator';
-import { Nuno } from 'react-native-nuno-ui';
+import { Icon, Nuno } from 'react-native-nuno-ui';
 import {color} from 'react-native-nuno-ui/style';
 
 const inputAccessoryViewID = 'keyboard-id';
@@ -43,7 +43,7 @@ export default (props) => {
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
                 borderColor: props.borderColor || color('lightgray'),
-                borderRadius: 5,
+                borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
               }}
               placeholder={props.placeholder}
               placeholderTextColor={props.placeholderTextColor || color('gray')}
@@ -83,7 +83,7 @@ export default (props) => {
                 textAlignVertical: props.multiline ? 'top' : 'center',
                 borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
                 borderColor: props.borderColor || color('lightgray'),
-                borderRadius: 4,
+                borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
               }}
               placeholder={props.placeholder}
               placeholderTextColor={props.placeholderTextColor || color('gray')}
@@ -134,8 +134,14 @@ export default (props) => {
           </TouchableOpacity>
         )}
 
+        {props.showMagnify && (
+          <View
+            style={{position: 'absolute', right: 20}}>
+            <Icon name={'magnify'} size={24} color={color('theme')} />
+          </View>
+        )}
         {props.unit && (
-          <View style={{position: 'absolute', right: 5}}>
+          <View style={{position: 'absolute', right: 10}}>
             <Text fontSize={14} text={props.unit} />
           </View>
         )}

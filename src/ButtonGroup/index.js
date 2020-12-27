@@ -20,8 +20,8 @@ export default function ButtonGroup(props) {
               style={{
                 flex: 1,
                 borderWidth: 1,
-                borderColor: props.value === e.code ? props.color : color('lightgray'),
-                zIndex: props.value === e.code ? 100 : undefined,
+                borderColor: typeof props.value === 'string' ? (props.value === e.code ? props.color : color('lightgray')) : (props.value.indexOf(e.code) !== -1 ? props.color : color('lightgray')),
+                zIndex: typeof props.value === 'string' ? (props.value === e.code ? 100 : undefined) : (props.value.indexOf(e.code) !== -1 ? 100 : undefined),
                 alignItems: 'center',
                 paddingVertical: 10,
                 marginLeft: i !== 0 ? -1 : 0,
@@ -30,7 +30,7 @@ export default function ButtonGroup(props) {
                 fontSize={14}
                 fontWeight={'500'}
                 text={e.name}
-                color={props.value === e.code ? props.color : color('gray')}
+                color={typeof props.value === 'string' ? (props.value === e.code ? props.color : color('gray')) : (props.value.indexOf(e.code) !== -1 ? props.color : color('gray'))}
               />
             </TouchableOpacity>
           );

@@ -1,12 +1,23 @@
 import React from 'react';
 import {TouchableOpacity, View, Modal} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { ImageViewer } from 'react-native-nuno-ui';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { ImageViewer, Icon } from 'react-native-nuno-ui';
 import {isIphoneX, getStatusBarHeight} from 'react-native-iphone-x-helper';
 import { color } from 'react-native-nuno-ui/style';
 
-export default function Image({height, width, borderRadius, borderColor, borderWidth, uri, onPress, resizeMode, useViewer}) {
+export default function Image({
+  height,
+  width,
+  borderRadius,
+  borderColor,
+  borderWidth,
+  uri,
+  onPress,
+  resizeMode,
+  viewer,
+  viewerUris, // viewer가 true이면 viewerUris 에 배열로 꼭 넣어줘야 한다
+  viewerIndex, // viewer가 true이면 viewerIndex 에 꼭 넣어줘야 한다
+}) {
   const [imageViewer, setImageViewer] = React.useState(false);
   if (!resizeMode) {
     resizeMode = 'cover';
@@ -29,7 +40,7 @@ export default function Image({height, width, borderRadius, borderColor, borderW
         </TouchableOpacity>
       );
     } else {
-      if (useViewer) {
+      if (viewer) {
         return (
           <View>
             <TouchableOpacity onPress={() => setImageViewer(true)}>
@@ -55,19 +66,20 @@ export default function Image({height, width, borderRadius, borderColor, borderW
               }}
             >
               <ImageViewer
-                data={[uri]}
+                data={viewerUris}
+                index={viewerIndex}
                 enableSwipeDown={true}
                 onSwipeDown={() => setImageViewer(false)}
               />
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => setImageViewer(false)}
                 style={{
                   position: 'absolute',
                   top: 20 + (isIphoneX() ? getStatusBarHeight() : 0),
                   right: 20,
                 }}>
-                <AntDesign name={'close'} size={20} color={color('white')} />
-              </TouchableOpacity>
+                <Icon name={'close'} size={20} color={color('white')} />
+              </TouchableOpacity> */}
             </Modal>
           </View>
         );

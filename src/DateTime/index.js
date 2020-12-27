@@ -99,6 +99,7 @@ export default function DateTime(props) {
                   mode={props.mode || 'date'}
                   locale={Nuno.config.LANG}
                   maximumDate={props.maximumDate}
+                  minimumDate={props.minimumDate}
                   format="lll"
                   display="default"
                   minuteInterval={props.minuteInterval}
@@ -118,6 +119,7 @@ export default function DateTime(props) {
             mode={props.mode || 'date'}
             locale={Nuno.config.LANG}
             maximumDate={props.maximumDate}
+            minimumDate={props.minimumDate}
             format="lll"
             display="spinner"
             onChange={(e, date) => {

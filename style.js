@@ -9,11 +9,11 @@ export const bottomTabHeight = 50;
 export const ShadowStyle = {
   shadowColor: 'black',
   shadowOffset: {
-    width: 2,
-    height: 5,
+    width: 0,
+    height: 2,
   },
-  shadowOpacity: 0.7,
-  shadowRadius: 6,
+  shadowOpacity: 0.2,
+  shadowRadius: 4,
   elevation: 3,
 };
 

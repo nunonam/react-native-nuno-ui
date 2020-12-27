@@ -102,7 +102,7 @@ export default ({
                 <TouchableOpacity
                   onPress={() => setShowPicker(!showPicker)}
                   style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                  <Icon name={'close'} size={20} color={color('gray')} />
+                  <Icon name={'close'} size={20} color={color('black')} />
                 </TouchableOpacity>
               </View>}
               <View style={{backgroundColor: backgroundColor || color('gray')}}>

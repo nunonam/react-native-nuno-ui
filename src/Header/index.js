@@ -115,7 +115,7 @@ export default function Header(props) {
     <HView
       style={{
         backgroundColor: color('smokewhite'),
-        paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
+        paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() + 8 : 8,
         height: Platform.OS === 'ios' ? 60 + getStatusBarHeight() : 60,
         borderBottomWidth: props.transparent ? 0 : 0.5,
         borderBottomColor: color('lightgray'),

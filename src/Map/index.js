@@ -1,12 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity, Linking, Alert} from 'react-native';
 import MapView, {Callout, Marker} from 'react-native-maps';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { screenWidth, color, ShadowStyle } from 'react-native-nuno-ui/style';
 import Seperator from '../Seperator';
-import { Nuno } from 'react-native-nuno-ui';
+import { Icon, Nuno } from 'react-native-nuno-ui';
 import { getCurrentLocation, getAddressFromGeoCode } from 'react-native-nuno-ui/funcs';
 import Text from '../Text';
 
@@ -23,6 +20,7 @@ export default function Map({
   onMapReady,
   getCurrentPosition,
   markerOnSelect,
+  style,
 }) {
   let mapRef = React.useRef();
   const [camera, setCamera] = React.useState({
@@ -43,7 +41,7 @@ export default function Map({
         const temp = {...camera};
         temp.center = loc.coords;
         setCamera(temp);
-        getCurrentPosition(loc.coords);
+        getCurrentPosition && getCurrentPosition(loc.coords);
       } catch (err) {
         if (err === 'denied') {
           Alert.alert('위치정보 동의', '현재 내위치를 확인하기 위해 위치정보 동의가 필요합니다.', [
@@ -70,14 +68,14 @@ export default function Map({
     const temp = await mapRef.getCamera();
     temp.altitude = 1;
     setCamera(temp);
-    getCurrentPosition(temp.center);
+    getCurrentPosition && getCurrentPosition(temp.center);
   };
   const onPressCurrent = async () => {
     const loc = await getCurrentLocation(Nuno.config.LANG);
     const temp = {...camera};
     temp.center = loc.coords;
     mapRef.animateCamera(temp, {duration: 500});
-    getCurrentPosition(loc.coords);
+    getCurrentPosition && getCurrentPosition(loc.coords);
   };
 
   const onPressZoomOut = () => {
@@ -91,12 +89,12 @@ export default function Map({
     mapRef.animateCamera(temp, {duration: 500});
   };
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', ...style}}>
       <MapView
         provider={Nuno.config.MAP_PROVIDER}
         onMapReady={onMapReady}
         ref={e => mapRef = e}
-        style={{width: screenWidth, flex: 1}}
+        // style={{width: screenWidth, flex: 1}}
         camera={camera}
         showsCompass={false}
         initialCamera={camera}
@@ -127,7 +125,7 @@ export default function Map({
           marginLeft: -20,
           marginTop: -20,
         }}>
-        {customCenter || <MaterialIcons name={'location-on'} color={'red'} size={40} />}
+        {customCenter || <Icon name={'map-marker'} size={40} color={'red'} />}
       </View>
       {/* zoom control */}
       <View style={{position: 'absolute', bottom: 20, right: 20}}>
@@ -146,7 +144,7 @@ export default function Map({
               justifyContent: 'center',
               ...ShadowStyle,
             }}>
-            <Entypo name={'plus'} size={20} />
+            <Icon name={'plus'} size={20} />
           </TouchableOpacity>
           <Seperator height={10} />
           <TouchableOpacity
@@ -162,7 +160,7 @@ export default function Map({
               justifyContent: 'center',
               ...ShadowStyle,
             }}>
-            <Entypo name={'minus'} size={20} />
+            <Icon name={'minus'} size={20} />
           </TouchableOpacity>
         </View>)}
         {showCurrent && (
@@ -181,11 +179,11 @@ export default function Map({
                 justifyContent: 'center',
                 ...ShadowStyle,
               }}>
-              <MaterialIcons name={'my-location'} size={20} />
+              <Icon name={'location'} size={20} />
             </TouchableOpacity>
           </View>)}
-          <Seperator bottom />
-        </View>
+        <Seperator bottom />
+      </View>
     </View>
   );
 };
