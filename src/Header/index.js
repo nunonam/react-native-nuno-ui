@@ -22,11 +22,24 @@ export default function Header(props) {
   }
 
   if (typeof props.right === 'string') {
-    rightComponent = (
-      <View style={{padding: 15}}>
-        <Text fontSize={14} fontWeight={'bold'} color={color('theme')} text={props.right}/>
-      </View>
-    )
+    switch (props.right) {
+      case 'close':
+        rightComponent = (
+          <TouchableOpacity
+            onPress={() => props.navigation.goBack()}
+            style={{padding: 15}}>
+            <Icon name={'close'} size={24} color={props.transparent ? color('white') : color('black')} />
+          </TouchableOpacity>
+        );
+        break;
+      default:
+        rightComponent = (
+          <View style={{padding: 15}}>
+            <Text fontSize={14} fontWeight={'bold'} color={color('theme')} text={props.right}/>
+          </View>
+        );
+        break;
+    }
   } else {
     rightComponent = props.right;
   }
