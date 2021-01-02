@@ -62,17 +62,17 @@ export default ({
             }}>
             <View>
               {selected.length > 0 ? (
-                !disabled ? (
+                // !disabled ? (
                   <Text fontSize={14} color={color('black')} text={selected[0].name} />
-                ) : (
-                  <Text fontSize={14} color={color('gray')} text={selected[0].name} />
-                )
+                // ) : (
+                //   <Text fontSize={14} color={color('gray')} text={selected[0].name} />
+                // )
               ) : (
                 <Text fontSize={14} color={color('black')} text={placeholder} />
               )}
             </View>
             <Seperator width={5} />
-            <Icon name={'chevron-right'} size={18} color={color('theme')} />
+            {!disabled && <Icon name={'chevron-right'} size={18} color={color('theme')} />}
           </TouchableOpacity>
 
           <Modal

@@ -16,6 +16,7 @@ import Geolocation from 'react-native-geolocation-service';
 import deviceInfoModule from 'react-native-device-info';
 import analytics from '@react-native-firebase/analytics';
 import Axios from 'axios';
+import proj4 from 'proj4';
 
 export function log(func, data) {
   console.log(func, data);
@@ -53,6 +54,10 @@ export function errorApi(req, err) {
     .then((res) => console.log('[ERROR UPLOAD]', res.data))
     .catch((e) => console.log('[ERROR UPLOAD] error', e));
   }
+}
+export function getIndexById(array, id) {
+  const foundIndex = array.map((e) => e.id === id).indexOf(id);
+  return foundIndex;
 }
 export function toCurrencyFormat(value) {
   if (value === undefined || value === null) {
@@ -220,6 +225,11 @@ export async function getCurrentCoords() {
       );
     }
   });
+}
+export function convertToEPSG4326(x, y) {
+  var from = '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs';
+  var to = '+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 +datum=WGS84 +units=degrees';
+  return proj4(from, to, [x, y]);
 }
 export async function getCurrentLocation() {
   /*
