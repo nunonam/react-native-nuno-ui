@@ -452,12 +452,16 @@ export function formatAMPM(date) {
   return strTime;
 }
 export function formatYYMMDD(d) {
-  const date = new Date(d);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  if (d) {
+    const date = new Date(d);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
-  return year + '년 ' + month + '월 ' + day + '일';
+    return year + '년 ' + month + '월 ' + day + '일';
+  } else {
+    return '';
+  }
 }
 export function formatYYMM(d) {
   const date = new Date(d);
