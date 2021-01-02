@@ -7,12 +7,12 @@ import Button from '../Button';
 import HView from '../HView';
 import TextInput from '../TextInput';
 import Image from '../Image';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {screenWidth, color} from 'react-native-nuno-ui/style';
 import { formatAMPM, formatYYMMDD } from '../../funcs';
 import { ProfileBar } from 'react-native-nuno-ui';
+import Icon from 'react-native-nuno-ui/src/Icon';
 
 export default (props) => {
   const [message, setMessage] = React.useState('');
@@ -34,7 +34,7 @@ export default (props) => {
     const nextDate = index < props.messages.length - 1 && formatYYMMDD(nextCreatedAt);
 
     // system message
-    if (item.bySystem) {
+    if (item.system) {
       return (
         <View style={{padding: 20}}>
           <View style={{alignItems: 'center', backgroundColor: color('lightgray'), padding: 20, borderRadius: 5}}>
@@ -141,6 +141,20 @@ export default (props) => {
       }
     }
   };
+  const openCalendar = () => {
+    props.navigation.navigate('Calendar', {
+      return: (data) => {
+        props.onSend({date: date});
+      },
+    });
+  }
+  const openAddress = () => {
+    props.navigation.navigate('Address', {
+      return: ({address, coords}) => {
+        props.onSend({address: address, coords: coords});
+      },
+    });
+  }
   return (
     <View style={{flex: 1}}>
       <FlatList
@@ -162,7 +176,13 @@ export default (props) => {
         {props.leftComponent}
         <View style={{flex: 1}}>
           <HView>
-            <View style={{flex: 1, paddingHorizontal: 15, paddingVertical: 2}}>
+            <TouchableOpacity onPress={openCalendar} style={{padding: 15, paddingRight: 7}}>
+              <Icon name={'calendar'} size={20} color={color('black')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={openAddress} style={{padding: 15, paddingLeft: 7}}>
+              <Icon name={'map-marker'} size={20} color={color('black')} />
+            </TouchableOpacity>
+            <View style={{flex: 1, paddingVertical: 2}}>
               <TextInput
                 placeholder={props.disable ? '메세지를 입력할수 없습니다': '메세지를 입력해주세요'}
                 onChangeText={(e) => setMessage(e)}
@@ -173,7 +193,7 @@ export default (props) => {
               />
             </View>
             <TouchableOpacity onPress={() => send()} style={{padding: 15}}>
-              <MaterialIcons name={'send'} size={20} color={message ? color('black') : color('gray')} />
+              <Icon name={'send'} size={20} color={message ? color('black') : color('gray')} />
             </TouchableOpacity>
           </HView>
         </View>
