@@ -2,6 +2,7 @@ import Button from './src/Button';
 import ButtonMulti from './src/ButtonMulti';
 import ButtonGroup from './src/ButtonGroup';
 import Loader from './src/Loader';
+import LoaderFull from './src/LoaderFull';
 import Seperator from './src/Seperator';
 import Checkbox from './src/Checkbox';
 import Text from './src/Text';
@@ -37,6 +38,7 @@ export {
   ButtonMulti,
   ButtonGroup,
   Loader,
+  LoaderFull,
   Seperator,
   Checkbox,
   Text,

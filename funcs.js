@@ -441,15 +441,20 @@ export function getDateFromHours(timeStr) {
   let date = new Date();
   return date.setHours(h, m, s);
 }
-export function formatAMPM(date) {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
+export function formatAMPM(d) {
+  if (d) {
+    const date = new Date(d);
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    const strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  } else {
+    return '';
+  }
 }
 export function formatYYMMDD(d, cr) {
   if (d) {
