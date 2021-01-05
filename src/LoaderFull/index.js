@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { color } from 'react-native-nuno-ui/style';
 
-export function LoaderFull(props) {
+export default function LoaderFull(props) {
   return (
     <Modal visible={true} transparent animationType={'none'}>
       <View
