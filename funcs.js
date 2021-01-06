@@ -456,6 +456,34 @@ export function formatAMPM(d) {
     return '';
   }
 }
+export function formatDash(d) {
+  if (d) {
+    const date = new Date(d);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month >= 10 ? month : '0' + month;
+    let day = date.getDate();
+    day = day >= 10 ? day : '0' + day;
+
+    return year + '-'  + month + '-' + day;
+  } else {
+    return '';
+  }
+}
+export function formatDot(d) {
+  if (d) {
+    const date = new Date(d);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month >= 10 ? month : '0' + month;
+    let day = date.getDate();
+    day = day >= 10 ? day : '0' + day;
+
+    return year + '.'  + month + '.' + day;
+  } else {
+    return '';
+  }
+}
 export function formatYYMMDD(d, cr) {
   if (d) {
     const date = new Date(d);
