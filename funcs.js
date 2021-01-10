@@ -59,12 +59,20 @@ export function getIndexById(array, id) {
   const foundIndex = array.map((e) => e.id === id).indexOf(id);
   return foundIndex;
 }
-export function toCurrencyFormat(value) {
+export function numberToCurrency(value) {
   if (value === undefined || value === null) {
-    return;
+    return '';
   }
-  const temp = value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-  return temp + '원';
+  const temp = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  // replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  return temp;
+}
+export function currencyToNumber(value) {
+  if (value === undefined || value === null) {
+    return 0;
+  }
+  let num = Number(value.replace(/[^0-9.-]+/g, ''));
+  return num;
 }
 export function ga(event, payload) {
   // event, payload 둘다 string
