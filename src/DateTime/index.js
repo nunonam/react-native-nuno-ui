@@ -101,7 +101,7 @@ export default function DateTime(props) {
                   maximumDate={props.maximumDate}
                   minimumDate={props.minimumDate}
                   format="lll"
-                  display="default"
+                  display={Platform.OS === 'ios' ? (props.display || 'inline') : (props.display || 'default')}
                   minuteInterval={props.minuteInterval}
                   onChange={(e, date) => {
                     props.onChange(date);

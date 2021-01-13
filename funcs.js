@@ -55,6 +55,22 @@ export function errorApi(req, err) {
     .catch((e) => console.log('[ERROR UPLOAD] error', e));
   }
 }
+export function getNameByCode(array, code) {
+  const temp = array.filter((e) => e.code === code);
+  if (temp.length > 0) {
+    return temp[0].name;
+  } else {
+    return '';
+  }
+}
+export function getDescByCode(array, code) {
+  const temp = array.filter((e) => e.code === code);
+  if (temp.length > 0) {
+    return temp[0].desc;
+  } else {
+    return '';
+  }
+}
 export function getIndexById(array, id) {
   const foundIndex = array.map((e) => e.id === id).indexOf(id);
   return foundIndex;
