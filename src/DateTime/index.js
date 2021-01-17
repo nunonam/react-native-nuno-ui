@@ -106,7 +106,7 @@ export default function DateTime(props) {
                   onChange={(e, date) => {
                     props.onChange(date);
                   }}
-                  value={props.value || new Date()}
+                  value={props.value ? new Date(props.value) : new Date()}
                 />
               </View>
               <Seperator bottom />
@@ -129,7 +129,7 @@ export default function DateTime(props) {
               }
             }}
             textColor={color('black')}
-            value={props.value || new Date()}
+            value={props.value ? new Date(props.value) : new Date()}
           />
         )
       )}
