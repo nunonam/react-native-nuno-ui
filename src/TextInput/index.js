@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaskedInput from 'react-native-masked-input-text';
 import Text from '../Text';
 import HView from '../HView';
 import Seperator from '../Seperator';
@@ -30,82 +29,41 @@ export default (props) => {
       )}
       <HView>
         <View style={{flex: 1}}>
-          {props.mask ? (
-            <MaskedInput
-              ref={props.forwardRef}
-              style={{
-                fontSize: 14,
-                color: props.color || color('darkgray'),
-                backgroundColor: props.backgroundColor || color('white'),
-                height: props.height || (props.multiline ? 150 : 44),
-                justifyContent: 'center',
-                padding: props.padding !== undefined ? props.padding : 10,
-                textAlignVertical: props.multiline ? 'top' : 'center',
-                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
-                borderColor: props.borderColor || color('lightgray'),
-                borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
-              }}
-              placeholder={props.placeholder}
-              placeholderTextColor={props.placeholderTextColor || color('gray')}
-              onChangeText={props.onChangeText}
-              onChange={props.onChange}
-              blurOnSubmit={props.blurOnSubmit}
-              onKeyPress={props.onKeyPress}
-              value={props.value}
-              autoFocus={props.autoFocus}
-              maxLength={props.maxLength}
-              multiline={props.multiline}
-              keyboardType={props.keyboardType}
-              returnKeyType={props.returnKeyType}
-              returnKeyLabel={props.returnKeyLabel}
-              numberOfLines={props.numberOfLines}
-              secureTextEntry={secureTextEntry}
-              clearButtonMode={props.clearButtonMode}
-              autoCapitalize={props.autoCapitalize}
-              onContentSizeChange={props.onContentSizeChange}
-              onSubmitEditing={props.onSubmitEditing}
-              inputAccessoryViewID={inputAccessoryViewID}
-              mask={props.mask}
-              editable={props.editable}
-              onFocus={props.onFocus}
-              onBlur={props.onBlur}
-            />
-          ) : (
-            <TextInput
-              ref={props.forwardRef}
-              style={{
-                fontSize: 14,
-                color: props.color || color('darkgray'),
-                backgroundColor: props.backgroundColor || color('white'),
-                height: props.height || (props.multiline ? 150 : 44),
-                justifyContent: 'center',
-                padding: props.padding !== undefined ? props.padding : 10,
-                textAlignVertical: props.multiline ? 'top' : 'center',
-                borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
-                borderColor: props.borderColor || color('lightgray'),
-                borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
-              }}
-              placeholder={props.placeholder}
-              placeholderTextColor={props.placeholderTextColor || color('gray')}
-              onChangeText={props.onChangeText}
-              value={props.value}
-              autoFocus={props.autoFocus}
-              maxLength={props.maxLength}
-              secureTextEntry={secureTextEntry}
-              autoCapitalize={props.autoCapitalize}
-              multiline={props.multiline}
-              editable={props.editable}
-              numberOfLines={props.numberOfLines}
-              returnKeyType={props.returnKeyType}
-              returnKeyLabel={props.returnKeyLabel}
-              keyboardType={props.keyboardType}
-              clearButtonMode={props.clearButtonMode}
-              onContentSizeChange={props.onContentSizeChange}
-              onSubmitEditing={props.onSubmitEditing}
-              inputAccessoryViewID={inputAccessoryViewID}
-              onBlur={props.onBlur}
-            />
-          )}
+          <TextInput
+            ref={props.forwardRef}
+            style={{
+              fontSize: 14,
+              color: props.color || color('darkgray'),
+              backgroundColor: props.backgroundColor || color('white'),
+              height: props.height || (props.multiline ? 150 : 44),
+              justifyContent: 'center',
+              padding: props.padding !== undefined ? props.padding : 10,
+              textAlignVertical: props.multiline ? 'top' : 'center',
+              borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
+              borderColor: props.borderColor || color('lightgray'),
+              borderRadius: props.borderRadius !== undefined ? props.borderRadius : 4,
+              ...props.style,
+            }}
+            placeholder={props.placeholder}
+            placeholderTextColor={props.placeholderTextColor || color('gray')}
+            onChangeText={props.onChangeText}
+            value={props.value}
+            autoFocus={props.autoFocus}
+            maxLength={props.maxLength}
+            secureTextEntry={secureTextEntry}
+            autoCapitalize={props.autoCapitalize}
+            multiline={props.multiline}
+            editable={props.editable}
+            numberOfLines={props.numberOfLines}
+            returnKeyType={props.returnKeyType}
+            returnKeyLabel={props.returnKeyLabel}
+            keyboardType={props.keyboardType}
+            clearButtonMode={props.clearButtonMode}
+            onContentSizeChange={props.onContentSizeChange}
+            onSubmitEditing={props.onSubmitEditing}
+            inputAccessoryViewID={inputAccessoryViewID}
+            onBlur={props.onBlur}
+          />
         </View>
         {props.showRemain && (
           <View style={{position: 'absolute', right: 0, top: -30}}>

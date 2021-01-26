@@ -17,11 +17,10 @@ export default ({
   backgroundImageStyle,
   onBackdropPress,
   onConfirm,
-  onCancel,
-  nonFlex
+  onCancel
 }) => {
   return (
-    <View style={{flex: nonFlex ? undefined : 1}}>
+    <View style={{flex: 1}}>
       {backgroundImage ? (
         <ImageBackground source={backgroundImage} style={{flex: 1, ...backgroundImageStyle}}>
           {children}
@@ -50,7 +49,7 @@ export default ({
                 </>
               )}
               <View style={{flex: 1}}>
-                <Button text={'확인'} color={alertButtonColor || color('theme')} onPress={onConfirm} stretch size={'large'} />
+                <Button text={'확인'} color={alertButtonColor || color('theme')} onPress={onConfirm} stretch rounded size={'large'} />
               </View>
             </HView>
           </View>

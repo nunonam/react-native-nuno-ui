@@ -68,7 +68,8 @@ export default ({
                 //   <Text fontSize={14} color={color('gray')} text={selected[0].name} />
                 // )
               ) : (
-                <Text fontSize={14} color={color('black')} text={placeholder} />
+                <Text fontSize={14} color={'red'} text={placeholder} />
+                // <Text fontSize={14} color={color('black')} text={placeholder} />
               )}
             </View>
             <Seperator width={5} />

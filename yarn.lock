@@ -1112,11 +1112,6 @@ react-native-maps@^0.27.1:
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.27.1.tgz#2f10cd417bb2fd938c9e015b1c9b6d9b1a44b97f"
   integrity sha512-HygBkZBecTnIVRYrSiLRAvu4OmXOYso/A7c6Cy73HkOh9CgGV8Ap5eBea24tvmFGptjj5Hg8AJ94/YbmWK1Okw==
 
-react-native-masked-input-text@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/react-native-masked-input-text/-/react-native-masked-input-text-1.0.11.tgz#287585b4f60d51fbb7a7a2f2074ae07a9042616b"
-  integrity sha512-6y1Q3SlroBZ8CgeAi5liB6cJp57yV0XB9tsNsOB4O6GZ7LT+Q7KtHbTri0ZT/vKKnOCXAPoSUB+wTm5A4gDVAQ==
-
 react-native-modal@^11.5.6:
   version "11.5.6"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.5.6.tgz#bb25a78c35a5e24f45de060e5f64284397d38a87"
