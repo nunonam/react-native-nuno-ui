@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Text from '../Text';
 import HView from '../HView';
 import Seperator from '../Seperator';
@@ -35,9 +34,8 @@ export default (props) => {
               fontSize: 14,
               color: props.color || color('darkgray'),
               backgroundColor: props.backgroundColor || color('white'),
-              height: props.height || (props.multiline ? 150 : 44),
               justifyContent: 'center',
-              padding: props.padding !== undefined ? props.padding : 10,
+              padding: props.padding !== undefined ? props.padding : (Platform.OS === 'ios' ? 12 : 10),
               textAlignVertical: props.multiline ? 'top' : 'center',
               borderWidth: props.borderWidth !== undefined ? props.borderWidth : 0.5,
               borderColor: props.borderColor || color('lightgray'),
@@ -85,9 +83,9 @@ export default (props) => {
             onPress={() => setSecureTextEntry(!secureTextEntry)}
             style={{position: 'absolute', right: 20}}>
             {secureTextEntry ? (
-              <AntDesign name={'eye'} size={20} color={color('lightgray')} />
+              <Icon name={'eye'} size={20} color={color('lightgray')} />
             ) : (
-              <AntDesign name={'eye'} size={20} color={color('black')} />
+              <Icon name={'eye'} size={20} color={color('black')} />
             )}
           </TouchableOpacity>
         )}
@@ -123,7 +121,7 @@ export default (props) => {
                 justifyContent: 'center',
               }}
               onPress={() => Keyboard.dismiss()}>
-              <AntDesign name={'close'} size={20} color={props.keyboardCloseColor || color('white')} />
+              <Icon name={'close'} size={20} color={props.keyboardCloseColor || color('white')} />
             </TouchableOpacity>
           </View>
         </InputAccessoryView>

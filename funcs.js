@@ -391,26 +391,28 @@ export async function getRecentKeyword() {
       });
   });
 }
-export function showToast(msg) {
+export function showToast(msg, duration) {
   Toast.show(msg, {
-    duration: 3000,
+    duration: duration || 3000,
     position: Toast.positions.TOP,
     shadow: false,
     animation: true,
     hideOnPress: true,
     delay: 0,
     opacity: 1,
-    backgroundColor: color('theme'),
-    textStyle: {fontSize: 12, color: color('white')},
+    backgroundColor: color('themedark'),
+    textStyle: {fontSize: 12, color: color('white'), textAlign: 'left'},
     containerStyle: {
       width: screenWidth - 20,
-      height: 60,
+      // height: 60,
       marginTop: isIphoneX() ? getStatusBarHeight() + 8 : 8,
       top: -10,
-      borderWidth: 0.5,
-      borderColor: color('lightgray'),
+      // borderWidth: 0.5,
+      // borderColor: color('lightgray'),
       justifyContent: 'center',
       alignItems: 'flex-start',
+      paddingHorizontal: 15,
+      paddingVertical: 20,
     },
   });
 }
@@ -555,6 +557,18 @@ export function fromNow(date) {
     return Math.floor(interval) + " 분 전";
   }
   return Math.floor(seconds) + " 초 전";
+}
+export function getDatefromNow(date) {
+
+  const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+  let interval = seconds / 86400;
+
+  if (interval > 1) {
+    return Math.floor(interval);
+  } else {
+    return 0;
+  }
 }
 export function toHourMinSecFormat(time) {
   // Hours, minutes and seconds
