@@ -9,7 +9,7 @@ import {
 import Seperator from '../Seperator';
 import Text from '../Text';
 import {color} from 'react-native-nuno-ui/style';
-import {Picker} from '@react-native-community/picker';
+import {Picker} from '@react-native-picker/picker';
 import Icon from 'react-native-nuno-ui/src/Icon';
 
 export default ({
