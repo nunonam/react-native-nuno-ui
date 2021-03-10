@@ -45,11 +45,14 @@ export function errorApi(req, err) {
   } else {
     Alert.alert('죄송합니다', '문제가 발생하였습니다. 확인후 빠른시간에 정상화 하도록 하겠습니다');
   }
-  if (err.response?.status !== 555) {
+  if (err.response?.status < 500) {
+    const deviceVersion = deviceInfoModule.getVersion();
+
     Axios.post('error', {
       request: {restApi: req},
       error: err.message || JSON.stringify(err),
       from: 'frontend',
+      version: deviceVersion,
     })
     .then((res) => console.log('[ERROR UPLOAD]', res.data))
     .catch((e) => console.log('[ERROR UPLOAD] error', e));
