@@ -437,7 +437,7 @@ export function share(deeplink, title, message, image) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          longDynamicLink: `${Nuno.config.DYNAMIC_LINK}/?link=${deeplink}&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}&st=${title}&sd${message}&si=${image}`,
+          longDynamicLink: `${Nuno.config.DYNAMIC_LINK}/?link=${deeplink}&efr=1&ibi=${Nuno.config.BUNDLE_ID}&isi=${Nuno.config.IOS_STORE_ID}&apn=${Nuno.config.PACKAGE_NAME}&st=${title}&sd${message}&si=${image}`,
         }),
       },
     )
@@ -630,4 +630,20 @@ export function getPhotos(index, multiple) {
         });
     }
   });
+}
+
+export function check(value) {
+  if (value === null || value === undefined) {
+    return false
+  }
+
+  if (typeof value === 'string') {
+    return value.length > 0 ? true : false;
+  }
+
+  if (typeof value === 'object') {
+    return Object.entries(value).length > 0 ? true : false;
+  }
+
+  return false;
 }
